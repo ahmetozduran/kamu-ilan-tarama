@@ -213,7 +213,7 @@ MEM_DESENI = (r"([üu]cretli [öo]ğretmen|s[öo]zle[şs]meli [öo]ğretmen|usta
 YEREL_HARIC = (r"(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|"
                r"etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret|[öo]ğretmenler g[üu]n|mesaj|kutla|"
                r"e[ğg]itimi ver|toplant|denetim|y[öo]netmeli|g[öo]revde y[üu]kselme|unvan de[ğg]i[şs]|"
-               r"sonu[çc]|kazanan|ba[şs][ıi]m[ıi]z sa[ğg]|ta[şs][ıi]n[ıi]r mal)")
+               r"sonu[çc]|kazanan|ba[şs][ıi]m[ıi]z sa[ğg]|ta[şs][ıi]n[ıi]r mal|as[ıi]l.{0,3}yedek|zirve|projeler)")
 YEREL_LINK_LIMIT = 8
 
 
@@ -705,6 +705,10 @@ def memurlar(durum):
             durumu_yaz(durum)
         n += 1
     son_bulunan = durum.get("memurlar_son", son)
+    if bos >= MEMURLAR_ARDISIK_BOS and not kaynak[ad]["not"]:
+        # Art arda 'ilan yok' (404) = en yeni ilana yetişildi; site açık sayılır
+        kaynak[ad]["ok"] = max(kaynak[ad]["ok"], 1)
+        kaynak[ad]["not"] = f"güncel: en yeni ilan {son_bulunan}, sonrası henüz yayımlanmamış"
     durum["memurlar_tekrar"] = sorted(set(x for x in hatali if x <= son_bulunan))[-300:]
     log(f"[memurlar] {bulunan} ilan kaydedildi, son numara {son_bulunan}, "
         f"{len(durum['memurlar_tekrar'])} numara sonraki tura kaldı")
