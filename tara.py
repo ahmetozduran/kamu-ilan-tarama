@@ -68,7 +68,7 @@ MEMURLAR_BASLANGIC = 86300
 MEMURLAR_TUR_LIMIT = 600     # bir çalışmada en fazla kaç numara denensin
 MEMURLAR_ARDISIK_BOS = 40    # art arda bu kadar YOK numara görülürse dur
 MEMURLAR_ARDISIK_HATA = 15   # art arda bu kadar ağ/erişim hatası olursa site kapalı say, dur
-MEMURLAR_PAY = 0.70          # süre bütçesinin en fazla bu kadarı memurlar.net'e
+MEMURLAR_PAY = 0.55          # süre bütçesinin en fazla bu kadarı memurlar.net'e
 
 # Hiç istek atılmayacak alanlar (bu alan adları ve alt alan adları)
 ENGELLI_ALANLAR = [
@@ -132,6 +132,62 @@ UNI_ALT_ALANLAR = ["www.{d}", "personel.{d}", "pdb.{d}"]
 UNI_DESENI = (r"(ilan|al[ıi]m|[öo]ğretim (g[öo]revlisi|eleman|[üu]yesi)|akademik personel|"
               r"s[öo]zle[şs]meli|personel al|kadro|duyuru)")
 UNI_LINK_LIMIT = 15          # üniversite başına en fazla kaç yeni bağlantı açılsın
+
+# ---- Yerel kurumlar (LogiX'in 27 Kasım 2026 talimatı: 12 Karadeniz ili)
+# Belediye, il özel idaresi, valilik/kaymakamlık (SYDV duyuruları dâhil), il/ilçe MEM.
+# Alan adları kalıptan üretilir; açılmayanlar kaynak_durumu.json'da "açılmadı" görünür
+# ve haftalık görev o kurumu WebSearch ile tamamlar.
+ORDU_ILCELER = ["altinordu", "fatsa", "unye", "persembe", "golkoy", "korgan", "kumru",
+                "aybasti", "ulubey", "mesudiye", "akkus", "caybasi", "ikizce", "kabaduz",
+                "kabatas", "camas", "catalpinar", "gulyali", "gurgentepe"]
+KARADENIZ_ILLER = [("Giresun", "giresun"), ("Samsun", "samsun"), ("Trabzon", "trabzon"),
+                   ("Amasya", "amasya"), ("Tokat", "tokat"), ("Rize", "rize"),
+                   ("Gümüşhane", "gumushane"), ("Sinop", "sinop"), ("Sivas", "sivas"),
+                   ("Bayburt", "bayburt"), ("Çorum", "corum")]
+OZEL_IDARELI = ["giresun", "amasya", "tokat", "rize", "gumushane", "sinop", "sivas", "bayburt", "corum"]
+BUYUK_ILCELER = {
+    "Samsun": ["atakum", "ilkadim", "canik", "tekkekoy", "bafra", "carsamba", "terme", "vezirkopru", "havza"],
+    "Trabzon": ["ortahisar", "akcaabat", "of", "arakli", "yomra", "vakfikebir"],
+    "Giresun": ["bulancak", "espiye", "gorele", "tirebolu", "sebinkarahisar"],
+    "Tokat": ["erbaa", "niksar", "turhal", "zile"],
+    "Amasya": ["merzifon", "suluova"],
+    "Rize": ["cayeli", "ardesen"],
+    "Sivas": ["susehri", "sarkisla"],
+    "Çorum": ["sungurlu", "osmancik", "iskilip"],
+    "Sinop": ["boyabat", "gerze"],
+    "Gümüşhane": ["kelkit"],
+}
+PERSONEL_DESENI = (r"(memur|personel|al[ıi]m|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|"
+                   r"i[şs]e al|s[ıi]nav|kadro|g[öo]revli al|sosyal yard[ıi]m ve inceleme|sydv|vak[ıi]f)")
+MEM_DESENI = (r"([üu]cretli [öo]ğretmen|s[öo]zle[şs]meli [öo]ğretmen|[öo]ğretmen (ihtiya|al[ıi]m|g[öo]revlendir)|"
+              r"personel al|usta [öo]ğretici|matematik)")
+YEREL_HARIC = (r"(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|"
+               r"etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret)")
+YEREL_LINK_LIMIT = 8
+
+
+def _yerel_listesi():
+    k = []  # (il, tür, alan adı, desen)
+    k.append(("Ordu", "belediye", "ordu.bel.tr", PERSONEL_DESENI))
+    k.append(("Ordu", "valilik", "ordu.gov.tr", PERSONEL_DESENI))
+    k.append(("Ordu", "mem", "ordu.meb.gov.tr", MEM_DESENI))
+    for d in ORDU_ILCELER:
+        k.append(("Ordu", "belediye", f"{d}.bel.tr", PERSONEL_DESENI))
+        k.append(("Ordu", "kaymakamlik", f"{d}.gov.tr", PERSONEL_DESENI))
+        k.append(("Ordu", "mem", f"{d}.meb.gov.tr", MEM_DESENI))
+    for il, d in KARADENIZ_ILLER:
+        k.append((il, "belediye", f"{d}.bel.tr", PERSONEL_DESENI))
+        k.append((il, "valilik", f"{d}.gov.tr", PERSONEL_DESENI))
+        k.append((il, "mem", f"{d}.meb.gov.tr", MEM_DESENI))
+        if d in OZEL_IDARELI:
+            k.append((il, "ozelidare", f"{d}ozelidare.gov.tr", PERSONEL_DESENI))
+        for ilce in BUYUK_ILCELER.get(il, []):
+            k.append((il, "belediye", f"{ilce}.bel.tr", PERSONEL_DESENI))
+    return k
+
+
+YEREL_KURUMLAR = _yerel_listesi()
+YEREL_ALT_YOLLAR = ["", "duyurular", "ilanlar"]
 
 ILLER = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya",
          "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik",
@@ -584,7 +640,7 @@ def memurlar_tek(n):
 def liste_sayfalari(durum):
     gorulen = set(durum.get("gorulen", []))
     for ad, ana, desen in LISTE_SAYFALARI:
-        if sure_bitti(0.85):
+        if sure_bitti(0.68):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         r = getir(ana, ad)
@@ -609,7 +665,7 @@ def liste_sayfalari(durum):
         if not adaylar and not kaynak[ad]["not"]:
             kaynak[ad]["not"] = "açıldı, yeni bağlantı yok"
         for u, yazi, h in adaylar[:40]:
-            if sure_bitti(0.85):
+            if sure_bitti(0.68):
                 break
             r2 = getir(u, ad)
             gorulen.add(h)
@@ -630,61 +686,102 @@ def liste_sayfalari(durum):
     durum["gorulen"] = list(gorulen)[-12000:]
 
 
-# ---------------------------------------------------------------- 3) üniversite sayfaları
+# ---------------------------------------------------------------- 3) kurum sayfaları (üniversite + yerel)
+def _baglanti_topla(r, alan, desen, haric, gorulen, adaylar):
+    soup = BeautifulSoup(r.text, "html.parser")
+    for a in soup.find_all("a", href=True):
+        u = urljoin(r.url, a["href"]).split("#")[0]
+        h_ = (urlparse(u).hostname or "")
+        if not (h_ == alan or h_.endswith("." + alan)):
+            continue
+        yazi = a.get_text(" ", strip=True)
+        if len(yazi) < 12 or not re.search(desen, yazi, re.I):
+            continue
+        if haric and re.search(haric, yazi, re.I):
+            continue
+        h = hashlib.sha1(u.encode()).hexdigest()[:16]
+        if h in gorulen or any(h == x[2] for x in adaylar):
+            continue
+        adaylar.append((u, yazi, h))
+
+
+def _adaylari_kaydet(ad, il, adaylar, gorulen, limit, ek_meta):
+    for u, yazi, h in adaylar[:limit]:
+        gorulen.add(h)
+        meta = {"il": il, **ek_meta}
+        if re.search(r"\.pdf(\?|$)", u, re.I):
+            r2 = getir(u, ad)
+            if r2 is not None and r2.status_code == 200:
+                m, k = pdf_metin(r2.content)
+                kaydet(ad.replace(":", "-"), h, u, yazi, "", f"--- PDF (kalite {k}): {u}\n{m}",
+                       {**meta, "ocr_kalite": kalite_etiketi(k)}, sayac=ad)
+            continue
+        r2 = getir(u, ad)
+        if r2 is None or r2.status_code != 200:
+            continue
+        s2 = BeautifulSoup(r2.text, "html.parser")
+        h1 = s2.find("h1")
+        baslik = h1.get_text(" ", strip=True) if h1 else yazi
+        if len(baslik) < 8:
+            baslik = yazi
+        metin = temiz_metin(ana_icerik(BeautifulSoup(r2.text, "html.parser")))
+        ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad)
+        kaydet(ad.replace(":", "-"), h, r2.url, baslik, metin[:60000], ek,
+               {**meta, "ocr_kalite": kalite_etiketi(kalite), "gorseller": gorseller}, sayac=ad)
+
+
 def universiteler(durum):
     gorulen = set(durum.get("uni_gorulen", []))
     for il, alan in UNIVERSITELER:
-        if sure_bitti(0.95):
-            kaynak["uni:" + alan]["not"] = "süre bütçesi doldu, atlandı"
-            continue
         ad = "uni:" + alan
-        acilan = 0
-        adaylar = []
+        if sure_bitti(0.80):
+            kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
+            continue
+        acilan, adaylar = 0, []
         for kalip in UNI_ALT_ALANLAR:
-            ana = "https://" + kalip.format(d=alan) + "/"
-            r = getir(ana, ad)
+            r = getir("https://" + kalip.format(d=alan) + "/", ad)
             if r is None or r.status_code != 200:
                 continue
             acilan += 1
-            soup = BeautifulSoup(r.text, "html.parser")
-            for a in soup.find_all("a", href=True):
-                u = urljoin(r.url, a["href"]).split("#")[0]
-                h_ = (urlparse(u).hostname or "")
-                if not (h_ == alan or h_.endswith("." + alan)):
-                    continue
-                yazi = a.get_text(" ", strip=True)
-                if len(yazi) < 12 or not re.search(UNI_DESENI, yazi, re.I):
-                    continue
-                h = hashlib.sha1(u.encode()).hexdigest()[:16]
-                if h in gorulen or any(h == x[2] for x in adaylar):
-                    continue
-                adaylar.append((u, yazi, h))
+            _baglanti_topla(r, alan, UNI_DESENI, None, gorulen, adaylar)
         if not acilan:
             kaynak[ad]["not"] = "ana/personel sayfası açılmadı"
             continue
         log(f"[{ad}] {len(adaylar)} yeni bağlantı")
         if not adaylar:
             kaynak[ad]["not"] = "açıldı, yeni duyuru yok"
-        for u, yazi, h in adaylar[:UNI_LINK_LIMIT]:
-            gorulen.add(h)
-            if re.search(r"\.pdf(\?|$)", u, re.I):
-                r2 = getir(u, ad)
-                if r2 is not None and r2.status_code == 200:
-                    m, k = pdf_metin(r2.content)
-                    kaydet(ad.replace(":", "-"), h, u, yazi, "", f"--- PDF (kalite {k}): {u}\n{m}",
-                           {"il": il, "ocr_kalite": kalite_etiketi(k)}, sayac=ad)
-                continue
-            r2 = getir(u, ad)
-            if r2 is None or r2.status_code != 200:
-                continue
-            s2 = BeautifulSoup(r2.text, "html.parser")
-            h1 = s2.find("h1")
-            baslik = h1.get_text(" ", strip=True) if h1 else yazi
-            metin = temiz_metin(ana_icerik(BeautifulSoup(r2.text, "html.parser")))
-            ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad)
-            kaydet(ad.replace(":", "-"), h, r2.url, baslik, metin[:60000], ek,
-                   {"il": il, "ocr_kalite": kalite_etiketi(kalite), "gorseller": gorseller}, sayac=ad)
+        _adaylari_kaydet(ad, il, adaylar, gorulen, UNI_LINK_LIMIT, {})
     durum["uni_gorulen"] = list(gorulen)[-8000:]
+
+
+def yerel_kurumlar(durum):
+    """12 Karadeniz ilinde belediye, il özel idaresi, valilik/kaymakamlık ve MEM duyuruları."""
+    gorulen = set(durum.get("yerel_gorulen", []))
+    for il, tur, alan, desen in YEREL_KURUMLAR:
+        ad = f"yerel:{tur}:{alan}"
+        if sure_bitti(0.95):
+            kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
+            continue
+        taban = None
+        for on in ("https://www.", "https://"):
+            r = getir(on + alan + "/", ad)
+            if r is not None and r.status_code == 200:
+                taban = r.url
+                break
+        if not taban:
+            kaynak[ad]["not"] = "site açılmadı (alan adı yanlış olabilir)"
+            continue
+        adaylar = []
+        _baglanti_topla(r, alan, desen, YEREL_HARIC, gorulen, adaylar)
+        for yol in YEREL_ALT_YOLLAR[1:]:
+            r = getir(urljoin(taban, "/" + yol), ad)
+            if r is not None and r.status_code == 200:
+                _baglanti_topla(r, alan, desen, YEREL_HARIC, gorulen, adaylar)
+        log(f"[{ad}] {len(adaylar)} yeni bağlantı")
+        if not adaylar:
+            kaynak[ad]["not"] = "açıldı, yeni duyuru yok"
+        _adaylari_kaydet(ad, il, adaylar, gorulen, YEREL_LINK_LIMIT, {"kurum_turu": tur})
+    durum["yerel_gorulen"] = list(gorulen)[-12000:]
 
 
 # ---------------------------------------------------------------- raporlar
@@ -727,7 +824,7 @@ def main():
     if os.path.exists(DURUM_DOSYASI):
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
-    adimlar = [memurlar, liste_sayfalari, universiteler]
+    adimlar = [memurlar, liste_sayfalari, universiteler, yerel_kurumlar]
     for adim in adimlar:
         try:
             adim(durum)

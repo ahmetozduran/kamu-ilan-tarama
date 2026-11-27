@@ -6,6 +6,7 @@ Her gün otomatik çalışan kamu ilanı toplayıcısı (GitHub Actions, 06:17 T
   - ilan.memurlar.net'teki her ilan numarası tek tek açılır.
   - Haber ve ilan sitelerinin liste sayfaları ile akademiktr taranır.
   - Karadeniz ve çevresindeki üniversitelerin ana sayfası ile personel sayfaları taranır.
+  - Yerel kurumlar (12 Karadeniz ili): belediyeler (Ordu'nun 19 ilçesi ve diğer illerin büyük ilçeleri dâhil), il özel idareleri, valilik ve kaymakamlıklar (SYDV duyuruları dâhil), il ve ilçe milli eğitim müdürlükleri (ücretli/sözleşmeli öğretmen duyuruları). Yerel kayıtların `kurum_turu` alanı vardır.
 - **Ekler:** Görsel tablolar büyütülüp OCR'lanır; PDF'ler pdftotext ile metne çevrilir. Her OCR için bir kalite puanı tutulur. `ocr_kalite: dusuk` olan ilan başka bir kaynaktan doğrulanmalıdır.
 - **Uyulan kurallar:** robots.txt'ye uyulur. Erişime kapalı resmi portallara (Kariyer Kapısı, ilan.gov.tr vb.) hiç istek atılmaz.
 - **Süre:** Tarama kendi süre bütçesiyle (95 dk) durur. Yarıda kalsa bile o ana kadar toplananlar commit edilir.
