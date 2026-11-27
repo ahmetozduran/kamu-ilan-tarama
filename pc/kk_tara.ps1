@@ -30,6 +30,11 @@ function Yaz($m) {
     Write-Host $s
 }
 
+trap {
+    Yaz "BEKLENMEYEN HATA (satır $($_.InvocationInfo.ScriptLineNumber)): $($_.Exception.Message)"
+    break
+}
+
 # Günlük dosyası çok büyümesin
 if ((Test-Path $Gunluk) -and (Get-Item $Gunluk).Length -gt 500KB) {
     Get-Content $Gunluk -Tail 2000 | Set-Content $Gunluk -Encoding UTF8
@@ -66,8 +71,14 @@ if (-not ($args -contains "-guncellendi")) {
         if ((Get-Item $tmp).Length -gt 1000 -and (Get-FileHash $tmp).Hash -ne (Get-FileHash $PSCommandPath).Hash) {
             Copy-Item $tmp $PSCommandPath -Force
             Yaz "Betik GitHub'dan güncellendi; yeni sürüm başlatılıyor."
-            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @args "-guncellendi"
-            exit $LASTEXITCODE
+            # Not: '& powershell.exe' kullanılınca alt sürecin hata akışı üst süreçte durdurucu hataya
+            # dönüşüp çalışmayı sessizce kesebiliyordu (27.11.2026); Start-Process ile bekleniyor.
+            $ekArg = (@($args) + "-guncellendi") -join " "
+            $alt = Start-Process -FilePath "powershell.exe" -NoNewWindow -Wait -PassThru `
+                -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $ekArg"
+            $kod = $alt.ExitCode
+            Yaz "Yeni sürüm bitti (çıkış kodu $kod)."
+            exit $kod
         }
     } catch { Yaz "Güncelleme denetimi yapılamadı: $($_.Exception.Message)" }
 }
@@ -244,6 +255,7 @@ if (-not ($gorevler | Where-Object { $_.anahtar -eq "ilangovtr" })) {
         href_deseni = "/ilan/\d{6,}/"; baglanti_deseni = ""; haric = "tebligat|ihale|kiralama|sat[ıi][şs]|icra"; limit = 25 }) + $gorevler
 }
 if (-not $Edge) { Yaz "Edge bulunamadı; sayfa görevleri atlandı." ; $gorevler = @() }
+Yaz "Sayfa görevleri: $(@($gorevler).Count) görev, Edge: $Edge"
 
 $yeniKayitlar = @()
 $gorevDurumu = [ordered]@{}
@@ -255,6 +267,7 @@ foreach ($gv in $gorevler) {
     foreach ($u in @($gv.url)) {
         if (-not (RobotsIzin $u)) { $gorevDurumu[$gv.anahtar] = "robots.txt izin vermiyor"; continue }
         $html = EdgeDom $u
+        Yaz "[$($gv.anahtar)] liste sayfası: $($html.Length) karakter ($u)"
         if ($html.Length -gt 500) { $listeHtml = $html; $listeUrl = $u; break }
     }
     if (-not $listeHtml) { if (-not $gorevDurumu.Contains($gv.anahtar)) { $gorevDurumu[$gv.anahtar] = "sayfa açılmadı" }; continue }
