@@ -1,0 +1,18 @@
+name: erisim-denemesi
+on: workflow_dispatch
+jobs:
+  dene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: js indir
+        run: |
+          UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
+          mkdir -p kk && cd kk
+          curl -sS -m 30 -A "$UA" -o isealim.html https://kariyerkapisi.gov.tr/isealim
+          for s in $(grep -oE 'src="/js/[^"]*"' isealim.html | sed 's/src="//;s/"//'); do curl -sS -m 30 -A "$UA" -o "$(basename $s)" "https://kariyerkapisi.gov.tr$s"; done
+          ls -la
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kk
+          path: kk
