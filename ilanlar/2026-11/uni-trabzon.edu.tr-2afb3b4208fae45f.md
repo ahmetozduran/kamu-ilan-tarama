@@ -1,0 +1,192 @@
+# Hususi ve Hizmet Damgalı Pasaport Başvuru İşlemleri Hakkında Duyuru
+
+- kaynak: uni-trabzon.edu.tr
+- adres: https://personel.trabzon.edu.tr/Duyuru/12420/hususi-ve-hizmet-damgali-pasaport-basvuru-islemleri-hakkinda-duyuru
+- alındı: 2026-11-27T16:26:23+00:00
+- il: Trabzon
+- ocr_kalite: dusuk
+- gorseller: https://personel.trabzon.edu.tr/Images/footer/osym.png https://personel.trabzon.edu.tr/Images/footer/tubitak.png https://personel.trabzon.edu.tr/Images/footer/resmi.png https://personel.trabzon.edu.tr/Images/footer/meb.png https://personel.trabzon.edu.tr/Images/footer/yok.png https://personel.trabzon.edu.tr/Images/footer/sifir.png https://personel.trabzon.edu.tr/Images/footer/study.png https://personel.trabzon.edu.tr/Images/footer/ilan.png https://personel.trabzon.edu.tr/Images/footer/teknofest.png
+- tur: kamu
+
+## Metin
+
+Hakkımızda
+Tarihçe
+Organizasyon Şeması
+Görev Tanımları
+Yönetim
+Personel
+Misyon
+Vizyon
+İnsan Kaynakları Yönetimi Yönergesi
+İnsan Kaynakları Politikamız
+Personel Daire Başkanlığı Temel Değerleri
+İdari Yapı Ve Görevler
+Mevzuat Ve Formlar
+Formlar
+Mevzuat
+Disiplin Süreçleri Kontrol Formu
+Norm Kadro
+Norm Kadro Talep Ve Kullanım Formları
+Norm Kadro Yök Kararları
+Norm Kadro Yönetmeliği
+Genel Kadro Ve Usulü Hakkında Cumhurbaşkanlığı Kararnamesi
+Akademik Teşvik
+Eğitimler
+Hizmet İçi Eğitim
+Hizmet İçi Eğitim Usul Ve Esasları
+Hizmet İçi Eğitim Planı
+Oryantasyon
+Oryantasyon Eğitimi Usul Ve Esasları
+Oryantasyon Eğitimi Uygulama Kılavuzu
+Kurumsal Uyum (merkezi) Eğitimini Tamamlayanlar
+Göreve Uyum Eğitimini (birim Bazlı) Tamamlayanlar
+İç Kontrol
+Kalite Güvence Sistemi
+Pukö Döngüsü
+(p)lanlama
+(u)ygulama
+(k)ontrol Et
+(ö)nlem Al
+Kalite Dokümantasyon Sistemi
+Kurum İdari Kurul Kararları
+Birim İç Değerlendirme Raporları (bidr)
+Birim Faaliyet Raporları
+Stratejik Plan
+Performans Programı
+Sürekli İyileştirme Eylem Planı
+Kalite El Kitabı
+Paydaş Katılımı
+İç Kontrol Birim Çalışma Grubu
+İç Kontrol Güvence Beyanı
+Birim Kalite Ekibi Ve Tutanaklar
+Anketler
+2026 Yılı Anketleri
+Anket Sonuçları
+Pasaport İşlemleri
+İş Akış Şemaları
+İzin Hakları
+İzin Formu Oluşturma Süreci
+İzin Hakları
+Sürekli İşçi İzin Hakları
+İletişim Ve Harita
+Sıkça Sorulan Sorular
+YÃ¼kleniyor
+TR
+EN
+E-Posta
+Personel Daire Başkanlığı
+Hususi ve Hizmet Damgalı Pasaport Başvuru İşlemleri Hakkında Duyuru
+Yayınlanma Tarihi:
+17.11.2026
+Güncellenme Tarihi:
+17.11.2026
+Paylaş
+Paylaş
+70 kez okundu
+A+
+A-
+Yükseköğretim Kurulu Başkanlığı (YÖK) tarafından, üniversitelerde görev yapan personelin hizmet damgalı ve hususi damgalı pasaport başvuruları ile emekli personele ilişkin pasaport talep işlemlerinin elektronik ortamda hızlı ve güvenli bir şekilde yürütülmesi amacıyla Personel Bilgi Sistemi (PBS) bünyesinde
+"Pasaport İşlemleri"
+modülü kullanıma açılmıştır.
+Bu kapsamda pasaport başvuru süreçleri aşağıdaki şekilde yürütülecektir:
+1. Görevdeki Personelin Başvuru Süreci
+Başvurular
+pbs.yok.gov.tr
+adresi üzerinden alınacak olup, sisteme girişler
+e-Devlet
+ile gerçekleştirilecektir.
+Giriş yapıldıktan sonra başvurular,
+"Bireysel İşlemler → Pasaport Başvurusu"
+menüsü aracılığıyla elektronik ortamda oluşturulacaktır.
+Sistem üzerinden oluşturulan başvurular, Personel Daire Başkanlığımızca incelenerek onaylanacak, yetkili amir tarafından elektronik imza ile imzalanacak ve sistem üzerinden doğrudan Nüfus ve Vatandaşlık İşleri Genel Müdürlüğüne (NVİ) iletilecektir.
+Başvuru sırasında kişisel veya özlük bilgilerinde eksiklik ya da hata bulunması hâlinde, söz konusu bilgilerin güncellenmesi için Personel Daire Başkanlığımız ile iletişime geçilmesi gerekmektedir. (Dahili:1094)
+2. Emekli veya Görevinden Ayrılan Personelin Başvuru Süreci
+Emeklilik veya istifa nedeniyle görevinden ayrılan personelimizin pasaport talep işlemleri, Personel Daire Başkanlığımızda yetkilendirilen
+"Pasaport Onay Yetkilisi"
+tarafından sistem üzerinden düzenlenerek yürütülecektir.
+3. Önemli Hususlar
+Elektronik imza ile imzalanarak elektronik ortamda NVİ’ye gönderilen başvurular için ayrıca ıslak veya elektronik imzalı fiziki bir belge düzenlenmesine ve gönderilmesine ihtiyaç bulunmamaktadır.
+Bilgilerinize saygıyla duyurulur.
+2026
+Trabzon Üniversitesi
+Mesaj Gönder
+Rss
+Site Haritası
+Bize Ulaşın
+KVKK
+MenÃ¼yÃ¼ Kapat
+İçeriğe geç
+Erişilebilirlik
+Hızlı Profiller
+Düşük Görme
+Disleksi
+DEHB
+Epilepsi
+Renk Körü
+Yazı Boyutu
+A−
+A
+A+
+Renk
+Yüksek Kontrast
+Gri Tonlama
+Koyu Tema
+Linkleri Belirginleştir
+Görünüm
+Satır Aralığı
+Görselleri Gizle
+Animasyonları Durdur
+Disleksi Fontu
+Büyük İmleç
+Okuma Araçları
+Sesli Okuma
+Okuma Şeridi
+Tümünü Sıfırla
+Kapat
+
+## Ekler (görsel/PDF metni)
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/osym.png
+
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/tubitak.png
+
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/resmi.png
+PC.
+RESMI
+GAZETE
+
+--- GÖRSEL (OCR, kalite 0.28): https://personel.trabzon.edu.tr/Images/footer/meb.png
+. *4 - > . 3 " .
+> — . Ley be
+” im p == ky = ' #
+- mi e — ~ a -|
+. ! . :
+e - — " +
+2 ” = ai! ” = a ee =
+m ğ e. a
+hai “o; gi. ow -
+4 Li
+" J
+> 8
+= .
+— .
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/yok.png
+
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/sifir.png
+
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/study.png
+
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/ilan.png
+m
+bd
+llan.gov.tr
+
+--- GÖRSEL (OCR, kalite 0.0): https://personel.trabzon.edu.tr/Images/footer/teknofest.png
+TEKNÖFESİ
