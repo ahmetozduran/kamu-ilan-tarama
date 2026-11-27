@@ -15,7 +15,7 @@ concurrency:
 jobs:
   tara:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 140
     steps:
       - uses: actions/checkout@v4
 
@@ -29,17 +29,28 @@ jobs:
           python-version: "3.12"
 
       - name: Python paketleri
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 pillow
 
       - name: Tara
+        timeout-minutes: 110
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SURE_LIMIT_DK: "95"
         run: python tara.py
 
+      # Tarama hata verse ya da süre aşımına uğrasa bile o ana kadar toplananlar kaydedilir.
       - name: Sonuçları kaydet
+        if: always()
         run: |
           git config user.name "ilan-bot"
           git config user.email "ilan-bot@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -q -m "tarama $(date -u +%F)"
-          git push
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok"
+            exit 0
+          fi
+          git commit -q -m "tarama $(date -u +%F)"
+          for i in 1 2 3; do
+            git pull --rebase -q && git push && exit 0
+            sleep 10
+          done
+          exit 1

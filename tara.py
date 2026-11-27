@@ -1,28 +1,34 @@
 #!/usr/bin/env python3
 """
-Kamu ilan tarama botu (GitHub Actions'ta her gün çalışır).
+Kamu ilan tarama botu (GitHub Actions'ta her gün çalışır).  Sürüm 2
 
 Ne yapar:
   1) ilan.memurlar.net'te son bakılan numaradan itibaren her ilanı sırayla açar.
      İlandaki görsel tabloları OCR ile, PDF ekleri pdftotext ile metne çevirir.
-  2) Birkaç ilan sitesinin ana sayfasındaki personel alımı bağlantılarını toplar
-     ve yeni olanların metnini kaydeder.
-  3) Kamu ilanlarını takip eden herkese açık GitHub projelerinin son kayıtlarını alır.
+     OCR kalitesini ölçer; düşükse kayda "ocr_kalite: dusuk" yazar (doğrulama gerekir).
+  2) İlan listesi veren sitelerin (haber/ilan siteleri, akademiktr) liste sayfalarındaki
+     ilan bağlantılarını toplar, yeni olanların metnini kaydeder.
+  3) Üniversitelerin ana sayfa / personel daire başkanlığı sayfalarındaki
+     ilan-duyuru bağlantılarını toplar (öncelik Karadeniz ve çevresi).
+  4) Her kaynağın o gün açılıp açılmadığını kaynak_durumu.json'a yazar.
 
 Kurallar:
-  - robots.txt'ye uyar; robots.txt okunamayan siteye girmez.
+  - robots.txt'ye uyar; robots.txt 5xx/ağ hatası veren siteye girmez.
   - Erişime kapalı tutulan resmi portallara (ENGELLI_ALANLAR) hiç istek atmaz.
-  - İstekler arasında bekler, siteleri yormaz.
+  - İstekler arasında bekler; toplam süre bütçesini aşmaz (SURE_LIMIT_DK).
 
 Çıktılar (depoya yazılır):
   ilanlar/AAAA-AA/<kaynak>-<kimlik>.md   her ilanın tam metni (+ OCR/PDF metni)
-  index.jsonl                            her ilan için tek satır özet
-  ozet/AAAA-AA-GG.md                     o gün yeni bulunanların listesi
+  index.jsonl                            her ilan için tek satır özet (tarihler ISO)
+  acik_ilanlar.md                        son başvurusu geçmemiş / tarihi okunamamış ilanlar
+  ozet/AAAA-AA-GG.md                     o gün yeni bulunanlar + kaynak durumu
+  kaynak_durumu.json                     son çalışmada her kaynağın durumu
   durum.json                             kaldığı yer (son numara, görülen adresler)
 """
 
 import datetime as dt
 import hashlib
+import io
 import json
 import os
 import re
@@ -31,23 +37,38 @@ import sys
 import tempfile
 import time
 import urllib.robotparser
+from collections import defaultdict
 from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from PIL import Image, ImageOps
+except ImportError:  # Pillow yoksa OCR ön işleme atlanır
+    Image = None
+
 # ---------------------------------------------------------------- ayarlar
 KOK = os.path.dirname(os.path.abspath(__file__))
 DURUM_DOSYASI = os.path.join(KOK, "durum.json")
 INDEX_DOSYASI = os.path.join(KOK, "index.jsonl")
+KAYNAK_DOSYASI = os.path.join(KOK, "kaynak_durumu.json")
+ACIK_DOSYASI = os.path.join(KOK, "acik_ilanlar.md")
 
-UA = "kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com)"
+UA = "kamu-ilan-tarama/2.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
 BEKLEME = 1.5            # istekler arası saniye
 ZAMAN_ASIMI = 30         # istek zaman aşımı (sn)
+SURE_LIMIT_DK = float(os.environ.get("SURE_LIMIT_DK", "95"))  # toplam süre bütçesi
+BASLANGIC_ZAMANI = time.time()
 
-MEMURLAR_BASLANGIC = 86700   # durum.json yoksa buradan başlar (yaklaşık Ekim 2026 sonu)
-MEMURLAR_TUR_LIMIT = 450     # bir çalışmada en fazla kaç numara denensin
-MEMURLAR_ARDISIK_BOS = 40    # art arda bu kadar boş numara görülürse dur
+# durum.json yoksa buradan başlar. 86607 = 2 Ekim 2026, 86694 = 13 Ekim (OKA, son başvuru 22 Kasım).
+# Başvuru süresi uzun ilanları da yakalamak için ~Eylül ortasından başlanır; ilk günlerde süre
+# bütçesi dolarsa kalan numaralar ertesi günlere bölünür.
+MEMURLAR_BASLANGIC = 86300
+MEMURLAR_TUR_LIMIT = 600     # bir çalışmada en fazla kaç numara denensin
+MEMURLAR_ARDISIK_BOS = 40    # art arda bu kadar YOK numara görülürse dur
+MEMURLAR_ARDISIK_HATA = 15   # art arda bu kadar ağ/erişim hatası olursa site kapalı say, dur
+MEMURLAR_PAY = 0.70          # süre bütçesinin en fazla bu kadarı memurlar.net'e
 
 # Hiç istek atılmayacak alanlar (bu alan adları ve alt alan adları)
 ENGELLI_ALANLAR = [
@@ -60,33 +81,104 @@ ENGELLI_ALANLAR = [
     "turkiye.gov.tr",
 ]
 
-# Ana sayfasından personel alımı bağlantısı toplanacak siteler
-TOPLAYICI_SITELER = [
-    "https://www.memurjet.com/",
-    "https://kariyerbankasi.net/",
-    "https://kamukadro.com/",
-    "https://memuralimilanlari.com/",
-    "https://www.isbilgileri.com/",
+# Liste sayfaları: (kaynak adı, adres, bağlantı süzgeci)
+# Süzgeç: bağlantı metninde ya da adresinde geçmesi gereken desen.
+ILAN_DESENI = (r"(al[ıi]m|alacak|al[ıi]nacak|personel|memur|s[öo]zle[şs]meli|uzman|kadro|"
+               r"ilan|[öo]ğretim|ara[şs]t[ıi]rma g[öo]revlisi|bili[şs]im|m[üu]fetti[şs]|denetç)")
+LISTE_SAYFALARI = [
+    # haber/ilan siteleri (21 Kasım 2026'da elle denendi: güncel kurum+kadro ilanı veriyor)
+    ("posta", "https://www.posta.com.tr/haberleri/kamu-personel-alimi", ILAN_DESENI),
+    ("milliyet", "https://www.milliyet.com.tr/haberleri/sozlesmeli-personel-alimi", ILAN_DESENI),
+    ("bigpara", "https://bigpara.hurriyet.com.tr/haberleri/kamu-personeli", ILAN_DESENI),
+    # ilan toplayıcı siteler (ana sayfa)
+    ("memurjet", "https://www.memurjet.com/", ILAN_DESENI),
+    ("kariyerbankasi", "https://kariyerbankasi.net/", ILAN_DESENI),
+    ("kamukadro", "https://kamukadro.com/", ILAN_DESENI),
+    ("memuralimilanlari", "https://memuralimilanlari.com/", ILAN_DESENI),
+    ("isbilgileri", "https://www.isbilgileri.com/", ILAN_DESENI),
+    # akademik (kadro tablosu metin olarak veriliyor)
+    ("akademiktr", "https://akademiktr.com/ilan/ogretim-gorevlisi", r"/ilan/"),
+    ("akademiktr", "https://akademiktr.com/bolum/matematik/ogretim-gorevlisi", r"/ilan/"),
+    ("omu-mezun", "https://mezun.omu.edu.tr/tr/is-hayati/is-staj/akademik-ilanlar", ILAN_DESENI),
 ]
-ANAHTAR = re.compile(
-    r"(al[ıi]m|alacak|personel|memur|s[öo]zle[şs]meli|uzman|kadro|ilan[ıi]|"
-    r"[öo]ğretim|ara[şs]t[ıi]rma g[öo]revlisi|bili[şs]im)", re.I)
 
-# Herkese açık ilan takip projeleri (GitHub API)
-GITHUB_KAYNAKLARI = [
-    ("issues", "kaan2635/memur-ilan-takip"),
-    ("releases", "enesfeched-maker/kamu-ilan-takip"),
+# Üniversite sayfaları: ana alan adı; ana sayfa + personel/pdb alt alanları denenir.
+# Sıra = öncelik (Ordu'dan uzaklaşarak). Açılmayanlar kaynak_durumu.json'da görünür.
+UNIVERSITELER = [
+    ("Ordu", "odu.edu.tr"),
+    ("Giresun", "giresun.edu.tr"),
+    ("Samsun", "omu.edu.tr"), ("Samsun", "samsun.edu.tr"),
+    ("Trabzon", "ktu.edu.tr"), ("Trabzon", "trabzon.edu.tr"),
+    ("Amasya", "amasya.edu.tr"),
+    ("Tokat", "gop.edu.tr"),
+    ("Rize", "erdogan.edu.tr"),
+    ("Gümüşhane", "gumushane.edu.tr"),
+    ("Sinop", "sinop.edu.tr"),
+    ("Sivas", "cumhuriyet.edu.tr"), ("Sivas", "sivas.edu.tr"),
+    ("Bayburt", "bayburt.edu.tr"),
+    ("Çorum", "hitit.edu.tr"),
+    ("Artvin", "artvin.edu.tr"),
+    ("Erzincan", "ebyu.edu.tr"),
+    ("Erzurum", "atauni.edu.tr"),
+    ("Kastamonu", "kastamonu.edu.tr"),
+    ("Bartın", "bartin.edu.tr"),
+    ("Karabük", "karabuk.edu.tr"),
+    ("Zonguldak", "beun.edu.tr"),
+    ("Bolu", "ibu.edu.tr"),
+    ("Düzce", "duzce.edu.tr"),
+    ("Yozgat", "bozok.edu.tr"),
 ]
+UNI_ALT_ALANLAR = ["www.{d}", "personel.{d}", "pdb.{d}"]
+UNI_DESENI = (r"(ilan|al[ıi]m|[öo]ğretim (g[öo]revlisi|eleman|[üu]yesi)|akademik personel|"
+              r"s[öo]zle[şs]meli|personel al|kadro|duyuru)")
+UNI_LINK_LIMIT = 15          # üniversite başına en fazla kaç yeni bağlantı açılsın
+
+ILLER = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya",
+         "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik",
+         "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
+         "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep",
+         "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir",
+         "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kilis",
+         "Kırıkkale", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa",
+         "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize",
+         "Sakarya", "Samsun", "Şanlıurfa", "Siirt", "Sinop", "Şırnak", "Sivas", "Tekirdağ", "Tokat",
+         "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
+# İl adı geçmeyen kurum adları -> il
+KURUM_IL = {
+    "ondokuz mayıs": "Samsun", "karadeniz teknik": "Trabzon", "recep tayyip erdoğan": "Rize",
+    "gaziosmanpaşa": "Tokat", "hitit": "Çorum", "sivas cumhuriyet": "Sivas", "cumhuriyet üniversitesi": "Sivas",
+    "atatürk üniversitesi": "Erzurum", "bülent ecevit": "Zonguldak", "abant izzet baysal": "Bolu",
+    "bozok": "Yozgat", "binali yıldırım": "Erzincan", "çoruh": "Artvin", "doğu karadeniz kalkınma": "Trabzon",
+    "orta karadeniz kalkınma": "Samsun", "fatsa": "Ordu", "ünye": "Ordu", "altınordu": "Ordu",
+    "bafra": "Samsun", "çarşamba": "Samsun", "atakum": "Samsun", "ilkadım": "Samsun",
+}
+AYLAR = {"ocak": 1, "şubat": 2, "subat": 2, "mart": 3, "nisan": 4, "mayıs": 5, "mayis": 5,
+         "haziran": 6, "temmuz": 7, "ağustos": 8, "agustos": 8, "eylül": 9, "eylul": 9,
+         "ekim": 10, "kasım": 11, "kasim": 11, "aralık": 12, "aralik": 12}
 
 # ---------------------------------------------------------------- yardımcılar
 oturum = requests.Session()
 oturum.headers.update({"User-Agent": UA, "Accept-Language": "tr-TR,tr;q=0.9"})
 _robots = {}
 gunluk_yeni = []  # bu çalışmada bulunanlar
+kaynak = defaultdict(lambda: {"istek": 0, "ok": 0, "kayit": 0, "kodlar": {}, "robots": 0,
+                              "hata": 0, "not": ""})
 
 
 def log(*a):
     print(*a, flush=True)
+
+
+def gecen_dk():
+    return (time.time() - BASLANGIC_ZAMANI) / 60
+
+
+def sure_bitti(pay=1.0):
+    return gecen_dk() >= SURE_LIMIT_DK * pay
+
+
+def bugun():
+    return dt.date.today()
 
 
 def engelli_mi(url):
@@ -104,7 +196,7 @@ def robots_izin(url):
             if r.status_code >= 500:
                 rp = None                      # okunamadı -> girme
             elif r.status_code >= 400:
-                rp.parse([])                   # robots yok -> serbest
+                rp.parse([])                   # robots yok -> serbest (RFC 9309)
             else:
                 rp.parse(r.text.splitlines())
         except requests.RequestException:
@@ -114,23 +206,36 @@ def robots_izin(url):
     return bool(rp and rp.can_fetch(UA, url))
 
 
-def getir(url, ikili=False):
-    """Sayfayı getirir. Engelli/robots yasaklıysa ya da hata olursa None döner."""
+def getir(url, kaynak_adi=None):
+    """Sayfayı getirir. Engelli/robots yasaklıysa ya da hata olursa None döner.
+    404/410 yanıtı nesne olarak döner (memurlar.net'te 'böyle ilan yok' demektir)."""
+    k = kaynak[kaynak_adi] if kaynak_adi else None
     if engelli_mi(url):
         log("  atlandı (engelli alan):", url)
         return None
     if not robots_izin(url):
         log("  atlandı (robots):", url)
+        if k is not None:
+            k["robots"] += 1
         return None
     time.sleep(BEKLEME)
+    if k is not None:
+        k["istek"] += 1
     try:
         r = oturum.get(url, timeout=ZAMAN_ASIMI, allow_redirects=True)
     except requests.RequestException as e:
-        log("  hata:", url, e)
+        log("  hata:", url, type(e).__name__)
+        if k is not None:
+            k["hata"] += 1
         return None
+    if k is not None:
+        kod = str(r.status_code)
+        k["kodlar"][kod] = k["kodlar"].get(kod, 0) + 1
+        if r.status_code == 200:
+            k["ok"] += 1
     if r.status_code != 200:
         log("  durum", r.status_code, url)
-        return r if r.status_code == 404 else None
+        return r if r.status_code in (404, 410) else None
     return r
 
 
@@ -157,20 +262,103 @@ def ana_icerik(soup):
     return soup.body or soup
 
 
-def ocr_gorsel(icerik):
-    with tempfile.TemporaryDirectory() as d:
-        yol = os.path.join(d, "g")
-        with open(yol, "wb") as f:
-            f.write(icerik)
+# ---------------------------------------------------------------- tarih / il / tür
+def tarih_iso(metin):
+    """'4 Aralık 2026', '04.12.2026', '2026-12-04T..' -> '2026-12-04'."""
+    if not metin:
+        return ""
+    m = re.search(r"(20\d\d)-(\d\d)-(\d\d)", metin)
+    if m:
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    m = re.search(r"\b(\d{1,2})[./](\d{1,2})[./](20\d\d)\b", metin)
+    if m:
         try:
-            out = subprocess.run(["tesseract", yol, "stdout", "-l", "tur+eng", "--psm", "6"],
-                                 capture_output=True, text=True, timeout=180)
-            return out.stdout.strip()
+            return dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1))).isoformat()
+        except ValueError:
+            return ""
+    m = re.search(r"\b(\d{1,2})\s+([A-Za-zÇĞİÖŞÜçğıöşü]+)\s+(20\d\d)\b", metin)
+    if m:
+        ay = AYLAR.get(m.group(2).lower().replace("i̇", "i"))
+        if ay:
+            try:
+                return dt.date(int(m.group(3)), ay, int(m.group(1))).isoformat()
+            except ValueError:
+                return ""
+    return ""
+
+
+def kucuk(s):
+    return s.replace("I", "ı").replace("İ", "i").lower()
+
+
+def il_bul(baslik, metin):
+    for parca in (baslik, metin[:800]):
+        kp = kucuk(parca)
+        for anahtar, il in KURUM_IL.items():
+            if anahtar in kp:
+                return il
+        for il in ILLER:
+            if re.search(r"(?<![a-zçğıöşü])" + re.escape(kucuk(il)), kp):
+                return il
+    return ""
+
+
+def tur_bul(baslik):
+    b = kucuk(baslik)
+    if re.search(r"i̇şçi|işçi|isci", b):
+        return "isci"
+    if re.search(r"öğretim (üyesi|elemanı|görevlisi)|araştırma görevlisi|akademik", b):
+        return "akademik"
+    return "kamu"
+
+
+# ---------------------------------------------------------------- OCR / PDF
+def ocr_kalite(metin):
+    """Kaba kalite ölçüsü: anlamlı görünen sözcük oranı. 0..1"""
+    sozcukler = re.findall(r"\S+", metin)
+    if len(sozcukler) < 15:
+        return 0.0
+    iyi = sum(1 for s in sozcukler
+              if re.fullmatch(r"[A-Za-zÇĞİÖŞÜçğıöşü]{3,}[.,:;)]?|\(?\d+[.,)]?|[\d.,/-]+", s))
+    return round(iyi / len(sozcukler), 2)
+
+
+def _tesseract(yol, psm):
+    out = subprocess.run(["tesseract", yol, "stdout", "-l", "tur+eng", "--psm", str(psm)],
+                         capture_output=True, text=True, timeout=180)
+    return out.stdout.strip()
+
+
+def ocr_gorsel(icerik):
+    """Görseli büyütüp gri tona çevirerek OCR'lar; iki sayfa düzeninden iyisini alır.
+    Döner: (metin, kalite)"""
+    with tempfile.TemporaryDirectory() as d:
+        yol = os.path.join(d, "g.png")
+        try:
+            if Image is not None:
+                im = Image.open(io.BytesIO(icerik))
+                im = ImageOps.grayscale(im)
+                if im.width < 2000:
+                    oran = 2000 / im.width
+                    im = im.resize((2000, int(im.height * oran)), Image.LANCZOS)
+                im = ImageOps.autocontrast(im)
+                im.save(yol)
+            else:
+                with open(yol, "wb") as f:
+                    f.write(icerik)
+            en_iyi, en_iyi_k = "", -1.0
+            for psm in (6, 4):
+                m = _tesseract(yol, psm)
+                k = ocr_kalite(m)
+                if k > en_iyi_k:
+                    en_iyi, en_iyi_k = m, k
+            return en_iyi, en_iyi_k
         except Exception as e:
-            return f"[OCR hatası: {e}]"
+            return f"[OCR hatası: {e}]", 0.0
 
 
 def pdf_metin(icerik):
+    """Döner: (metin, kalite). Metin katmanı yoksa sayfaları OCR'lar."""
     with tempfile.TemporaryDirectory() as d:
         yol = os.path.join(d, "a.pdf")
         with open(yol, "wb") as f:
@@ -180,48 +368,77 @@ def pdf_metin(icerik):
                                  capture_output=True, text=True, timeout=180)
             metin = out.stdout.strip()
         except Exception as e:
-            return f"[PDF hatası: {e}]"
-        if len(metin) < 200:  # taranmış PDF olabilir -> sayfaları OCR'la
-            try:
-                subprocess.run(["pdftoppm", "-r", "200", "-png", yol, os.path.join(d, "s")],
-                               capture_output=True, timeout=300)
-                parcalar = []
-                for ad in sorted(os.listdir(d)):
-                    if ad.startswith("s") and ad.endswith(".png"):
-                        with open(os.path.join(d, ad), "rb") as f:
-                            parcalar.append(ocr_gorsel(f.read()))
-                metin = (metin + "\n" + "\n".join(parcalar)).strip()
-            except Exception as e:
-                metin += f"\n[PDF OCR hatası: {e}]"
-        return metin
+            return f"[PDF hatası: {e}]", 0.0
+        if len(metin) >= 200:
+            return metin, 1.0
+        try:
+            subprocess.run(["pdftoppm", "-r", "250", "-png", yol, os.path.join(d, "s")],
+                           capture_output=True, timeout=300)
+            parcalar, kaliteler = [], []
+            for ad in sorted(os.listdir(d)):
+                if ad.startswith("s") and ad.endswith(".png"):
+                    with open(os.path.join(d, ad), "rb") as f:
+                        m, k = ocr_gorsel(f.read())
+                    parcalar.append(m)
+                    kaliteler.append(k)
+            k = round(sum(kaliteler) / len(kaliteler), 2) if kaliteler else 0.0
+            return (metin + "\n" + "\n".join(parcalar)).strip(), k
+        except Exception as e:
+            return metin + f"\n[PDF OCR hatası: {e}]", 0.0
 
 
-def ekleri_coz(soup, sayfa_url, sadece=None):
-    """Sayfadaki ilan görsellerini ve PDF eklerini metne çevirir."""
-    parcalar = []
-    gorulen = set()
-    for img in soup.find_all("img"):
-        src = img.get("data-src") or img.get("src") or ""
-        u = urljoin(sayfa_url, src)
-        if not re.search(r"\.(jpe?g|png|gif|webp)(\?|$)", u, re.I):
+GORSEL_ATTR = ("data-src", "data-original", "data-lazy-src", "src")
+GORSEL_RE = re.compile(r"\.(jpe?g|png|gif|webp)(\?|$)", re.I)
+ATLA_RE = re.compile(r"(headline|thumb|logo|icon|avatar|banner|reklam|ads?/|sprite)", re.I)
+
+
+def gorsel_adresleri(soup, sayfa_url, anahtar=None):
+    adresler = []
+    for img in soup.find_all(["img", "amp-img", "source"]):
+        adaylar = [img.get(a) for a in GORSEL_ATTR if img.get(a)]
+        if img.get("srcset"):
+            adaylar += [p.strip().split(" ")[0] for p in img["srcset"].split(",")]
+        for src in adaylar:
+            adresler.append(urljoin(sayfa_url, src))
+    for a in soup.find_all("a", href=True):          # görsele verilen bağlantılar
+        if GORSEL_RE.search(a["href"]):
+            adresler.append(urljoin(sayfa_url, a["href"]))
+    sonuc, gorulen = [], set()
+    for u in adresler:
+        if u in gorulen or not GORSEL_RE.search(u) or ATLA_RE.search(u):
             continue
-        if sadece and sadece not in u:
-            continue
-        if u in gorulen:
+        if anahtar and anahtar not in u:
             continue
         gorulen.add(u)
-        r = getir(u, ikili=True)
+        sonuc.append(u)
+    return sonuc
+
+
+def ekleri_coz(soup, sayfa_url, kaynak_adi, anahtar=None):
+    """Sayfadaki ilan görsellerini ve PDF eklerini metne çevirir.
+    Döner: (ek_metni, en_dusuk_kalite veya None, görsel adresleri)"""
+    parcalar, kaliteler = [], []
+    gorseller = gorsel_adresleri(soup, sayfa_url, anahtar)
+    for u in gorseller[:12]:
+        r = getir(u, kaynak_adi)
         if r is not None and r.status_code == 200 and len(r.content) > 5000:
-            parcalar.append(f"\n--- GÖRSEL (OCR): {u}\n{ocr_gorsel(r.content)}")
+            m, k = ocr_gorsel(r.content)
+            kaliteler.append(k)
+            parcalar.append(f"\n--- GÖRSEL (OCR, kalite {k}): {u}\n{m}")
+    gorulen = set()
     for a in soup.find_all("a", href=True):
         u = urljoin(sayfa_url, a["href"])
         if not re.search(r"\.pdf(\?|$)", u, re.I) or u in gorulen:
             continue
         gorulen.add(u)
-        r = getir(u, ikili=True)
+        if len(gorulen) > 8:
+            break
+        r = getir(u, kaynak_adi)
         if r is not None and r.status_code == 200:
-            parcalar.append(f"\n--- PDF: {u}\n{pdf_metin(r.content)}")
-    return "\n".join(parcalar)
+            m, k = pdf_metin(r.content)
+            kaliteler.append(k)
+            parcalar.append(f"\n--- PDF (kalite {k}): {u}\n{m}")
+    return "\n".join(parcalar), (min(kaliteler) if kaliteler else None), gorseller
 
 
 def bul(desen, metin):
@@ -229,44 +446,78 @@ def bul(desen, metin):
     return m.group(1).strip() if m else ""
 
 
-def kaydet(kaynak, kimlik, url, baslik, metin, ek_metin, meta):
-    ay = dt.date.today().strftime("%Y-%m")
+def kalite_etiketi(k):
+    if k is None:
+        return ""
+    return "iyi" if k >= 0.75 else ("orta" if k >= 0.55 else "dusuk")
+
+
+def kaydet(kaynak_adi, kimlik, url, baslik, metin, ek_metin, meta, sayac=None):
+    ay = bugun().strftime("%Y-%m")
     klasor = os.path.join(KOK, "ilanlar", ay)
     os.makedirs(klasor, exist_ok=True)
-    dosya = os.path.join(klasor, f"{kaynak}-{kimlik}.md")
+    dosya = os.path.join(klasor, f"{kaynak_adi}-{kimlik}.md")
+    tum = baslik + "\n" + metin + "\n" + (ek_metin or "")
+    meta.setdefault("il", il_bul(baslik, metin))
+    meta.setdefault("tur", tur_bul(baslik))
+    if not meta.get("son_basvuru_iso"):
+        sb = meta.get("son_basvuru") or bul(
+            r"son\s+ba[şs]vuru(?:\s+tarihi)?\s*:?\s*([0-9]{1,2}[\s./]+[A-Za-zÇĞİÖŞÜçğıöşü0-9]+[\s./]+20[0-9]{2})", tum)
+        meta["son_basvuru"] = sb
+        meta["son_basvuru_iso"] = tarih_iso(sb)
     with open(dosya, "w", encoding="utf-8") as f:
         f.write(f"# {baslik}\n\n")
-        f.write(f"- kaynak: {kaynak}\n- adres: {url}\n- alındı: {dt.datetime.utcnow().isoformat()}Z\n")
+        f.write(f"- kaynak: {kaynak_adi}\n- adres: {url}\n"
+                f"- alındı: {dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}\n")
         for k, v in meta.items():
             if v:
-                f.write(f"- {k}: {v}\n")
+                f.write(f"- {k}: {v if not isinstance(v, list) else ' '.join(v)}\n")
         f.write("\n## Metin\n\n" + metin + "\n")
         if ek_metin:
             f.write("\n## Ekler (görsel/PDF metni)\n" + ek_metin + "\n")
-    kayit = {"tarih": dt.date.today().isoformat(), "kaynak": kaynak, "kimlik": str(kimlik),
-             "adres": url, "baslik": baslik, "dosya": os.path.relpath(dosya, KOK), **meta}
+    kayit = {"tarih": bugun().isoformat(), "kaynak": kaynak_adi, "kimlik": str(kimlik),
+             "adres": url, "baslik": baslik, "dosya": os.path.relpath(dosya, KOK),
+             **{k: v for k, v in meta.items() if k != "gorseller"},
+             "gorsel_sayisi": len(meta.get("gorseller") or [])}
     with open(INDEX_DOSYASI, "a", encoding="utf-8") as f:
         f.write(json.dumps(kayit, ensure_ascii=False) + "\n")
     gunluk_yeni.append(kayit)
+    kaynak[sayac or kaynak_adi]["kayit"] += 1
+
+
+def durumu_yaz(durum):
+    with open(DURUM_DOSYASI, "w", encoding="utf-8") as f:
+        json.dump(durum, f, ensure_ascii=False, indent=1)
 
 
 # ---------------------------------------------------------------- 1) memurlar.net
 def memurlar(durum):
+    ad = "memurlar"
     son = durum.get("memurlar_son", MEMURLAR_BASLANGIC)
     tekrar = [x for x in durum.get("memurlar_tekrar", []) if x <= son]  # önceki hatalılar
     log(f"[memurlar] {son + 1} numarasından başlanıyor; {len(tekrar)} numara yeniden denenecek")
     hatali = []
     for n in tekrar:
-        if not memurlar_tek(n):
+        if sure_bitti(MEMURLAR_PAY):
             hatali.append(n)
-    bos, n, bulunan = 0, son + 1, 0
+            continue
+        if memurlar_tek(n) is None:
+            hatali.append(n)
+    bos, ardisik_hata, n, bulunan = 0, 0, son + 1, 0
     while n <= son + MEMURLAR_TUR_LIMIT and bos < MEMURLAR_ARDISIK_BOS:
+        if sure_bitti(MEMURLAR_PAY):
+            kaynak[ad]["not"] = f"süre bütçesi doldu, {n} numarasında kalındı"
+            break
         sonuc = memurlar_tek(n)
-        if sonuc is None:          # ağ/sunucu hatası: sonra tekrar dene
+        if sonuc is None:          # ağ/sunucu/erişim hatası: sonra tekrar dene
             hatali.append(n)
-            bos += 1
+            ardisik_hata += 1
+            if ardisik_hata >= MEMURLAR_ARDISIK_HATA:
+                kaynak[ad]["not"] = f"art arda {ardisik_hata} erişim hatası: site bu çalışmada kapalı sayıldı"
+                break
             n += 1
             continue
+        ardisik_hata = 0
         if sonuc is False:         # böyle bir ilan yok
             bos += 1
             n += 1
@@ -274,62 +525,93 @@ def memurlar(durum):
         bos = 0
         bulunan += 1
         durum["memurlar_son"] = n
+        if bulunan % 20 == 0:
+            durumu_yaz(durum)
         n += 1
     son_bulunan = durum.get("memurlar_son", son)
-    durum["memurlar_tekrar"] = [x for x in hatali if x <= son_bulunan][-200:]
+    durum["memurlar_tekrar"] = sorted(set(x for x in hatali if x <= son_bulunan))[-300:]
     log(f"[memurlar] {bulunan} ilan kaydedildi, son numara {son_bulunan}, "
         f"{len(durum['memurlar_tekrar'])} numara sonraki tura kaldı")
 
 
 def memurlar_tek(n):
     """True: kaydedildi, False: ilan yok, None: hata (sonra tekrar denenmeli)."""
-    if True:
-        url = f"https://ilan.memurlar.net/ilan/{n}/"
-        r = getir(url)
-        if r is None:
-            return None
-        if r.status_code != 200:
-            return False
-        soup = BeautifulSoup(r.text, "html.parser")
-        h1 = soup.find("h1")
-        baslik = h1.get_text(" ", strip=True) if h1 else (soup.title.string.strip() if soup.title and soup.title.string else "")
-        # Var olmayan numara ana sayfaya ya da başka ilana yönlenebilir
-        if f"/ilan/{n}/" not in r.url or not baslik:
-            return False
-        tam = temiz_metin(BeautifulSoup(r.text, "html.parser"))
-        metin = temiz_metin(ana_icerik(soup))
-        ek = ekleri_coz(BeautifulSoup(r.text, "html.parser"), r.url, sadece=f"/documents/{n}/")
-        meta = {
-            "ilan_giris": bul(r"[İI]lan Giri[şs]\s*:?\s*([0-9]{1,2}\s+\w+\s+[0-9]{4}[^\n]{0,8})", tam),
-            "son_basvuru": bul(r"Son Ba[şs]vuru(?: Tarihi)?\s*:?\s*([0-9]{1,2}[\s./]+\w+[\s./]+[0-9]{4})", tam),
-            "kategori": bul(r"Kategori\s*:?\s*([^\n]{2,60})", tam),
-        }
-        kaydet("memurlar", n, r.url, baslik, metin, ek, meta)
-        return True
+    ad = "memurlar"
+    url = f"https://ilan.memurlar.net/ilan/{n}/"
+    r = getir(url, ad)
+    if r is None:
+        return None
+    if r.status_code != 200:
+        return False
+    soup = BeautifulSoup(r.text, "html.parser")
+    h1 = soup.find("h1")
+    baslik = h1.get_text(" ", strip=True) if h1 else (
+        soup.title.string.strip() if soup.title and soup.title.string else "")
+    # Var olmayan numara ana sayfaya ya da başka ilana yönlenebilir
+    if f"/ilan/{n}/" not in r.url or not baslik:
+        return False
+    tam = temiz_metin(BeautifulSoup(r.text, "html.parser"))
+    metin = temiz_metin(ana_icerik(BeautifulSoup(r.text, "html.parser")))
+    # Görseller memurlar.net'te ilan numarasını içeren yollarda durur
+    # (ör. /common/job/images/<n>/...). Kapak görseli (headline) atlanır.
+    ek, kalite, gorseller = ekleri_coz(BeautifulSoup(r.text, "html.parser"), r.url, ad,
+                                       anahtar=f"/{n}/")
+    if not gorseller:   # AMP sürümünde görseller farklı etiketle olabilir
+        r2 = getir(r.url.split("?")[0] + "?amp=1", ad)
+        if r2 is not None and r2.status_code == 200:
+            ek2, k2, g2 = ekleri_coz(BeautifulSoup(r2.text, "html.parser"), r2.url, ad,
+                                     anahtar=f"/{n}/")
+            if g2:
+                ek, kalite, gorseller = ek2, k2, g2
+    giris = bul(r"[İI]lan Giri[şs]\s*:?\s*([0-9]{1,2}\s+\w+\s+[0-9]{4}|20\d\d-\d\d-\d\d)", tam)
+    sb = bul(r"Son Ba[şs]vuru(?: Tarihi)?\s*:?\s*([0-9]{1,2}[\s./]+\w+[\s./]+[0-9]{4})", tam)
+    meta = {
+        "ilan_no": n,
+        "ilan_giris": giris,
+        "ilan_giris_iso": tarih_iso(giris),
+        "son_basvuru": sb,
+        "son_basvuru_iso": tarih_iso(sb),
+        "kategori": bul(r"Kategori\s*:?\s*([^\n]{2,60})", tam),
+        "kaynak_notu": bul(r"Kaynak\s*:\s*([^\n]{2,40})", tam),
+        "ocr_kalite": kalite_etiketi(kalite),
+        "gorseller": gorseller,
+    }
+    kaydet(ad, n, r.url, baslik, metin, ek, meta)
+    return True
 
 
-# ---------------------------------------------------------------- 2) toplayıcı siteler
-def toplayicilar(durum):
+# ---------------------------------------------------------------- 2) liste sayfaları
+def liste_sayfalari(durum):
     gorulen = set(durum.get("gorulen", []))
-    for ana in TOPLAYICI_SITELER:
-        r = getir(ana)
+    for ad, ana, desen in LISTE_SAYFALARI:
+        if sure_bitti(0.85):
+            kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
+            continue
+        r = getir(ana, ad)
         if r is None or r.status_code != 200:
+            kaynak[ad]["not"] = kaynak[ad]["not"] or "liste sayfası açılmadı"
             continue
         soup = BeautifulSoup(r.text, "html.parser")
-        host = urlparse(ana).hostname
+        host = urlparse(r.url).hostname
         adaylar = []
         for a in soup.find_all("a", href=True):
             u = urljoin(r.url, a["href"]).split("#")[0]
             yazi = a.get_text(" ", strip=True)
-            if urlparse(u).hostname != host or len(yazi) < 15 or not ANAHTAR.search(yazi):
+            if urlparse(u).hostname != host or u.rstrip("/") == ana.rstrip("/"):
+                continue
+            if len(yazi) < 15 or not (re.search(desen, yazi, re.I) or re.search(desen, u, re.I)):
                 continue
             h = hashlib.sha1(u.encode()).hexdigest()[:16]
-            if h in gorulen:
+            if h in gorulen or any(h == x[2] for x in adaylar):
                 continue
             adaylar.append((u, yazi, h))
-        log(f"[{host}] {len(adaylar)} yeni bağlantı")
+        log(f"[{ad}] {len(adaylar)} yeni bağlantı")
+        if not adaylar and not kaynak[ad]["not"]:
+            kaynak[ad]["not"] = "açıldı, yeni bağlantı yok"
         for u, yazi, h in adaylar[:40]:
-            r2 = getir(u)
+            if sure_bitti(0.85):
+                break
+            r2 = getir(u, ad)
             gorulen.add(h)
             if r2 is None or r2.status_code != 200:
                 continue
@@ -337,64 +619,150 @@ def toplayicilar(durum):
             h1 = s2.find("h1")
             baslik = h1.get_text(" ", strip=True) if h1 else yazi
             metin = temiz_metin(ana_icerik(BeautifulSoup(r2.text, "html.parser")))
-            ek = ekleri_coz(s2, r2.url)
-            kaydet(host.replace("www.", ""), h, r2.url, baslik, metin[:60000], ek, {})
-    durum["gorulen"] = list(gorulen)[-8000:]
+            ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad)
+            yayin = ""
+            m = s2.find("meta", attrs={"property": "article:published_time"}) or \
+                s2.find("meta", attrs={"name": "pubdate"})
+            if m and m.get("content"):
+                yayin = tarih_iso(m["content"])
+            kaydet(ad, h, r2.url, baslik, metin[:60000], ek,
+                   {"yayin_iso": yayin, "ocr_kalite": kalite_etiketi(kalite), "gorseller": gorseller})
+    durum["gorulen"] = list(gorulen)[-12000:]
 
 
-# ---------------------------------------------------------------- 3) GitHub takip projeleri
-def github_kaynaklari(durum):
-    token = os.environ.get("GITHUB_TOKEN")
-    bas = {"Accept": "application/vnd.github+json"}
-    if token:
-        bas["Authorization"] = f"Bearer {token}"
-    gorulen = set(durum.get("gh_gorulen", []))
-    for tur, depo in GITHUB_KAYNAKLARI:
-        url = f"https://api.github.com/repos/{depo}/{tur}?per_page=30" + ("&state=all" if tur == "issues" else "")
-        try:
-            r = requests.get(url, headers=bas, timeout=ZAMAN_ASIMI)
-            r.raise_for_status()
-        except requests.RequestException as e:
-            log("[github] hata", depo, e)
+# ---------------------------------------------------------------- 3) üniversite sayfaları
+def universiteler(durum):
+    gorulen = set(durum.get("uni_gorulen", []))
+    for il, alan in UNIVERSITELER:
+        if sure_bitti(0.95):
+            kaynak["uni:" + alan]["not"] = "süre bütçesi doldu, atlandı"
             continue
-        yeni = 0
-        for o in r.json():
-            k = f"{depo}#{o.get('id')}"
-            if k in gorulen:
+        ad = "uni:" + alan
+        acilan = 0
+        adaylar = []
+        for kalip in UNI_ALT_ALANLAR:
+            ana = "https://" + kalip.format(d=alan) + "/"
+            r = getir(ana, ad)
+            if r is None or r.status_code != 200:
                 continue
-            gorulen.add(k)
-            baslik = o.get("title") or o.get("name") or o.get("tag_name") or ""
-            govde = o.get("body") or ""
-            kaydet("github-" + depo.split("/")[0], o.get("id"), o.get("html_url", ""), baslik, govde, "",
-                   {"yayin": o.get("created_at") or o.get("published_at") or ""})
-            yeni += 1
-        log(f"[github] {depo}: {yeni} yeni kayıt")
-    durum["gh_gorulen"] = list(gorulen)[-3000:]
+            acilan += 1
+            soup = BeautifulSoup(r.text, "html.parser")
+            for a in soup.find_all("a", href=True):
+                u = urljoin(r.url, a["href"]).split("#")[0]
+                h_ = (urlparse(u).hostname or "")
+                if not (h_ == alan or h_.endswith("." + alan)):
+                    continue
+                yazi = a.get_text(" ", strip=True)
+                if len(yazi) < 12 or not re.search(UNI_DESENI, yazi, re.I):
+                    continue
+                h = hashlib.sha1(u.encode()).hexdigest()[:16]
+                if h in gorulen or any(h == x[2] for x in adaylar):
+                    continue
+                adaylar.append((u, yazi, h))
+        if not acilan:
+            kaynak[ad]["not"] = "ana/personel sayfası açılmadı"
+            continue
+        log(f"[{ad}] {len(adaylar)} yeni bağlantı")
+        if not adaylar:
+            kaynak[ad]["not"] = "açıldı, yeni duyuru yok"
+        for u, yazi, h in adaylar[:UNI_LINK_LIMIT]:
+            gorulen.add(h)
+            if re.search(r"\.pdf(\?|$)", u, re.I):
+                r2 = getir(u, ad)
+                if r2 is not None and r2.status_code == 200:
+                    m, k = pdf_metin(r2.content)
+                    kaydet(ad.replace(":", "-"), h, u, yazi, "", f"--- PDF (kalite {k}): {u}\n{m}",
+                           {"il": il, "ocr_kalite": kalite_etiketi(k)}, sayac=ad)
+                continue
+            r2 = getir(u, ad)
+            if r2 is None or r2.status_code != 200:
+                continue
+            s2 = BeautifulSoup(r2.text, "html.parser")
+            h1 = s2.find("h1")
+            baslik = h1.get_text(" ", strip=True) if h1 else yazi
+            metin = temiz_metin(ana_icerik(BeautifulSoup(r2.text, "html.parser")))
+            ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad)
+            kaydet(ad.replace(":", "-"), h, r2.url, baslik, metin[:60000], ek,
+                   {"il": il, "ocr_kalite": kalite_etiketi(kalite), "gorseller": gorseller}, sayac=ad)
+    durum["uni_gorulen"] = list(gorulen)[-8000:]
 
 
-# ---------------------------------------------------------------- ana akış
+# ---------------------------------------------------------------- raporlar
+def acik_ilanlari_yaz():
+    """index.jsonl'dan son başvurusu geçmemiş ya da tarihi okunamamış (son 60 gün) kayıtlar."""
+    if not os.path.exists(INDEX_DOSYASI):
+        return 0
+    bugun_s = bugun().isoformat()
+    sinir = (bugun() - dt.timedelta(days=60)).isoformat()
+    acik, belirsiz = [], []
+    with open(INDEX_DOSYASI, encoding="utf-8") as f:
+        for satir in f:
+            try:
+                k = json.loads(satir)
+            except ValueError:
+                continue
+            if k.get("tur") == "isci":
+                continue
+            sb = k.get("son_basvuru_iso", "")
+            if sb and sb >= bugun_s:
+                acik.append(k)
+            elif not sb and k.get("tarih", "") >= sinir:
+                belirsiz.append(k)
+    acik.sort(key=lambda k: k["son_basvuru_iso"])
+    with open(ACIK_DOSYASI, "w", encoding="utf-8") as f:
+        f.write(f"# Açık ilanlar — {bugun_s}\n\n")
+        f.write(f"## Son başvurusu geçmemiş ({len(acik)})\n\n")
+        for k in acik:
+            f.write(f"- {k['son_basvuru_iso']} · {k.get('il') or '-'} · {k.get('tur')} · "
+                    f"{k['baslik']} · ocr:{k.get('ocr_kalite') or '-'} · {k['adres']} (`{k['dosya']}`)\n")
+        f.write(f"\n## Son başvuru tarihi okunamadı, son 60 günde alınmış ({len(belirsiz)})\n\n")
+        for k in belirsiz:
+            f.write(f"- {k.get('tarih')} · {k.get('il') or '-'} · {k.get('tur')} · {k['baslik']} · "
+                    f"{k['adres']} (`{k['dosya']}`)\n")
+    return len(acik)
+
+
 def main():
     durum = {}
     if os.path.exists(DURUM_DOSYASI):
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
-    adimlar = [memurlar, toplayicilar, github_kaynaklari]
+    adimlar = [memurlar, liste_sayfalari, universiteler]
     for adim in adimlar:
         try:
             adim(durum)
         except Exception as e:  # bir kaynak çökerse diğerleri devam etsin
             log(f"[{adim.__name__}] beklenmeyen hata: {e!r}")
-        with open(DURUM_DOSYASI, "w", encoding="utf-8") as f:
-            json.dump(durum, f, ensure_ascii=False, indent=1)
+            kaynak[adim.__name__]["not"] = f"beklenmeyen hata: {e!r}"[:200]
+        durumu_yaz(durum)
 
-    gun = dt.date.today().isoformat()
+    acik_sayi = acik_ilanlari_yaz()
+    gun = bugun().isoformat()
+    ozet_kaynak = {}
+    for ad, k in sorted(kaynak.items()):
+        durum_s = "açıldı" if k["ok"] else ("robots engeli" if k["robots"] and not k["istek"]
+                                            else "açılmadı")
+        ozet_kaynak[ad] = {**k, "durum": durum_s}
+    with open(KAYNAK_DOSYASI, "w", encoding="utf-8") as f:
+        json.dump({"tarih": gun, "sure_dk": round(gecen_dk(), 1),
+                   "memurlar_son": durum.get("memurlar_son"), "kaynaklar": ozet_kaynak},
+                  f, ensure_ascii=False, indent=1)
+
     os.makedirs(os.path.join(KOK, "ozet"), exist_ok=True)
     with open(os.path.join(KOK, "ozet", f"{gun}.md"), "w", encoding="utf-8") as f:
-        f.write(f"# {gun} — {len(gunluk_yeni)} yeni kayıt\n\n")
+        f.write(f"# {gun} — {len(gunluk_yeni)} yeni kayıt · açık ilan {acik_sayi} · "
+                f"{round(gecen_dk())} dk\n\n## Kaynaklar\n\n")
+        for ad, k in ozet_kaynak.items():
+            f.write(f"- {ad}: {k['durum']} (istek {k['istek']}, 200: {k['ok']}, kayıt {k['kayit']}, "
+                    f"kodlar {k['kodlar']}, robots {k['robots']}, ağ hatası {k['hata']}) {k['not']}\n")
+        f.write("\n## Yeni kayıtlar\n\n")
         for k in gunluk_yeni:
-            sb = f" — son başvuru: {k['son_basvuru']}" if k.get("son_basvuru") else ""
-            f.write(f"- [{k['kaynak']}] {k['baslik']}{sb} — {k['adres']} (`{k['dosya']}`)\n")
-    log(f"Bitti: {len(gunluk_yeni)} yeni kayıt")
+            sb = f" — son başvuru: {k['son_basvuru_iso'] or k.get('son_basvuru', '')}" \
+                if k.get("son_basvuru_iso") or k.get("son_basvuru") else ""
+            oc = " — OCR düşük" if k.get("ocr_kalite") == "dusuk" else ""
+            f.write(f"- [{k['kaynak']}] {k['baslik']}{sb}{oc} — {k['adres']} (`{k['dosya']}`)\n")
+    log(f"Bitti: {len(gunluk_yeni)} yeni kayıt, {round(gecen_dk(), 1)} dk")
+    return 0
 
 
 if __name__ == "__main__":
