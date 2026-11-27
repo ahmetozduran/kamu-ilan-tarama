@@ -40,11 +40,11 @@ if ((Test-Path $Gunluk) -and (Get-Item $Gunluk).Length -gt 500KB) {
     Get-Content $Gunluk -Tail 2000 | Set-Content $Gunluk -Encoding UTF8
 }
 
-# Aynı gün içinde 4 saatten sık çalışma
+# 3 saatten sık çalışma
 $zorla = $args -contains "-simdi"
 if ((Test-Path $SonCalisma) -and -not $zorla) {
     $son = [datetime]::Parse((Get-Content $SonCalisma -Raw).Trim())
-    if (((Get-Date) - $son).TotalHours -lt 4) { Yaz "Son çalışma $son, 4 saat dolmadı; atlandı."; exit 0 }
+    if (((Get-Date) - $son).TotalHours -lt 3) { Yaz "Son çalışma $son, 3 saat dolmadı; atlandı."; exit 0 }
 }
 
 # İnternet bağlantısı gelene kadar bekle: en fazla ~5 dk
@@ -54,6 +54,19 @@ for ($i = 0; $i -lt 10; $i++) {
     catch { Start-Sleep -Seconds 30 }
 }
 if (-not $bagli) { Yaz "İnternet yok; çıkıldı."; exit 0 }
+
+# Zamanlanmış görevin saatlerini güncel tut: oturum açılışı + 09:00, 13:00, 17:00, 21:00
+try {
+    $gorev = Get-ScheduledTask -TaskName "Kamu ilan okuyucu" -ErrorAction Stop
+    $saatler = @($gorev.Triggers | Where-Object { $_.StartBoundary } | ForEach-Object { ([datetime]$_.StartBoundary).ToString("HH:mm") })
+    $istenen = @("09:00", "13:00", "17:00", "21:00")
+    if (@($istenen | Where-Object { $saatler -notcontains $_ }).Count -gt 0) {
+        $t1 = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"; $t1.Delay = "PT2M"
+        $tetik = @($t1) + @($istenen | ForEach-Object { New-ScheduledTaskTrigger -Daily -At $_ })
+        Set-ScheduledTask -TaskName "Kamu ilan okuyucu" -Trigger $tetik | Out-Null
+        Yaz "Zamanlanmış görev saatleri güncellendi: açılış + $($istenen -join ', ')"
+    }
+} catch { Yaz "Zamanlanmış görev saatleri denetlenemedi: $($_.Exception.Message)" }
 
 # ---------------------------------------------------------------- GitHub
 if (-not (Test-Path $TokenDosyasi)) { Yaz "Token yok; kur.ps1'i çalıştır."; exit 1 }

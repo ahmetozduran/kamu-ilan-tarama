@@ -2,8 +2,12 @@ name: ilan-tarama
 
 on:
   schedule:
-    - cron: "17 3 * * *"   # her gün 06:17 (Türkiye saati)
-    - cron: "17 11 * * *"  # her gün 14:17 (birikimi eritmek ve gün içi ilanlar için)
+    # Günde 4 kez (Türkiye saati 06:17, 12:17, 16:17, 22:17): kısa başvuru süreli belediye/SYDV
+    # ilanları da aynı gün yakalansın (LogiX'in 27 Kasım 2026 talimatı: "hiçbir ilanı kaçırmayacak şekilde")
+    - cron: "17 3 * * *"
+    - cron: "17 9 * * *"
+    - cron: "17 13 * * *"
+    - cron: "17 19 * * *"
   workflow_dispatch:        # elle çalıştırma düğmesi
 
 permissions:
