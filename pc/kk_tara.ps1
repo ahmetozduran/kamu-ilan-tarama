@@ -252,7 +252,8 @@ if ($g) { try { $gorevler = @(($g.metin | ConvertFrom-Json).gorevler) } catch { 
 # ilan.gov.tr personel listesi her zaman (dosya yoksa da)
 if (-not ($gorevler | Where-Object { $_.anahtar -eq "ilangovtr" })) {
     $gorevler = @([pscustomobject]@{ anahtar = "ilangovtr"; url = @("https://www.ilan.gov.tr/ilan/tum-ilanlar/personel-alimi?ats=5")
-        href_deseni = "/ilan/\d{6,}/"; baglanti_deseni = ""; haric = "tebligat|ihale|kiralama|sat[ıi][şs]|icra"; limit = 25 }) + $gorevler
+        href_deseni = "/ilan/\d{6,}/"; baglanti_deseni = ""; haric = "tebligat|ihale|kiralama|sat[ıi][şs]|icra|acente"; limit = 40
+        liste_sayfa_deseni = "personel-alimi.*[?&](p|page|sayfa|currentpage|pagenumber|pageindex)=\d+"; liste_sayfa_sayisi = 3 }) + $gorevler
 }
 if (-not $Edge) { Yaz "Edge bulunamadı; sayfa görevleri atlandı." ; $gorevler = @() }
 Yaz "Sayfa görevleri: $(@($gorevler).Count) görev, Edge: $Edge"
@@ -272,6 +273,22 @@ foreach ($gv in $gorevler) {
     }
     if (-not $listeHtml) { if (-not $gorevDurumu.Contains($gv.anahtar)) { $gorevDurumu[$gv.anahtar] = "sayfa açılmadı" }; continue }
     $alan = ([Uri]$listeUrl).Host -replace "^www\.", ""
+    # Listenin sonraki sayfaları (görevde 'liste_sayfa_deseni' varsa; ör. ilan.gov.tr ilk sayfada ~13 ilan gösteriyor)
+    if ($gv.liste_sayfa_deseni) {
+        $ekSayfa = @()
+        foreach ($b in (Baglantilar $listeHtml $listeUrl)) {
+            if ($b.url -ne $listeUrl -and [regex]::IsMatch($b.url, $gv.liste_sayfa_deseni, "IgnoreCase") -and
+                ([Uri]$b.url).Host -eq ([Uri]$listeUrl).Host -and -not ($ekSayfa -contains $b.url)) { $ekSayfa += $b.url }
+        }
+        $azami = if ($gv.liste_sayfa_sayisi) { [int]$gv.liste_sayfa_sayisi } else { 2 }
+        if (-not $ekSayfa) { Yaz "[$($gv.anahtar)] sonraki liste sayfası bağlantısı bulunamadı (yalnızca ilk sayfa okundu)" }
+        foreach ($su in ($ekSayfa | Select-Object -First $azami)) {
+            if (-not (RobotsIzin $su)) { continue }
+            $h2 = EdgeDom $su
+            Yaz "[$($gv.anahtar)] ek liste sayfası: $($h2.Length) karakter ($su)"
+            if ($h2.Length -gt 500) { $listeHtml += "`n" + $h2 }
+        }
+    }
     $adaylar = @()
     foreach ($b in (Baglantilar $listeHtml $listeUrl)) {
         $bh = ([Uri]$b.url).Host

@@ -280,7 +280,9 @@ YEREL_ALT_YOLLAR = ["", "duyurular", "ilanlar"]
 PC_GOREVLERI = [{
     "anahtar": "ilangovtr", "url": ["https://www.ilan.gov.tr/ilan/tum-ilanlar/personel-alimi?ats=5"],
     "href_deseni": r"/ilan/\d{6,}/", "baglanti_deseni": "",
-    "haric": r"tebligat|ihale|kiralama|sat[ıi][şs]|icra", "limit": 25, "ek": {}}]
+    "haric": r"tebligat|ihale|kiralama|sat[ıi][şs]|icra|acente", "limit": 40, "ek": {},
+    "liste_sayfa_deseni": r"personel-alimi.*[?&](p|page|sayfa|currentpage|pagenumber|pageindex)=\d+",
+    "liste_sayfa_sayisi": 3}]
 
 
 def pc_gorev_ekle(anahtar, urller, desen, haric, limit, ek=None):
