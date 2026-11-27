@@ -1,0 +1,385 @@
+{
+ "tarih": "2026-11-27",
+ "sure_dk": 93.0,
+ "memurlar_son": 86509,
+ "kaynaklar": {
+  "akademiktr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "bigpara": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "isbilgileri": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "kamukadro": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "kariyerbankasi": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "memuralimilanlari": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "memurjet": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "memurlar": {
+   "istek": 1100,
+   "ok": 1097,
+   "kayit": 208,
+   "kodlar": {
+    "200": 1097,
+    "404": 3
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, 86510 numarasında kalındı",
+   "durum": "açıldı"
+  },
+  "milliyet": {
+   "istek": 196,
+   "ok": 196,
+   "kayit": 17,
+   "kodlar": {
+    "200": 196
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "omu-mezun": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "posta": {
+   "istek": 163,
+   "ok": 163,
+   "kayit": 23,
+   "kodlar": {
+    "200": 163
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:amasya.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:artvin.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:atauni.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:bartin.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:bayburt.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:beun.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:bozok.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:cumhuriyet.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:duzce.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:ebyu.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:erdogan.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:giresun.edu.tr": {
+   "istek": 68,
+   "ok": 68,
+   "kayit": 11,
+   "kodlar": {
+    "200": 68
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:gop.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:gumushane.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:hitit.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:ibu.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:karabuk.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:kastamonu.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:ktu.edu.tr": {
+   "istek": 115,
+   "ok": 111,
+   "kayit": 15,
+   "kodlar": {
+    "200": 111
+   },
+   "robots": 2,
+   "hata": 4,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:odu.edu.tr": {
+   "istek": 1,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "404": 1
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "açılmadı"
+  },
+  "uni:omu.edu.tr": {
+   "istek": 56,
+   "ok": 55,
+   "kayit": 10,
+   "kodlar": {
+    "200": 55,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:samsun.edu.tr": {
+   "istek": 2,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "403": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "açılmadı"
+  },
+  "uni:sinop.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:sivas.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  },
+  "uni:trabzon.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 0,
+   "hata": 0,
+   "not": "süre bütçesi doldu, atlandı",
+   "durum": "açılmadı"
+  }
+ }
+}
