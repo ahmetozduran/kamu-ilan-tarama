@@ -16,7 +16,7 @@ concurrency:
 jobs:
   tara:
     runs-on: ubuntu-latest
-    timeout-minutes: 140
+    timeout-minutes: 150
     steps:
       # Kuyrukta bekleyen çalışma da depodaki EN SON durumdan başlasın (eski commit'ten değil)
       - uses: actions/checkout@v4
@@ -36,9 +36,9 @@ jobs:
         run: pip install requests beautifulsoup4 pillow
 
       - name: Tara
-        timeout-minutes: 110
+        timeout-minutes: 120
         env:
-          SURE_LIMIT_DK: "95"
+          SURE_LIMIT_DK: "105"
         run: python tara.py
 
       # Tarama hata verse ya da süre aşımına uğrasa bile o ana kadar toplananlar kaydedilir.

@@ -58,7 +58,7 @@ ACIK_DOSYASI = os.path.join(KOK, "acik_ilanlar.md")
 UA = "kamu-ilan-tarama/2.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
 BEKLEME = 1.5            # istekler arası saniye
 ZAMAN_ASIMI = 20         # istek zaman aşımı (sn)
-SURE_LIMIT_DK = float(os.environ.get("SURE_LIMIT_DK", "95"))  # toplam süre bütçesi
+SURE_LIMIT_DK = float(os.environ.get("SURE_LIMIT_DK", "105"))  # toplam süre bütçesi
 BASLANGIC_ZAMANI = time.time()
 
 # durum.json yoksa buradan başlar. 86607 = 2 Ekim 2026, 86694 = 13 Ekim (OKA, son başvuru 22 Kasım).
@@ -229,6 +229,40 @@ def _yerel_listesi():
 
 
 YEREL_KURUMLAR = _yerel_listesi()
+
+# ---- Türkiye geneli yerel kurumlar (LogiX'in 27 Kasım 2026 talimatı: "her zaman tüm Türkiye")
+# Karadeniz dışındaki 69 ilde il belediyesi, valilik, il MEM ve (büyükşehir olmayan illerde) il özel idaresi.
+# Her çalışmada YEREL_TUR_ADEDI kadarı sırayla taranır (durum.json'da yerel_sira).
+BUYUKSEHIRLER = {"Adana", "Ankara", "Antalya", "Aydın", "Balıkesir", "Bursa", "Denizli", "Diyarbakır",
+                 "Erzurum", "Eskişehir", "Gaziantep", "Hatay", "İstanbul", "İzmir", "Kahramanmaraş",
+                 "Kayseri", "Kocaeli", "Konya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Ordu",
+                 "Sakarya", "Samsun", "Tekirdağ", "Trabzon", "Şanlıurfa", "Van"}
+IL_SLUG_OZEL = {"Afyonkarahisar": "afyon"}
+YEREL_TUR_ADEDI = 70
+
+
+def _slug(ad):
+    t = str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")
+    return IL_SLUG_OZEL.get(ad, ad.translate(t).lower().replace(" ", ""))
+
+
+def _turkiye_yerel_listesi():
+    karadeniz = {"Ordu"} | {il for il, _ in KARADENIZ_ILLER}
+    k = []
+    for il in ILLER:
+        if il in karadeniz:
+            continue
+        d = _slug(il)
+        tam = il.translate(str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")).lower()
+        k.append((il, "belediye", "ibb.istanbul" if il == "İstanbul" else f"{d}.bel.tr", PERSONEL_DESENI))
+        k.append((il, "valilik", f"{tam}.gov.tr", PERSONEL_DESENI))
+        k.append((il, "mem", f"{d}.meb.gov.tr", MEM_DESENI))
+        if il not in BUYUKSEHIRLER:
+            k.append((il, "ozelidare", f"{d}ozelidare.gov.tr", PERSONEL_DESENI))
+    return k
+
+
+YEREL_TURKIYE = None  # main() içinde doldurulur (ILLER aşağıda tanımlı)
 YEREL_ALT_YOLLAR = ["", "duyurular", "ilanlar"]
 
 ILLER = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya",
@@ -258,6 +292,7 @@ AYLAR = {"ocak": 1, "şubat": 2, "subat": 2, "mart": 3, "nisan": 4, "mayıs": 5,
 oturum = requests.Session()
 oturum.headers.update({"User-Agent": UA, "Accept-Language": "tr-TR,tr;q=0.9"})
 _robots = {}
+_son_istek = {}  # site -> son istek zamanı (siteye göre nazik bekleme)
 gunluk_yeni = []  # bu çalışmada bulunanlar
 kaynak = defaultdict(lambda: {"istek": 0, "ok": 0, "kayit": 0, "kodlar": {}, "robots": 0,
                               "hata": 0, "not": ""})
@@ -316,7 +351,11 @@ def getir(url, kaynak_adi=None):
         if k is not None:
             k["robots"] += 1
         return None
-    time.sleep(BEKLEME)
+    host = urlparse(url).hostname or ""
+    gecen = time.time() - _son_istek.get(host, 0)
+    if gecen < BEKLEME:
+        time.sleep(BEKLEME - gecen)
+    _son_istek[host] = time.time()
     if k is not None:
         k["istek"] += 1
     try:
@@ -810,8 +849,14 @@ def universiteler(durum):
 
 def yerel_kurumlar(durum):
     """12 Karadeniz ilinde belediye, il özel idaresi, valilik/kaymakamlık ve MEM duyuruları."""
+    global YEREL_TURKIYE
+    if YEREL_TURKIYE is None:
+        YEREL_TURKIYE = _turkiye_yerel_listesi()
     gorulen = set(durum.get("yerel_gorulen", []))
-    for il, tur, alan, desen in YEREL_KURUMLAR:
+    sira = durum.get("yerel_sira", 0) % max(1, len(YEREL_TURKIYE))
+    parti = (YEREL_TURKIYE[sira:] + YEREL_TURKIYE[:sira])[:YEREL_TUR_ADEDI]
+    durum["yerel_sira"] = (sira + len(parti)) % max(1, len(YEREL_TURKIYE))
+    for il, tur, alan, desen in list(YEREL_KURUMLAR) + parti:
         ad = f"yerel:{tur}:{alan}"
         if sure_bitti(0.95):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
