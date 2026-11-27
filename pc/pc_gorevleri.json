@@ -1,0 +1,36 @@
+{
+ "zaman": "2026-11-27T22:39:37+00:00",
+ "aciklama": "GitHub taramasının açamadığı (robots engeli olmayan) sayfalar; bilgisayar okuyucusu açar.",
+ "gorevler": [
+  {
+   "anahtar": "ilangovtr",
+   "url": [
+    "https://www.ilan.gov.tr/ilan/tum-ilanlar/personel-alimi?ats=5"
+   ],
+   "href_deseni": "/ilan/\\d{6,}/",
+   "baglanti_deseni": "",
+   "haric": "tebligat|ihale|kiralama|sat[ıi][şs]|icra|acente",
+   "limit": 40,
+   "ek": {},
+   "liste_sayfa_deseni": "personel-alimi.*[?&](p|page|sayfa|currentpage|pagenumber|pageindex)=\\d+",
+   "liste_sayfa_sayisi": 3
+  },
+  {
+   "anahtar": "uni:artvin.edu.tr",
+   "url": [
+    "https://www.artvin.edu.tr/",
+    "https://www.artvin.edu.tr/tr",
+    "https://artvin.edu.tr/",
+    "https://personel.artvin.edu.tr/",
+    "https://pdb.artvin.edu.tr/"
+   ],
+   "href_deseni": "",
+   "baglanti_deseni": "(ilan|al[ıi]m|[öo]ğretim (g[öo]revlisi|eleman|[üu]yesi)|akademik personel|s[öo]zle[şs]meli|personel al|kadro|duyuru)",
+   "haric": "(yeme[ğk]|men[üu]|sat[ıi]n alma|ihale|kiralama|i[şs]g[üu]c[üu] uyum|sonu[çc]|kazanan|mezuniyet t[öo]ren|kutla|tebrik)",
+   "limit": 12,
+   "ek": {
+    "il": "Artvin"
+   }
+  }
+ ]
+}
