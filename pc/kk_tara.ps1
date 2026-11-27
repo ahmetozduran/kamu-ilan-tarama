@@ -50,12 +50,19 @@ for ($i = 0; $i -lt 10; $i++) {
 }
 if (-not $bagli) { Yaz "İnternet yok; çıkıldı."; exit 0 }
 
+# ---------------------------------------------------------------- GitHub
+if (-not (Test-Path $TokenDosyasi)) { Yaz "Token yok; kur.ps1'i çalıştır."; exit 1 }
+$guvenli = Get-Content $TokenDosyasi | ConvertTo-SecureString
+$token = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($guvenli))
+$GH = @{ "Authorization" = "Bearer $token"; "User-Agent" = $UA }
+
 # Kendini güncelle (GitHub'daki pc/kk_tara.ps1 farklıysa onu alıp yeniden başlar)
 if (-not ($args -contains "-guncellendi")) {
     try {
         $tmp = Join-Path $Klasor "kk_tara.yeni.ps1"
-        Invoke-WebRequest -UseBasicParsing -TimeoutSec 30 -OutFile $tmp `
-            -Uri "https://raw.githubusercontent.com/$Depo/main/pc/kk_tara.ps1?t=$([DateTime]::UtcNow.Ticks)"
+        # raw.githubusercontent önbelleği 5 dk gecikebildiği için GitHub API'den (önbelleksiz) alınır
+        Invoke-WebRequest -UseBasicParsing -TimeoutSec 30 -OutFile $tmp -Headers ($GH + @{ "Accept" = "application/vnd.github.raw" }) `
+            -Uri "https://api.github.com/repos/$Depo/contents/pc/kk_tara.ps1?ref=main"
         if ((Get-Item $tmp).Length -gt 1000 -and (Get-FileHash $tmp).Hash -ne (Get-FileHash $PSCommandPath).Hash) {
             Copy-Item $tmp $PSCommandPath -Force
             Yaz "Betik GitHub'dan güncellendi; yeni sürüm başlatılıyor."
@@ -65,11 +72,6 @@ if (-not ($args -contains "-guncellendi")) {
     } catch { Yaz "Güncelleme denetimi yapılamadı: $($_.Exception.Message)" }
 }
 
-# ---------------------------------------------------------------- GitHub
-if (-not (Test-Path $TokenDosyasi)) { Yaz "Token yok; kur.ps1'i çalıştır."; exit 1 }
-$guvenli = Get-Content $TokenDosyasi | ConvertTo-SecureString
-$token = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($guvenli))
-$GH = @{ "Authorization" = "Bearer $token"; "User-Agent" = $UA }
 
 function GhOku($yol) {   # dosyanın metni ve sha'sı; yoksa $null
     $api = "https://api.github.com/repos/$Depo/contents/$yol`?ref=main"
