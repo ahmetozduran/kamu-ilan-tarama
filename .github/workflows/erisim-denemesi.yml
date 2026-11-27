@@ -5,14 +5,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: js indir
+      - name: js
         run: |
-          UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
-          mkdir -p kk && cd kk
-          curl -sS -m 30 -A "$UA" -o isealim.html https://kariyerkapisi.gov.tr/isealim
-          for s in $(grep -oE 'src="/js/[^"]*"' isealim.html | sed 's/src="//;s/"//'); do curl -sS -m 30 -A "$UA" -o "$(basename $s)" "https://kariyerkapisi.gov.tr$s"; done
-          ls -la
-      - uses: actions/upload-artifact@v4
-        with:
-          name: kk
-          path: kk
+          python3 - <<'PY'
+          import re, urllib.request
+          UA = "kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
+          def get(u):
+              with urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": UA}), timeout=30) as y:
+                  return y.read().decode("utf-8", "replace")
+          h = get("https://kariyerkapisi.gov.tr/isealim")
+          for s in re.findall(r'src="(/js/(?:Infrastructure|Index/Main)[^"]*)"', h):
+              c = get("https://kariyerkapisi.gov.tr" + s)
+              print("#####", s, len(c))
+              if "Infrastructure" in s:
+                  i = c.find("getAsyncFetchResult")
+                  print(c[max(0,i-200):i+2500])
+                  for m in re.finditer(r"apiURL\s*=", c): print("APIURL CTX:", c[max(0,m.start()-300):m.start()+120].replace("\n"," "))
+              else:
+                  print(c[:200])
+                  for kel in ["ilanObject =", "ilanObject=", "var ilanObject", "let ilanObject", "fillIseAlimPageAsync(", "searchIlan(", "getIlanlar = ", "function getIlanlar", "ilan.", "redirectUrl"]:
+                      for m in list(re.finditer(re.escape(kel), c))[:2]:
+                          print("----", kel, ":", c[max(0,m.start()-400):m.start()+900])
+          PY
