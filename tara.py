@@ -57,7 +57,7 @@ ACIK_DOSYASI = os.path.join(KOK, "acik_ilanlar.md")
 
 UA = "kamu-ilan-tarama/2.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
 BEKLEME = 1.5            # istekler arası saniye
-ZAMAN_ASIMI = 30         # istek zaman aşımı (sn)
+ZAMAN_ASIMI = 20         # istek zaman aşımı (sn)
 SURE_LIMIT_DK = float(os.environ.get("SURE_LIMIT_DK", "95"))  # toplam süre bütçesi
 BASLANGIC_ZAMANI = time.time()
 
@@ -68,7 +68,7 @@ MEMURLAR_BASLANGIC = 86300
 MEMURLAR_TUR_LIMIT = 600     # bir çalışmada en fazla kaç numara denensin
 MEMURLAR_ARDISIK_BOS = 40    # art arda bu kadar YOK numara görülürse dur
 MEMURLAR_ARDISIK_HATA = 15   # art arda bu kadar ağ/erişim hatası olursa site kapalı say, dur
-MEMURLAR_PAY = 0.55          # süre bütçesinin en fazla bu kadarı memurlar.net'e
+MEMURLAR_PAY = 0.45          # süre bütçesinin en fazla bu kadarı memurlar.net'e
 
 # Hiç istek atılmayacak alanlar (bu alan adları ve alt alan adları)
 ENGELLI_ALANLAR = [
@@ -158,7 +158,8 @@ BUYUK_ILCELER = {
     "Gümüşhane": ["kelkit"],
 }
 PERSONEL_DESENI = (r"(memur|personel|al[ıi]m|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|"
-                   r"i[şs]e al|s[ıi]nav|kadro|g[öo]revli al|sosyal yard[ıi]m ve inceleme|sydv|vak[ıi]f)")
+                   r"i[şs]e al|s[ıi]nav|kadro|g[öo]revli al|sosyal yard[ıi]m ve inceleme|sydv|vak[ıi]f|"
+                   r"[öo]ğretmen|e[ğg]itmen|usta [öo]ğretici|kurs [öo]ğret|etüt|et[üu]d)")
 MEM_DESENI = (r"([üu]cretli [öo]ğretmen|s[öo]zle[şs]meli [öo]ğretmen|[öo]ğretmen (ihtiya|al[ıi]m|g[öo]revlendir)|"
               r"personel al|usta [öo]ğretici|matematik)")
 YEREL_HARIC = (r"(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|"
@@ -408,6 +409,8 @@ def ocr_gorsel(icerik):
                 k = ocr_kalite(m)
                 if k > en_iyi_k:
                     en_iyi, en_iyi_k = m, k
+                if en_iyi_k >= 0.6:   # yeterliyse ikinci düzeni deneme (hız)
+                    break
             return en_iyi, en_iyi_k
         except Exception as e:
             return f"[OCR hatası: {e}]", 0.0
@@ -470,12 +473,12 @@ def gorsel_adresleri(soup, sayfa_url, anahtar=None):
     return sonuc
 
 
-def ekleri_coz(soup, sayfa_url, kaynak_adi, anahtar=None):
+def ekleri_coz(soup, sayfa_url, kaynak_adi, anahtar=None, gorsel=True, pdf=True):
     """Sayfadaki ilan görsellerini ve PDF eklerini metne çevirir.
     Döner: (ek_metni, en_dusuk_kalite veya None, görsel adresleri)"""
     parcalar, kaliteler = [], []
     gorseller = gorsel_adresleri(soup, sayfa_url, anahtar)
-    for u in gorseller[:12]:
+    for u in (gorseller[:12] if gorsel else []):
         r = getir(u, kaynak_adi)
         if r is not None and r.status_code == 200 and len(r.content) > 5000:
             m, k = ocr_gorsel(r.content)
@@ -484,7 +487,7 @@ def ekleri_coz(soup, sayfa_url, kaynak_adi, anahtar=None):
     gorulen = set()
     for a in soup.find_all("a", href=True):
         u = urljoin(sayfa_url, a["href"])
-        if not re.search(r"\.pdf(\?|$)", u, re.I) or u in gorulen:
+        if not pdf or not re.search(r"\.pdf(\?|$)", u, re.I) or u in gorulen:
             continue
         gorulen.add(u)
         if len(gorulen) > 8:
@@ -608,15 +611,18 @@ def memurlar_tek(n):
         return False
     tam = temiz_metin(BeautifulSoup(r.text, "html.parser"))
     metin = temiz_metin(ana_icerik(BeautifulSoup(r.text, "html.parser")))
+    sb_on = tarih_iso(bul(r"Son Ba[şs]vuru(?: Tarihi)?\s*:?\s*([0-9]{1,2}[\s./]+\w+[\s./]+[0-9]{4})", tam))
+    # Hız: başvurusu kapanmış ya da işçi ilanında tablo OCR'ı gerekmez (görsel adresleri yine kaydedilir)
+    ocr_gerek = not ((sb_on and sb_on < bugun().isoformat()) or tur_bul(baslik) == "isci")
     # Görseller memurlar.net'te ilan numarasını içeren yollarda durur
     # (ör. /common/job/images/<n>/...). Kapak görseli (headline) atlanır.
     ek, kalite, gorseller = ekleri_coz(BeautifulSoup(r.text, "html.parser"), r.url, ad,
-                                       anahtar=f"/{n}/")
-    if not gorseller:   # AMP sürümünde görseller farklı etiketle olabilir
+                                       anahtar=f"/{n}/", gorsel=ocr_gerek, pdf=ocr_gerek)
+    if not gorseller and ocr_gerek:   # AMP sürümünde görseller farklı etiketle olabilir
         r2 = getir(r.url.split("?")[0] + "?amp=1", ad)
         if r2 is not None and r2.status_code == 200:
             ek2, k2, g2 = ekleri_coz(BeautifulSoup(r2.text, "html.parser"), r2.url, ad,
-                                     anahtar=f"/{n}/")
+                                     anahtar=f"/{n}/", gorsel=ocr_gerek, pdf=ocr_gerek)
             if g2:
                 ek, kalite, gorseller = ek2, k2, g2
     giris = bul(r"[İI]lan Giri[şs]\s*:?\s*([0-9]{1,2}\s+\w+\s+[0-9]{4}|20\d\d-\d\d-\d\d)", tam)
@@ -629,7 +635,7 @@ def memurlar_tek(n):
         "son_basvuru_iso": tarih_iso(sb),
         "kategori": bul(r"Kategori\s*:?\s*([^\n]{2,60})", tam),
         "kaynak_notu": bul(r"Kaynak\s*:\s*([^\n]{2,40})", tam),
-        "ocr_kalite": kalite_etiketi(kalite),
+        "ocr_kalite": kalite_etiketi(kalite) if ocr_gerek else ("atlandi" if gorseller else ""),
         "gorseller": gorseller,
     }
     kaydet(ad, n, r.url, baslik, metin, ek, meta)
@@ -640,7 +646,7 @@ def memurlar_tek(n):
 def liste_sayfalari(durum):
     gorulen = set(durum.get("gorulen", []))
     for ad, ana, desen in LISTE_SAYFALARI:
-        if sure_bitti(0.68):
+        if sure_bitti(0.60):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         r = getir(ana, ad)
@@ -665,7 +671,7 @@ def liste_sayfalari(durum):
         if not adaylar and not kaynak[ad]["not"]:
             kaynak[ad]["not"] = "açıldı, yeni bağlantı yok"
         for u, yazi, h in adaylar[:40]:
-            if sure_bitti(0.68):
+            if sure_bitti(0.60):
                 break
             r2 = getir(u, ad)
             gorulen.add(h)
@@ -675,7 +681,7 @@ def liste_sayfalari(durum):
             h1 = s2.find("h1")
             baslik = h1.get_text(" ", strip=True) if h1 else yazi
             metin = temiz_metin(ana_icerik(BeautifulSoup(r2.text, "html.parser")))
-            ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad)
+            ek, kalite, gorseller = ekleri_coz(s2, r2.url, ad, gorsel=False)
             yayin = ""
             m = s2.find("meta", attrs={"property": "article:published_time"}) or \
                 s2.find("meta", attrs={"name": "pubdate"})
@@ -734,7 +740,7 @@ def universiteler(durum):
     gorulen = set(durum.get("uni_gorulen", []))
     for il, alan in UNIVERSITELER:
         ad = "uni:" + alan
-        if sure_bitti(0.80):
+        if sure_bitti(0.75):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         acilan, adaylar = 0, []

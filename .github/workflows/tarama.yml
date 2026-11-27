@@ -3,6 +3,7 @@ name: ilan-tarama
 on:
   schedule:
     - cron: "17 3 * * *"   # her gün 06:17 (Türkiye saati)
+    - cron: "17 11 * * *"  # her gün 14:17 (birikimi eritmek ve gün içi ilanlar için)
   workflow_dispatch:        # elle çalıştırma düğmesi
 
 permissions:
@@ -17,7 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 140
     steps:
+      # Kuyrukta bekleyen çalışma da depodaki EN SON durumdan başlasın (eski commit'ten değil)
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Araçları kur (OCR, PDF)
         run: |
