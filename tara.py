@@ -172,6 +172,7 @@ UNI_TUR_ADEDI = 45
 UNI_ALT_ALANLAR = ["www.{d}/", "www.{d}/tr", "{d}/", "personel.{d}/", "pdb.{d}/"]
 UNI_DESENI = (r"(ilan|al[ıi]m|[öo]ğretim (g[öo]revlisi|eleman|[üu]yesi)|akademik personel|"
               r"s[öo]zle[şs]meli|personel al|kadro|duyuru)")
+UNI_HARIC = r"(yeme[ğk]|men[üu]|sat[ıi]n alma|ihale|kiralama|i[şs]g[üu]c[üu] uyum|sonu[çc]|kazanan|mezuniyet t[öo]ren|kutla|tebrik)"
 UNI_LINK_LIMIT = 12          # üniversite başına en fazla kaç yeni bağlantı açılsın
 
 # ---- Yerel kurumlar (LogiX'in 27 Kasım 2026 talimatı: 12 Karadeniz ili)
@@ -417,18 +418,40 @@ def tarih_iso(metin):
         return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
     m = re.search(r"\b(\d{1,2})[./](\d{1,2})[./](20\d\d)\b", metin)
     if m:
-        try:
-            return dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1))).isoformat()
-        except ValueError:
-            return ""
+        return _gun_yap(int(m.group(3)), int(m.group(2)), int(m.group(1)))
     m = re.search(r"\b(\d{1,2})\s+([A-Za-zÇĞİÖŞÜçğıöşü]+)\s+(20\d\d)\b", metin)
     if m:
         ay = AYLAR.get(m.group(2).lower().replace("i̇", "i"))
         if ay:
-            try:
-                return dt.date(int(m.group(3)), ay, int(m.group(1))).isoformat()
-            except ValueError:
-                return ""
+            return _gun_yap(int(m.group(3)), ay, int(m.group(1)))
+    return ""
+
+
+def _gun_yap(yil, ay, gun):
+    """Geçersiz günü (ilan metnindeki '31 Kasım' gibi yazım hataları) ay sonuna çeker."""
+    if not (1 <= ay <= 12 and 1 <= gun <= 31):
+        return ""
+    import calendar
+    gun = min(gun, calendar.monthrange(yil, ay)[1])
+    return dt.date(yil, ay, gun).isoformat()
+
+
+_TARIH = r"(\d{1,2}[./]\d{1,2}[./]20\d\d|\d{1,2}\s+[a-zçğıöşü]+\s+20\d\d)"
+
+
+def son_tarih_ara(metin):
+    """Başlıkta son başvuru yoksa metinden bulmaya çalışır (ör. 'son başvuru tarihi (11.12.2026)',
+    '23/11/2026 tarihinden başlayarak 06/12/2026', '2 Kasım 2026 ile 16 Kasım 2026 tarihleri arasında')."""
+    k = kucuk(metin or "")
+    m = re.search(r"son\s+ba[şs]vuru[^0-9\n]{0,40}?" + _TARIH, k)
+    if m and tarih_iso(m.group(1)):
+        return m.group(1)
+    m = re.search(_TARIH + r"[^0-9\n]{0,60}?(?:-|–|ile|ila|ba[şs]layarak|itibaren)[^0-9\n]{0,40}?" + _TARIH, k)
+    if m and tarih_iso(m.group(2)):
+        return m.group(2)
+    m = re.search(r"(\d{1,2})\s*(?:-|–)\s*(\d{1,2})\s+([a-zçğıöşü]+)\s+(20\d\d)", k)  # '7-10 aralık 2026'
+    if m and tarih_iso(f"{m.group(2)} {m.group(3)} {m.group(4)}"):
+        return f"{m.group(2)} {m.group(3)} {m.group(4)}"
     return ""
 
 
@@ -610,6 +633,12 @@ def kaydet(kaynak_adi, kimlik, url, baslik, metin, ek_metin, meta, sayac=None):
     if not meta.get("son_basvuru_iso"):
         sb = meta.get("son_basvuru") or bul(
             r"son\s+ba[şs]vuru(?:\s+tarihi)?\s*:?\s*([0-9]{1,2}[\s./]+[A-Za-zÇĞİÖŞÜçğıöşü0-9]+[\s./]+20[0-9]{2})", tum)
+        if not tarih_iso(sb):
+            aday = son_tarih_ara(tum)
+            # ilan girişinden önceki bir tarih yanlış eşleşmedir (ör. '01 Ekim 2025 – 01 Ekim 2026' konu aralığı)
+            if aday and meta.get("ilan_giris_iso") and tarih_iso(aday) >= meta["ilan_giris_iso"]:
+                # son_basvuru_iso boş kalır (ilan 'tarihi okunamadı' sayılır, elenmez); tahmin ayrı alanda
+                meta["son_basvuru_tahmini"] = tarih_iso(aday)
         meta["son_basvuru"] = sb
         meta["son_basvuru_iso"] = tarih_iso(sb)
     with open(dosya, "w", encoding="utf-8") as f:
@@ -845,7 +874,7 @@ def universiteler(durum):
             if r is None or r.status_code != 200:
                 continue
             acilan += 1
-            _baglanti_topla(r, alan, UNI_DESENI, None, gorulen, adaylar)
+            _baglanti_topla(r, alan, UNI_DESENI, UNI_HARIC, gorulen, adaylar)
         if not acilan:
             kaynak[ad]["not"] = "ana/personel sayfası açılmadı"
             continue
@@ -927,11 +956,44 @@ def acik_ilanlari_yaz():
     return len(acik)
 
 
+def tarih_tamamla():
+    """Eski kayıtlarda son başvuru tarihi boşsa ilan dosyasının metninden bir kez daha dener."""
+    if not os.path.exists(INDEX_DOSYASI):
+        return
+    with open(INDEX_DOSYASI, encoding="utf-8") as f:
+        satirlar = [json.loads(x) for x in f if x.strip()]
+    degisen = 0
+    for k in satirlar:
+        if (k.get("son_basvuru_iso") or k.get("son_basvuru_tahmini") or not k.get("dosya")
+                or not k.get("ilan_giris_iso")):
+            continue
+        yol = k["dosya"] if os.path.isabs(k["dosya"]) else os.path.join(KOK, k["dosya"])
+        if not os.path.exists(yol):
+            continue
+        with open(yol, encoding="utf-8") as f:
+            metin = f.read()
+        sb = k.get("son_basvuru") or ""
+        if tarih_iso(sb):
+            k["son_basvuru_iso"] = tarih_iso(sb)  # ör. '31 Kasım 2026' artık ay sonuna çekiliyor
+            degisen += 1
+            continue
+        aday = son_tarih_ara(metin)
+        if aday and tarih_iso(aday) >= k["ilan_giris_iso"]:
+            k["son_basvuru_tahmini"] = tarih_iso(aday)
+            degisen += 1
+    if degisen:
+        with open(INDEX_DOSYASI, "w", encoding="utf-8") as f:
+            for k in satirlar:
+                f.write(json.dumps(k, ensure_ascii=False) + "\n")
+        log(f"[tarih] {degisen} eski kayda son başvuru tarihi/tahmini eklendi")
+
+
 def main():
     durum = {}
     if os.path.exists(DURUM_DOSYASI):
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
+    tarih_tamamla()
     adimlar = [memurlar, liste_sayfalari, universiteler, yerel_kurumlar]
     for adim in adimlar:
         try:

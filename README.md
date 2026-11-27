@@ -12,7 +12,7 @@ Her gün otomatik çalışan kamu ilanı toplayıcısı (GitHub Actions, 06:17 T
 - **Süre:** Tarama kendi süre bütçesiyle (95 dk) durur. Yarıda kalsa bile o ana kadar toplananlar commit edilir.
 - **Çıktılar:**
   - `ilanlar/`: her ilanın tam metni.
-  - `index.jsonl`: her ilan için tek satır özet. Alanlar: `son_basvuru_iso`, `ilan_giris_iso`, `il`, `tur` (kamu/akademik/isci), `ocr_kalite`.
+  - `index.jsonl`: her ilan için tek satır özet. Alanlar: `son_basvuru_iso`, `son_basvuru_tahmini` (başlıkta tarih yoksa metinden çıkarılan tahmin; doğrulanmalı, `son_basvuru_iso` boş kalır), `ilan_giris_iso`, `il`, `tur` (kamu/akademik/isci), `ocr_kalite`.
   - `acik_ilanlar.md`: son başvurusu geçmemiş ilanlar ile tarihi okunamamış ilanlar.
   - `ozet/AAAA-AA-GG.md`: o gün yeni bulunanlar ve her kaynağın durumu.
   - `kaynak_durumu.json`: son çalışmada her kaynak açıldı mı, kaç istek atıldı, hangi HTTP kodları döndü.
