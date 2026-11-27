@@ -19,3 +19,12 @@ Her gün otomatik çalışan kamu ilanı toplayıcısı (GitHub Actions, 06:17 T
   - `durum.json`: taramanın kaldığı yer.
 
 Elle çalıştırmak için: **Actions** sekmesinde **ilan-tarama**'yı aç, **Run workflow**'a bas.
+
+## Bilgisayar okuyucusu (Kariyer Kapısı)
+
+Kariyer Kapısı'nın ilan servisi yurt dışından (GitHub sunucuları) yanıt vermiyor. Bu yüzden LogiX'in
+Windows bilgisayarında `pc/kk_tara.ps1` çalışıyor (oturum açılışında ve her gün 09:00/18:00, en sık
+4 saatte bir). Kamu işe alım sayfasının herkese açık ilan listesini bir kez okuyup `pc/kariyerkapisi.json`
+olarak buraya yükler; `tara.py` bunu `kariyerkapisi-pc` kaynağıyla index'e ekler.
+Kurulum: `irm https://raw.githubusercontent.com/ahmetozduran/kamu-ilan-tarama/main/pc/kur.ps1 | iex`
+Kaldırma: `irm https://raw.githubusercontent.com/ahmetozduran/kamu-ilan-tarama/main/pc/kaldir.ps1 | iex`

@@ -988,13 +988,56 @@ def tarih_tamamla():
         log(f"[tarih] {degisen} eski kayda son başvuru tarihi/tahmini eklendi")
 
 
+def kariyerkapisi_pc(durum):
+    """LogiX'in bilgisayarından (pc/kk_tara.ps1) yüklenen Kariyer Kapısı ilan listesini index'e ekler.
+    Kariyer Kapısı'nın ilan servisi yurt dışından (GitHub) yanıt vermiyor; okuma Türkiye'deki
+    bilgisayarda yapılıyor ve pc/kariyerkapisi.json olarak depoya geliyor."""
+    ad = "kariyerkapisi-pc"
+    yol = os.path.join(KOK, "pc", "kariyerkapisi.json")
+    if not os.path.exists(yol):
+        kaynak[ad]["not"] = "pc/kariyerkapisi.json yok (bilgisayar okuyucusu henüz çalışmadı)"
+        return
+    with open(yol, encoding="utf-8-sig") as f:
+        veri = json.load(f)
+    zaman = veri.get("zaman", "")[:16]
+    kk = (veri.get("kaynaklar") or {}).get("kariyerkapisi") or {}
+    yas_gun = (bugun() - dt.date.fromisoformat(zaman[:10])).days if zaman[:10] else 99
+    if kk.get("durum") != 200:
+        kaynak[ad]["not"] = f"bilgisayardaki son okuma başarısız (HTTP {kk.get('durum')}, {zaman})"
+        return
+    kaynak[ad]["ok"] = 1
+    gorulen = set(durum.get("kk_gorulen", []))
+    yeni = 0
+    for x in veri.get("kariyerkapisi_ilanlar") or []:
+        guid = x.get("guid") or ""
+        bit = (x.get("bitTarih") or "")[:10]
+        if not guid or guid in gorulen or (bit and bit < bugun().isoformat()):
+            continue
+        gorulen.add(guid)
+        baslik = x.get("ilanBaslik") or x.get("kurumAdi") or "Kariyer Kapısı ilanı"
+        metin = (f"Kurum: {x.get('kurumAdi', '')}\nBirim: {x.get('birimAdi', '')}\n"
+                 f"İlan türü: {x.get('ilanTuru', '')}\nBaşvuru: {(x.get('basTarih') or '')[:10]} – {bit}\n"
+                 f"Kaynak: Kariyer Kapısı kamu işe alım listesi (LogiX'in bilgisayarından {zaman} okuması). "
+                 f"İlan metni ve şartlar Kariyer Kapısı'nda; aynı ilanı memurlar.net/haber/kurum sitesinde ara.")
+        tur = "akademik" if re.search(r"[öo]ğretim|akademik", kucuk(x.get("ilanTuru", "") + baslik)) else tur_bul(baslik)
+        kaydet(ad, guid, x.get("basvuruLinki") or "https://kariyerkapisi.gov.tr/isealim", baslik, metin, "",
+               {"son_basvuru": bit, "son_basvuru_iso": bit, "baslangic_iso": (x.get("basTarih") or "")[:10],
+                "kurum": x.get("kurumAdi", ""), "ilan_turu": x.get("ilanTuru", ""), "tur": tur,
+                "kategori": "kariyerkapisi"})
+        yeni += 1
+    durum["kk_gorulen"] = list(gorulen)[-5000:]
+    kaynak[ad]["not"] = (f"bilgisayar okuması {zaman}: {kk.get('ilan_sayisi')} aktif ilan, {yeni} yeni kayıt"
+                         + (f" (okuma {yas_gun} gün eski)" if yas_gun >= 2 else ""))
+    log(f"[{ad}] {kaynak[ad]['not']}")
+
+
 def main():
     durum = {}
     if os.path.exists(DURUM_DOSYASI):
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
     tarih_tamamla()
-    adimlar = [memurlar, liste_sayfalari, universiteler, yerel_kurumlar]
+    adimlar = [kariyerkapisi_pc, memurlar, liste_sayfalari, universiteler, yerel_kurumlar]
     for adim in adimlar:
         try:
             adim(durum)
