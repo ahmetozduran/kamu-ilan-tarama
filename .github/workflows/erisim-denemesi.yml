@@ -5,26 +5,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-      - name: kesif
+      - name: sitemap
         continue-on-error: true
         run: |
           python3 - <<'PY'
-          import re, urllib.request, json
+          import re, urllib.request, gzip
           UA = "kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
-          def get(u, data=None, ct=None):
-              r = urllib.request.Request(u, data=data, headers={"User-Agent": UA, **({"Content-Type": ct} if ct else {})})
+          def get(u):
+              r = urllib.request.Request(u, headers={"User-Agent": UA})
               try:
-                  with urllib.request.urlopen(r, timeout=25) as y:
-                      return y.status, y.read().decode("utf-8", "replace")
-              except urllib.error.HTTPError as e:
-                  return e.code, e.read().decode("utf-8", "replace")
-              except Exception as e:
-                  return 0, repr(e)
-          s, c = get("https://kariyerkapisi.gov.tr/js/Index/Main.dit3odhcc9.js")
-          for mm in list(re.finditer(r"ilanObject", c))[:4]:
-              print("--- ctx:", c[max(0, mm.start()-700):mm.end()+300].replace("\n", " ")[:1200])
-          A = "https://api.kariyerkapisi.gov.tr/api"
-          print("=== robots", get("https://api.kariyerkapisi.gov.tr/robots.txt")[0])
-          s, t = get(A + "/ilan/GetIlanCountForKurumPublic"); print("=== count", s, t[:800])
-          s, t = get(A + "/ilan/GetIseAlimPage", json.dumps({}).encode(), "application/json"); print("=== page{}", s, t[:1500])
+                  with urllib.request.urlopen(r, timeout=40) as y:
+                      b = y.read()
+                      if b[:2] == b"\x1f\x8b": b = gzip.decompress(b)
+                      return y.status, b.decode("utf-8", "replace")
+              except urllib.error.HTTPError as e: return e.code, ""
+              except Exception as e: return 0, repr(e)
+          for u in ["https://www.ilan.gov.tr/sitemap/ads.xml", "https://www.ilan.gov.tr/sitemap/categories.xml", "https://www.ilan.gov.tr/sitemap/daily-categories.xml"]:
+              s, t = get(u); locs = re.findall(r"<loc>([^<]+)</loc>", t)
+              print("===", u, s, len(t), "loc:", len(locs)); print(t[:500])
+              per = [l for l in locs if "personel" in l]
+              print("personel:", len(per)); [print("  ", l) for l in per[:15]]
+              subs = [l for l in locs if l.endswith(".xml")]
+              for sub in subs[:3]:
+                  s2, t2 = get(sub); l2 = re.findall(r"<loc>([^<]+)</loc>", t2)
+                  print("  sub", sub, s2, len(l2)); [print("    ", x) for x in [x for x in l2 if "personel" in x][:10]]
+                  print("    lastmod örn:", re.findall(r"<lastmod>([^<]+)</lastmod>", t2)[:3])
           PY
