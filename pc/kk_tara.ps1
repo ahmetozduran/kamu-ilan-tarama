@@ -163,15 +163,25 @@ function EdgeDom($url) {
     }
     $SonIstek[$h] = Get-Date
     $script:AcilanSayfa++
-    $cikti = Join-Path $Klasor "dom.html"
-    Remove-Item $cikti -ErrorAction SilentlyContinue
+    # Not: Edge alt süreçleri çıktıyı açık tuttuğu için dosyaya yönlendirme kilitleniyordu (27.11.2026);
+    # çıktı doğrudan akıştan, tüm alt süreçler kapanana kadar okunur (en fazla 90 sn).
     $arg = @("--headless=new", "--disable-gpu", "--no-first-run", "--disable-extensions", "--mute-audio",
-             "--user-data-dir=`"$Klasor\edge`"",
-             "--virtual-time-budget=15000", "--dump-dom", "`"$url`"")
+             "--user-data-dir=`"$Klasor\edge`"", "--virtual-time-budget=15000", "--dump-dom", "`"$url`"")
     try {
-        $p = Start-Process -FilePath $Edge -ArgumentList $arg -RedirectStandardOutput $cikti -NoNewWindow -PassThru
-        if (-not $p.WaitForExit(60000)) { try { $p.Kill() } catch { } ; return "" }
-        if (Test-Path $cikti) { return [IO.File]::ReadAllText($cikti, [Text.Encoding]::UTF8) }
+        $psi = New-Object Diagnostics.ProcessStartInfo
+        $psi.FileName = $Edge
+        $psi.Arguments = ($arg -join " ")
+        $psi.UseShellExecute = $false
+        $psi.CreateNoWindow = $true
+        $psi.RedirectStandardOutput = $true
+        $psi.RedirectStandardError = $true
+        $psi.StandardOutputEncoding = [Text.Encoding]::UTF8
+        $p = [Diagnostics.Process]::Start($psi)
+        $cikis = $p.StandardOutput.ReadToEndAsync()
+        $null = $p.StandardError.ReadToEndAsync()
+        if ($cikis.Wait(90000)) { return $cikis.Result }
+        try { & taskkill.exe /PID $p.Id /T /F | Out-Null } catch { }
+        Yaz "Edge zaman aşımı ($url)"
     } catch { Yaz "Edge hatası ($url): $($_.Exception.Message)" }
     return ""
 }
