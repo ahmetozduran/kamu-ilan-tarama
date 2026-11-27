@@ -1,0 +1,80 @@
+# Marmara Üniversitesi 10 sözleşmeli personel alacak
+
+- kaynak: memurlar
+- adres: https://ilan.memurlar.net/ilan/86907/
+- alındı: 2026-11-27T14:58:37+00:00
+- ilan_no: 86907
+- ilan_giris: 06 Kasım 2026
+- ilan_giris_iso: 2026-11-06
+- son_basvuru: 20 Kasım 2026
+- son_basvuru_iso: 2026-11-20
+- kategori: ler
+- kaynak_notu: Resmi gazete
+- ocr_kalite: atlandi
+- gorseller: https://ilan.memurlar.net/common/job/images/86907/marmara-universitesi-10-sozlesmeli-personel-alacak.jpg https://ilan.memurlar.net/common/job/advert/documents/86907/7_000001.jpg
+- tur: kamu
+
+## Metin
+
+Ana sayfa
+4/B İlanları
+Marmara Üniversitesi 10 sözleşmeli personel alacak
+Marmara Üniversitesi 10 sözleşmeli personel alacak. Son başvuru tarihi 20 Kasım 2026
+Kaynak : Resmi gazete
+İlan Giriş :
+06 Kasım 2026 01:10, Son Güncelleme :
+06 Kasım 2026 00:38
+Yazdır
+Yorumlar (
+0
+)
+Abone Ol
+Marmara Üniversitesi Rektörlüğünden:
+657 SAYILI DEVLET MEMURLARI KANUNUNUN DEĞİŞİK 4/B MADDESİNE GÖRE SÖZLEŞMELİ PERSONEL ALIM İLANI
+Üniversitemizde 657 sayılı Devlet Memurları Kanununun 4.maddesinin (B) fıkrasına göre Sözleşmeli Personel olarak istihdam edilmek üzere 06.06.1978 tarihli ve 7/15754 sayılı Bakanlar Kurulu Kararı ile yürürlüğe konulan Sözleşmeli Personel Çalıştırılmasına İlişkin Esaslar'ın Ek 2inci maddesinin (b) fıkrasına göre 2026 KPSS (B) grubu puan sırasına göre her bir unvan için boş bulunan sözleşmeli personel pozisyonunun en fazla üç katına kadar çağrılacak aday arasında yapılması kaydıyla sözlü sınav yapılmak suretiyle aşağıda belirtilen pozisyonlarda sözleşmeli personel alınacaktır.
+BAŞVURU ŞARTLARI
+A) GENEL ŞARTLAR
+1- Başvuracak adaylarda 657 sayılı Kanunun 48. maddesinde belirtilen genel şartlar
+aranır.
+2- 2026 KPSS (B) grubu sınavına girmiş olmak. Lisans mezunları için 2026 KPSS (P3) ve Önlisans mezunları için 2026 KPSS (P93) Puanı esas alınacaktır.
+3- Başvuracak adayların durumunun; 657 sayılı Devlet Memurları Kanununun 4/B maddesinin "Bu şekilde istihdam edilenler, hizmet sözleşmesi esaslarına aykırı hareket etmesi nedeniyle kurumlarınca sözleşmelerinin feshedilmesi veya sözleşme dönemi içerisinde Cumhurbaşkanı kararı ile belirlenen istisnalar hariç sözleşmeyi tek taraflı feshetmeleri halinde, fesih tarihinden itibaren bir yıl geçmedikçe kurumların sözleşmeli personel pozisyonlarında istihdam edilemezler" hükmüne uygun olması.
+4- Erkek adaylar için askerlikle ilişkisi bulunmamak (tamamlanmış veya muaf olmak).
+5- Herhangi bir Sosyal Güvenlik Kurumundan emeklilik veya yaşlılık aylığı almıyor olmak.
+6- Atanmaya hak kazanan adaylar hakkında 7315 sayılı Güvenlik Soruşturması ve Arşiv Araştırması Kanununun 3.maddesi uyarınca arşiv araştırması yapılacaktır. Söz konusu sonucun olumlu gelmesi halinde atamaları yapılacaktır.
+MÜRACAAT İÇİN İSTENİLEN BELGELER VE BAŞVURU YERİ VE TARİHİ
+1- İlgililerin, ilanın Resmi Gazetede yayımlandığı tarihten itibaren 15 gün içinde https://kariyerkapisi.gov.tr/isealim internet adresinden başvurularını tamamlamaları gerekmektedir. Posta ile yapılan müracaatlar kabul edilmeyecektir.
+Başvuru Tarihleri: 06.11.2026- 20.11.2026
+Sözlü Sınav Tarihi: 17 Aralık 2026
+Başvurular, başlangıç tarihinde saat 09:00 itibarıyla başlayıp bitiş tarihinde saat 13:00'te sona erecektir. Elektronik ortamda yaşanabilecek teknik aksaklıklar ve yoğunluk riski göz önünde bulundurularak, başvuruların son güne bırakılmaması gerekmektedir. Başvuruların Kariyer Kapısı platformu üzerinden eksiksiz ve hatasız bir şekilde tamamlanması sorumluluğu tamamen adaya aittir. Sistem genelinde meydana gelebilecek ve belgelenen teknik kesintiler haricinde süre uzatımı yapılmayacak olup, sistem genelinde meydana gelebilecek ve belgelenen teknik kesintilerde idare tarafından son başvuru gününün bitimine kadar ek süre tanınabilir.
+2- Elektronik ortamda yapılan başvuru tek başına yeterli olmayıp sistem üzerinden yapılan başvuru sonrasında oluşturulan "Aday Başvuru Bilgileri" belgesini ve diğer istenilen tüm belgeleri şahsen başvuru tarihleri içinde Üniversitemize (Göztepe Yerleşkesi-Personel Daire Başkanlığı) teslim etmeyen adayların başvuruları tamamlanmadığından geçersiz sayılacaktır.
+3- Adayların sistem üzerinden yapacakları beyanlar ile ibraz ettikleri belgelerden kaynaklanabilecek sorumluluklar kendilerine aittir.
+BAŞVURULARIN DEĞERLENDİRİLMESİ VE SÖZLÜ SINAVA ÇAĞIRMA
+1- Başvurular, başvurulan pozisyon için aranan niteliklere uygunluk yönünden incelenecek ve başvuru şartlarından herhangi birini taşımadığı tespit edilenlerin başvurusu iptal edilecektir.
+2- KPSS puanı en yüksek adaydan başlanarak her bir pozisyon için ilan edilen kontenjan sayısının 3 (üç) katı aday sözlü sınava çağrılacaktır.
+3- Sözlü sınava girmeye hak kazanan son sıradaki aday ile aynı puana sahip birden fazla adayın bulunması halinde, bu adayların tamamı sözlü sınava çağrılacaktır.
+4- Adaylar, başvurularına ve sınava ilişkin bilgilerini Kariyer Kapısı üzerinden görüntüleyebilecektir.
+SÖZLÜ SINAVIN ŞEKLİ, KONULARI, YERİ VE TARİHİ
+1- Sınav sözlü olarak 17 Aralık 2026 tarihlerinde Marmara Üniversitesi Göztepe yerleşkesinde yapılacaktır.
+2- Sözlü sınavda adaylar; sınav komisyonu üyelerinin her biri tarafından; Görevin gerektirdiği mesleki alan bilgisi (60 puan),
+Liyakati, temsil kabiliyeti, göreve uygunluğu ve genel kültürü (40 puan), konularından 100 puan üzerinden değerlendirmeye tabi tutulacaktır.
+3- Komisyon üyelerinin vermiş olduğu puanların aritmetik ortalaması esas alınmak suretiyle sözlü sınav puanı belirlenecektir.
+4- Sözlü sınava katılmaya hak kazanan adaylar sözlü sınava ilişkin yer bilgisini https://pdb.marmara.edu.tr internet adresi üzerinden görüntüleyebilecektir.
+5- Adaylar sözlü sınava gelirken kimlik belgelerinden birini (nüfus cüzdanı veya pasaport) yanlarında bulunduracaklardır. Kimlik belgesi bulunmayan adaylar sınava alınmayacaktır. Nüfus cüzdanı veya pasaport dışında başka bir belge kimlik belgesi olarak kabul edilmeyecektir.
+6- Sözlü sınava girmeye hak kazandığı halde ilan edilen sınav tarihlerinde sınava katılmayan adaylar sınav hakkını kaybetmiş sayılacaktır. Bu durumdaki adaylara ikinci bir sınav hakkı verilmeyecektir.
+7- Marmara Üniversitesi sözlü sınav yeri ve tarihleriyle ilgili değişiklik yapma hakkına sahiptir.
+8- Sözlü sınav esnasında sesli ve/veya görüntülü kayıt yapılacaktır.
+DEĞERLENDİRME VE BAŞARI SIRALAMASI
+1- Sözlü sınavda başarılı sayılabilmek için sınav komisyonu üyelerinin her birinin ayrı ayrı verdikleri puanların aritmetik ortalamasının en az 70 (yetmiş) puan olması gerekmektedir.
+2- Başarı sırasının belirlenmesinde, sözlü sınav puanı esas alınacaktır. Başarı listesi sözlü sınav puanı en yüksek adaydan başlanarak her bir pozisyon için ilan edilen kontenjan sayısına göre belirlenecektir.
+3- Her bir pozisyon için, sözlü sınav puanı en yüksek olan adaydan başlamak üzere ilan edilen pozisyon sayısı kadar aday asıl ve bir o kadar aday da yedek olarak belirlenecektir. Sözlü sınav puanlarının eşit olması halinde sırası ile KPSS puanı yüksek olan, mezuniyet tarihi ve doğum tarihi önce olan adaya öncelik verilecektir.
+4- Asıl veya yedek sıralamaya giremeyen adaylar için sözlü sınavda 70 (yetmiş) ve üzerinde puan almış olmak, müktesep hak teşkil etmeyecektir.
+5- Yedek sıralamasında yer alan adaylar için yedek listede yer almak daha sonraki alımlar için müktesep hak teşkil etmeyecektir.
+6- Sözlü sınav sonuçlarına itiraz etmek isteyen adayların, sonuçların ilan edildiği tarihten itibaren 5 (beş) iş günü içinde, ıslak imzalı dilekçe ile Üniversitemiz Personel Daire Başkanlığına şahsen başvurmaları gerekmektedir.
+7- İtirazlar, sürenin sona ermesinin ardından sınav komisyonu tarafından 5 (beş) iş günü içinde değerlendirilecek ve sonuçlandırılacaktır.
+BAŞVURULARIN DEĞERLENDİRİLMESİ VE YERLEŞTİRME SONUÇLARININ DUYURULMASI
+1) İlan edilen pozisyon sayısı kadar asil ve yedek kazanan adayların listesi, atanmaya hak kazanan adaylardan istenecek belgeler, sözlü sınava ilişkin tüm duyurular ve diğer hususlar https://pdb.marmara.edu.tr internet adresinde yayımlanacaktır. Kazanan adayların adreslerine tebligat yapılmayacaktır.
+2) İlan edilen boş pozisyon adedi kadar aday ataması yapılacaktır. Son adayların puanı eşit olması halinde sırası ile KPSS puanı yüksek olan, mezuniyet tarihi ve doğum tarihi önce olan adaya öncelik verilecektir.
+3) Atanmaya hak kazanıp süresi içinde başvurmayanlar ile ataması yapılmayan veya iptal edilen adayların yerine yedek listedeki adayların puan sıralamasına göre atamaları yapılacaktır.
+4) Arşiv araştırması olumsuz neticelenen ve/veya başvuru ve işlemleri sırasında gerçeğe aykırı beyanda bulunduğu veya eksik evrak verdiği sonradan tespit edilenler ile istenilen belgeleri ibraz edemeyenlerin müracaatları geçersiz sayılacak, atamaları yapılmış olsa dahi iptal edilecektir. Bu durumdaki adaylar hiçbir hak talep etmeyecek ve haklarında genel hükümlere göre yasal işlem yapılacaktır.
+5) Üniversitemiz, ilanın herhangi bir aşamasında iptal ve/veya değişiklik yapma hakkına sahiptir.
+11495/1-1
