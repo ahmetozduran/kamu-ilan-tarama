@@ -1,0 +1,45 @@
+name: ilan-tarama
+
+on:
+  schedule:
+    - cron: "17 3 * * *"   # her gün 06:17 (Türkiye saati)
+  workflow_dispatch:        # elle çalıştırma düğmesi
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ilan-tarama
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Araçları kur (OCR, PDF)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q tesseract-ocr tesseract-ocr-tur poppler-utils
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python paketleri
+        run: pip install requests beautifulsoup4
+
+      - name: Tara
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tara.py
+
+      - name: Sonuçları kaydet
+        run: |
+          git config user.name "ilan-bot"
+          git config user.email "ilan-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -q -m "tarama $(date -u +%F)"
+          git push
