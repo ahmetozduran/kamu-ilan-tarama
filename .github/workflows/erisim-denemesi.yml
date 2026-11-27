@@ -1,0 +1,17 @@
+name: erisim-denemesi
+on: workflow_dispatch
+jobs:
+  dene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: robots ve ana sayfalar
+        run: |
+          UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
+          for u in https://www.ilan.gov.tr/robots.txt https://kariyerkapisi.gov.tr/robots.txt https://isealimkariyerkapisi.cbiko.gov.tr/robots.txt; do
+            echo "=== $u"; curl -sS -m 20 -A "$UA" -w "\n[HTTP %{http_code}, %{size_download} bayt]\n" "$u" | head -60
+          done
+          for u in "https://www.ilan.gov.tr/ilan/tum-ilanlar/personel-alimi" "https://kariyerkapisi.gov.tr/isealim" "https://isealimkariyerkapisi.cbiko.gov.tr/"; do
+            echo "=== $u"; curl -sS -m 20 -A "$UA" -o /tmp/s.html -w "[HTTP %{http_code}, %{size_download} bayt]\n" "$u"
+            grep -oiE "(ilan|personel|alım)[^<]{0,60}" /tmp/s.html | head -8
+          done
