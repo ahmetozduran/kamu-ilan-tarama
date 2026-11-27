@@ -3,21 +3,30 @@ on: workflow_dispatch
 jobs:
   dene:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - name: kesif
         continue-on-error: true
         run: |
-          UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
-          curl -sS -m 30 -A "$UA" -o m.html https://www.ilan.gov.tr/
-          js=$(grep -oE 'src="main-es2015[^"]*\.js"' m.html | sed 's/src="//;s/"//')
-          curl -sS -m 30 -A "$UA" -o main.js "https://www.ilan.gov.tr/$js"
-          echo "--- AdsByFilter baglami"; grep -oE '.{0,400}AdsByFilter.{0,600}' main.js | head -c 2500; echo
-          echo "--- GetAdDetail baglami"; grep -oE '.{0,200}GetAdDetail\?.{0,300}' main.js | head -c 1200; echo
-          echo "--- remoteServiceBaseUrl"; grep -oE '.{0,80}(remoteServiceBaseUrl|apiUrl|baseUrl).{0,120}' main.js | head -5
-          curl -sS -m 20 -A "$UA" https://www.ilan.gov.tr/assets/appconfig.production.json; echo
-          curl -sS -m 20 -A "$UA" https://www.ilan.gov.tr/assets/appconfig.json; echo
-          echo "--- KK Main.js"
-          curl -sS -m 30 -A "$UA" -o k.html https://kariyerkapisi.gov.tr/isealim
-          kj=$(grep -oE 'src="/js/Index/Main[^"]*"' k.html | sed 's/src="//;s/"//')
-          curl -sS -m 30 -A "$UA" "https://kariyerkapisi.gov.tr$kj" | head -c 4000; echo
+          python3 - <<'PY'
+          import re, urllib.request, json
+          UA = "kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
+          def get(u, data=None, ct=None):
+              r = urllib.request.Request(u, data=data, headers={"User-Agent": UA, **({"Content-Type": ct} if ct else {})})
+              with urllib.request.urlopen(r, timeout=25) as y:
+                  return y.status, y.read().decode("utf-8", "replace")
+          s, m = get("https://www.ilan.gov.tr/")
+          js = re.search(r'src="(main-es2015[^"]*\.js)"', m).group(1)
+          s, j = get("https://www.ilan.gov.tr/" + js)
+          for kel in ["AdsByFilter", "GetAdDetail?", "remoteServiceBaseUrl", "appconfig"]:
+              for mm in list(re.finditer(re.escape(kel), j))[:2]:
+                  print("---", kel, ":", j[max(0, mm.start()-500):mm.end()+700].replace("\n", " "))
+          for u in ["https://www.ilan.gov.tr/assets/appconfig.production.json", "https://www.ilan.gov.tr/assets/appconfig.json"]:
+              try: print(u, get(u)[1][:400])
+              except Exception as e: print(u, e)
+          try:
+              s, k = get("https://kariyerkapisi.gov.tr/isealim")
+              kj = re.search(r'src="(/js/Index/Main[^"]*)"', k).group(1)
+              print("--- KK", kj); print(get("https://kariyerkapisi.gov.tr" + kj)[1][:5000])
+          except Exception as e: print("KK", e)
+          PY
