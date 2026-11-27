@@ -128,10 +128,51 @@ UNIVERSITELER = [
     ("Düzce", "duzce.edu.tr"),
     ("Yozgat", "bozok.edu.tr"),
 ]
-UNI_ALT_ALANLAR = ["www.{d}", "personel.{d}", "pdb.{d}"]
+# Tüm Türkiye (LogiX'in 27 Kasım 2026 talimatı). Karadeniz listesi her çalışmada taranır;
+# diğerleri her çalışmada UNI_TUR_ADEDI kadar sırayla (durum.json'daki uni_sira kaldığı yeri tutar).
+# Kaynak: Hipo/university-domains-list (TR) + elle eklenenler; eski/öğrenci alan adları çıkarıldı.
+TUM_UNIVERSITELER = [
+    '29mayis.edu.tr', 'acibadem.edu.tr', 'adiyaman.edu.tr', 'adu.edu.tr', 'afsu.edu.tr', 'agri.edu.tr',
+    'agu.edu.tr', 'ahap.edu.tr', 'ahievran.edu.tr', 'akdeniz.edu.tr', 'aksaray.edu.tr', 'aku.edu.tr',
+    'alanyaaku.edu.tr', 'alparslan.edu.tr', 'amasya.edu.tr', 'anadolu.edu.tr', 'ankara.edu.tr', 'ankarabilim.edu.tr',
+    'ankaramedipol.edu.tr', 'antalya.edu.tr', 'ardahan.edu.tr', 'arel.edu.tr', 'artuklu.edu.tr', 'artvin.edu.tr',
+    'asbu.edu.tr', 'atauni.edu.tr', 'atilim.edu.tr', 'atu.edu.tr', 'avrasya.edu.tr', 'aybu.edu.tr',
+    'aydin.edu.tr', 'bahcesehir.edu.tr', 'bakircay.edu.tr', 'balikesir.edu.tr', 'bandirma.edu.tr', 'bartin.edu.tr',
+    'baskent.edu.tr', 'batman.edu.tr', 'bayburt.edu.tr', 'beu.edu.tr', 'beun.edu.tr', 'beykent.edu.tr',
+    'bezmialem.edu.tr', 'bilecik.edu.tr', 'bilgi.edu.tr', 'bilkent.edu.tr', 'bingol.edu.tr', 'biruni.edu.tr',
+    'bitlis.edu.tr', 'bogazici.edu.tr', 'bozok.edu.tr', 'btu.edu.tr', 'cag.edu.tr', 'cankaya.edu.tr',
+    'cbu.edu.tr', 'comu.edu.tr', 'cu.edu.tr', 'cumhuriyet.edu.tr', 'deu.edu.tr', 'dicle.edu.tr',
+    'dogus.edu.tr', 'dpu.edu.tr', 'duzce.edu.tr', 'ebyu.edu.tr', 'ege.edu.tr', 'erbakan.edu.tr',
+    'erciyes.edu.tr', 'erdogan.edu.tr', 'erzurum.edu.tr', 'esenyurt.edu.tr', 'eskisehir.edu.tr', 'etu.edu.tr',
+    'fatihsultan.edu.tr', 'fbu.edu.tr', 'firat.edu.tr', 'gantep.edu.tr', 'gazi.edu.tr', 'gedik.edu.tr',
+    'gelisim.edu.tr', 'gidatarim.edu.tr', 'giresun.edu.tr', 'gop.edu.tr', 'gsu.edu.tr', 'gtu.edu.tr',
+    'gumushane.edu.tr', 'hacettepe.edu.tr', 'hakkari.edu.tr', 'halic.edu.tr', 'harran.edu.tr', 'hbv.edu.tr',
+    'hitit.edu.tr', 'hku.edu.tr', 'hun.edu.tr', 'ibnhaldun.edu.tr', 'ibu.edu.tr', 'idu.edu.tr',
+    'ieu.edu.tr', 'igdir.edu.tr', 'ikcu.edu.tr', 'iku.edu.tr', 'inonu.edu.tr', 'isikun.edu.tr',
+    'isparta.edu.tr', 'istanbul.edu.tr', 'istanbulticaret.edu.tr', 'iste.edu.tr', 'istiklal.edu.tr', 'istinye.edu.tr',
+    'iszu.edu.tr', 'itu.edu.tr', 'iuc.edu.tr', 'iyte.edu.tr', 'kafkas.edu.tr', 'kapadokya.edu.tr',
+    'karabuk.edu.tr', 'karatay.edu.tr', 'karatekin.edu.tr', 'kastamonu.edu.tr', 'kayseri.edu.tr', 'kemerburgaz.edu.tr',
+    'khas.edu.tr', 'kilis.edu.tr', 'kirklareli.edu.tr', 'kku.edu.tr', 'kmu.edu.tr', 'konya.edu.tr',
+    'kou.edu.tr', 'ksbu.edu.tr', 'ksu.edu.tr', 'ktu.edu.tr', 'ktun.edu.tr', 'ku.edu.tr',
+    'lokmanhekim.edu.tr', 'maltepe.edu.tr', 'marmara.edu.tr', 'medeniyet.edu.tr', 'medipol.edu.tr', 'mef.edu.tr',
+    'mehmetakif.edu.tr', 'mersin.edu.tr', 'metu.edu.tr', 'mku.edu.tr', 'msgsu.edu.tr', 'msu.edu.tr',
+    'mu.edu.tr', 'munzur.edu.tr', 'mus.edu.tr', 'nevsehir.edu.tr', 'nigde.edu.tr', 'nisantasi.edu.tr',
+    'nku.edu.tr', 'nny.edu.tr', 'odu.edu.tr', 'ogu.edu.tr', 'ohu.edu.tr', 'okan.edu.tr',
+    'omu.edu.tr', 'osmaniye.edu.tr', 'ostimteknik.edu.tr', 'ozal.edu.tr', 'ozu.edu.tr', 'ozyegin.edu.tr',
+    'pau.edu.tr', 'pirireis.edu.tr', 'rumeli.edu.tr', 'sabanciuniv.edu', 'sakarya.edu.tr', 'samsun.edu.tr',
+    'sanko.edu.tr', 'sau.edu.tr', 'sbu.edu.tr', 'sdu.edu.tr', 'selcuk.edu.tr', 'siirt.edu.tr',
+    'sinop.edu.tr', 'sirnak.edu.tr', 'subu.edu.tr', 'tarsus.edu.tr', 'tau.edu.tr', 'tedu.edu.tr',
+    'thk.edu.tr', 'ticaret.edu.tr', 'tinaztepe.edu.tr', 'topkapi.edu.tr', 'toros.edu.tr', 'trakya.edu.tr',
+    'ufuk.edu.tr', 'uludag.edu.tr', 'usak.edu.tr', 'uskudar.edu.tr', 'yalova.edu.tr', 'yasar.edu.tr',
+    'ybu.edu.tr', 'yeditepe.edu.tr', 'yeniyuzyil.edu.tr', 'yildiz.edu.tr', 'yuksekihtisasuniversitesi.edu.tr', 'yyu.edu.tr',
+    'zonguldak.edu.tr',
+]
+UNI_TUR_ADEDI = 45
+# Ana sayfa bazen 404/yönlendirme verir (ör. /tr); bu yüzden birkaç adres denenir.
+UNI_ALT_ALANLAR = ["www.{d}/", "www.{d}/tr", "{d}/", "personel.{d}/", "pdb.{d}/"]
 UNI_DESENI = (r"(ilan|al[ıi]m|[öo]ğretim (g[öo]revlisi|eleman|[üu]yesi)|akademik personel|"
               r"s[öo]zle[şs]meli|personel al|kadro|duyuru)")
-UNI_LINK_LIMIT = 15          # üniversite başına en fazla kaç yeni bağlantı açılsın
+UNI_LINK_LIMIT = 12          # üniversite başına en fazla kaç yeni bağlantı açılsın
 
 # ---- Yerel kurumlar (LogiX'in 27 Kasım 2026 talimatı: 12 Karadeniz ili)
 # Belediye, il özel idaresi, valilik/kaymakamlık (SYDV duyuruları dâhil), il/ilçe MEM.
@@ -714,7 +755,7 @@ def _baglanti_topla(r, alan, desen, haric, gorulen, adaylar):
 def _adaylari_kaydet(ad, il, adaylar, gorulen, limit, ek_meta):
     for u, yazi, h in adaylar[:limit]:
         gorulen.add(h)
-        meta = {"il": il, **ek_meta}
+        meta = ({"il": il} if il else {}) | ek_meta
         if re.search(r"\.pdf(\?|$)", u, re.I):
             r2 = getir(u, ad)
             if r2 is not None and r2.status_code == 200:
@@ -738,14 +779,21 @@ def _adaylari_kaydet(ad, il, adaylar, gorulen, limit, ek_meta):
 
 def universiteler(durum):
     gorulen = set(durum.get("uni_gorulen", []))
-    for il, alan in UNIVERSITELER:
+    karadeniz = {a for _, a in UNIVERSITELER}
+    digerleri = [a for a in TUM_UNIVERSITELER if a not in karadeniz]
+    sira = durum.get("uni_sira", 0) % max(1, len(digerleri))
+    parti = (digerleri[sira:] + digerleri[:sira])[:UNI_TUR_ADEDI]
+    durum["uni_sira"] = (sira + len(parti)) % max(1, len(digerleri))
+    for il, alan in list(UNIVERSITELER) + [("", a) for a in parti]:
         ad = "uni:" + alan
         if sure_bitti(0.75):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         acilan, adaylar = 0, []
         for kalip in UNI_ALT_ALANLAR:
-            r = getir("https://" + kalip.format(d=alan) + "/", ad)
+            if kalip.endswith("/tr") and acilan:
+                continue   # ana sayfa zaten açıldıysa /tr denemesine gerek yok
+            r = getir("https://" + kalip.format(d=alan), ad)
             if r is None or r.status_code != 200:
                 continue
             acilan += 1
