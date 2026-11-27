@@ -12,21 +12,29 @@ jobs:
           import re, urllib.request, json
           UA = "kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
           def get(u, data=None, ct=None):
-              r = urllib.request.Request(u, data=data, headers={"User-Agent": UA, **({"Content-Type": ct} if ct else {})})
-              with urllib.request.urlopen(r, timeout=25) as y:
-                  return y.status, y.read().decode("utf-8", "replace")
+              r = urllib.request.Request(u, data=data, headers={"User-Agent": UA, "Accept": "application/json, text/plain", **({"Content-Type": ct} if ct else {})})
+              try:
+                  with urllib.request.urlopen(r, timeout=25) as y:
+                      return y.status, y.read().decode("utf-8", "replace")
+              except urllib.error.HTTPError as e:
+                  return e.code, e.read().decode("utf-8", "replace")
           s, m = get("https://www.ilan.gov.tr/")
           js = re.search(r'src="(main-es2015[^"]*\.js)"', m).group(1)
           s, j = get("https://www.ilan.gov.tr/" + js)
-          for kel in ["AdsByFilter", "GetAdDetail?", "remoteServiceBaseUrl", "appconfig"]:
-              for mm in list(re.finditer(re.escape(kel), j))[:2]:
-                  print("---", kel, ":", j[max(0, mm.start()-500):mm.end()+700].replace("\n", " "))
-          for u in ["https://www.ilan.gov.tr/assets/appconfig.production.json", "https://www.ilan.gov.tr/assets/appconfig.json"]:
-              try: print(u, get(u)[1][:400])
-              except Exception as e: print(u, e)
-          try:
-              s, k = get("https://kariyerkapisi.gov.tr/isealim")
-              kj = re.search(r'src="(/js/Index/Main[^"]*)"', k).group(1)
-              print("--- KK", kj); print(get("https://kariyerkapisi.gov.tr" + kj)[1][:5000])
-          except Exception as e: print("KK", e)
+          for kel in ["adsByFilter(", "skipCount", "maxResultCount", "currentPage"]:
+              for mm in list(re.finditer(re.escape(kel), j))[:3]:
+                  print("---", kel, ":", j[max(0, mm.start()-300):mm.end()+300].replace("\n", " "))
+          B = "https://www.ilan.gov.tr/api/api/services/app/"
+          for body in [{"keys": {"ats": [5]}, "skipCount": 0, "maxResultCount": 5},
+                       {"keys": {"ats": ["5"]}, "skipCount": 0, "maxResultCount": 5}]:
+              s, t = get(B + "Ad/AdsByFilter", json.dumps(body).encode(), "application/json-patch+json")
+              print("=== AdsByFilter", body, s, t[:1500])
+          s, t = get(B + "AdDetail/GetAdDetail?id=2298310")
+          print("=== GetAdDetail", s, t[:1500])
+          s, k = get("https://kariyerkapisi.gov.tr/isealim")
+          for mm in re.finditer(r"apiURL[^;]{0,200}", k): print("KK apiURL:", mm.group(0)[:200])
+          for src in re.findall(r'src="(/js/[^"]*)"', k):
+              s, c = get("https://kariyerkapisi.gov.tr" + src)
+              for mm in re.finditer(r"(apiURL\s*=|/ilan/[A-Za-z]+)[^;\n]{0,160}", c):
+                  print("KK", src, ":", mm.group(0)[:200])
           PY
