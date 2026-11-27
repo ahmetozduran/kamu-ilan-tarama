@@ -198,13 +198,21 @@ BUYUK_ILCELER = {
     "Sinop": ["boyabat", "gerze"],
     "Gümüşhane": ["kelkit"],
 }
-PERSONEL_DESENI = (r"(memur|personel|al[ıi]m|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|"
-                   r"i[şs]e al|s[ıi]nav|kadro|g[öo]revli al|sosyal yard[ıi]m ve inceleme|sydv|vak[ıi]f|"
-                   r"[öo]ğretmen|e[ğg]itmen|usta [öo]ğretici|kurs [öo]ğret|etüt|et[üu]d)")
-MEM_DESENI = (r"([üu]cretli [öo]ğretmen|s[öo]zle[şs]meli [öo]ğretmen|[öo]ğretmen (ihtiya|al[ıi]m|g[öo]revlendir)|"
-              r"personel al|usta [öo]ğretici|matematik)")
+# Konu: bağlantı metninde kadro/personel türü geçmeli
+YEREL_KONU = (r"(memur|personel|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|kadro|g[öo]revli|"
+              r"sosyal yard[ıi]m ve inceleme|sydv|vakf|[öo]ğretmen|e[ğg]itmen|usta [öo]ğretici|"
+              r"kurs [öo]ğret|et[üu]t merkez|eleman|uzman|b[üu]ro)")
+# Eylem: ayrıca bir alım/ilan/başvuru sözcüğü geçmeli (yalnızca "Zabıta Müdürlüğü" menüsü,
+# "Öğretmenler Günü mesajı" gibi bağlantılar 27.11.2026 taramasında boş yere kotayı dolduruyordu)
+YEREL_EYLEM = (r"(al[ıi]m|al[ıi]nacak|alacak|al[ıi]yor|ilan|ba[şs]vuru|s[ıi]nav|istihdam|aran[ıi]yor|"
+               r"ihtiya[çc]|g[öo]revlendir|i[şs]e al|m[üu]lakat|duyuru)")
+PERSONEL_DESENI = rf"(sosyal yard[ıi]m ve inceleme g[öo]revlisi|^(?=.*{YEREL_KONU})(?=.*{YEREL_EYLEM}))"
+MEM_DESENI = (r"([üu]cretli [öo]ğretmen|s[öo]zle[şs]meli [öo]ğretmen|usta [öo]ğretici|"
+              rf"^(?=.*(matematik|[öo]ğretmen|personel|e[ğg]itmen))(?=.*{YEREL_EYLEM}))")
 YEREL_HARIC = (r"(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|"
-               r"etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret)")
+               r"etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret|[öo]ğretmenler g[üu]n|mesaj|kutla|"
+               r"e[ğg]itimi ver|toplant|denetim|y[öo]netmeli|g[öo]revde y[üu]kselme|unvan de[ğg]i[şs]|"
+               r"sonu[çc]|kazanan|ba[şs][ıi]m[ıi]z sa[ğg]|ta[şs][ıi]n[ıi]r mal)")
 YEREL_LINK_LIMIT = 8
 
 
@@ -781,9 +789,10 @@ def _baglanti_topla(r, alan, desen, haric, gorulen, adaylar):
         if not (h_ == alan or h_.endswith("." + alan)):
             continue
         yazi = a.get_text(" ", strip=True)
-        if len(yazi) < 12 or not re.search(desen, yazi, re.I):
+        yk = kucuk(yazi)  # Türkçe büyük harf (İ/I) için önce küçült
+        if len(yazi) < 12 or not re.search(desen, yk, re.I | re.S):
             continue
-        if haric and re.search(haric, yazi, re.I):
+        if haric and re.search(haric, yk, re.I | re.S):
             continue
         h = hashlib.sha1(u.encode()).hexdigest()[:16]
         if h in gorulen or any(h == x[2] for x in adaylar):
