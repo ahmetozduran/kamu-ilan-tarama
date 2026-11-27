@@ -5,26 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: ilan.gov.tr sitemap ve api
+      - name: kesif
         continue-on-error: true
         run: |
           UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
-          curl -sS -m 30 -A "$UA" -o d.xml -w "daily-ads [HTTP %{http_code}, %{size_download} bayt]\n" https://www.ilan.gov.tr/sitemap/daily-ads.xml
-          grep -o "<loc>[^<]*</loc>" d.xml | wc -l
-          grep -o "<loc>[^<]*</loc>" d.xml | grep -i "personel" | head -25
-          head -c 600 d.xml; echo
           curl -sS -m 30 -A "$UA" -o m.html https://www.ilan.gov.tr/
-          grep -oE 'src="[^"]*\.js"' m.html | head
-          for js in $(grep -oE 'src="[^"]*main[^"]*\.js"' m.html | sed 's/src="//;s/"//'); do
-            curl -sS -m 30 -A "$UA" -o main.js "https://www.ilan.gov.tr/$js"; ls -la main.js
-            grep -oE '"(/)?api/[^"]{3,90}"' main.js | sort -u | head -60
-            grep -oE 'https://[a-z.]*ilan\.gov\.tr[^"]{0,60}' main.js | sort -u | head -20
-          done
-      - name: kariyer kapisi
-        continue-on-error: true
-        run: |
-          UA="kamu-ilan-tarama/1.0 (kisisel ilan takibi; github.com/ahmetozduran/kamu-ilan-tarama)"
+          js=$(grep -oE 'src="main-es2015[^"]*\.js"' m.html | sed 's/src="//;s/"//')
+          curl -sS -m 30 -A "$UA" -o main.js "https://www.ilan.gov.tr/$js"
+          echo "--- AdsByFilter baglami"; grep -oE '.{0,400}AdsByFilter.{0,600}' main.js | head -c 2500; echo
+          echo "--- GetAdDetail baglami"; grep -oE '.{0,200}GetAdDetail\?.{0,300}' main.js | head -c 1200; echo
+          echo "--- remoteServiceBaseUrl"; grep -oE '.{0,80}(remoteServiceBaseUrl|apiUrl|baseUrl).{0,120}' main.js | head -5
+          curl -sS -m 20 -A "$UA" https://www.ilan.gov.tr/assets/appconfig.production.json; echo
+          curl -sS -m 20 -A "$UA" https://www.ilan.gov.tr/assets/appconfig.json; echo
+          echo "--- KK Main.js"
           curl -sS -m 30 -A "$UA" -o k.html https://kariyerkapisi.gov.tr/isealim
-          grep -oiE '(url|ajax|fetch|\$\.(get|post))[^;]{0,140}' k.html | head -30
-          grep -oE 'src="[^"]*\.js[^"]*"' k.html | head -20
-          grep -oiE "/isealim/[A-Za-z/]{3,60}" k.html | sort -u | head -30
+          kj=$(grep -oE 'src="/js/Index/Main[^"]*"' k.html | sed 's/src="//;s/"//')
+          curl -sS -m 30 -A "$UA" "https://kariyerkapisi.gov.tr$kj" | head -c 4000; echo
