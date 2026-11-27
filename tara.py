@@ -274,6 +274,23 @@ def _turkiye_yerel_listesi():
 YEREL_TURKIYE = None  # main() içinde doldurulur (ILLER aşağıda tanımlı)
 YEREL_ALT_YOLLAR = ["", "duyurular", "ilanlar"]
 
+# ---- Bilgisayar okuyucusu görevleri (LogiX'in 27 Kasım 2026 talimatı: GitHub'dan açılmayanlar otomatik
+# bilgisayara kaysın). Bu çalışmada GitHub'dan açılamayan (robots engeli OLMAYAN) sayfalar pc/pc_gorevleri.json'a
+# yazılır; LogiX'in bilgisayarındaki pc/kk_tara.ps1 bunları Edge ile açıp pc/pc_sonuclar.json olarak geri yükler.
+PC_GOREVLERI = [{
+    "anahtar": "ilangovtr", "url": ["https://www.ilan.gov.tr/ilan/tum-ilanlar/personel-alimi?ats=5"],
+    "href_deseni": r"/ilan/\d{6,}/", "baglanti_deseni": "",
+    "haric": r"tebligat|ihale|kiralama|sat[ıi][şs]|icra", "limit": 25, "ek": {}}]
+
+
+def pc_gorev_ekle(anahtar, urller, desen, haric, limit, ek=None):
+    if kaynak[anahtar]["robots"]:
+        return   # robots.txt yasaklıyorsa bilgisayardan da açılmaz
+    if any(g["anahtar"] == anahtar for g in PC_GOREVLERI):
+        return
+    PC_GOREVLERI.append({"anahtar": anahtar, "url": urller, "href_deseni": "", "baglanti_deseni": desen,
+                         "haric": haric or "", "limit": limit, "ek": ek or {}})
+
 ILLER = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya",
          "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik",
          "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
@@ -636,7 +653,8 @@ def kaydet(kaynak_adi, kimlik, url, baslik, metin, ek_metin, meta, sayac=None):
         if not tarih_iso(sb):
             aday = son_tarih_ara(tum)
             # ilan girişinden önceki bir tarih yanlış eşleşmedir (ör. '01 Ekim 2025 – 01 Ekim 2026' konu aralığı)
-            if aday and meta.get("ilan_giris_iso") and tarih_iso(aday) >= meta["ilan_giris_iso"]:
+            esik = meta.get("ilan_giris_iso") or bugun().isoformat()   # giriş tarihi yoksa yalnızca ileri tarih
+            if aday and tarih_iso(aday) >= esik:
                 # son_basvuru_iso boş kalır (ilan 'tarihi okunamadı' sayılır, elenmez); tahmin ayrı alanda
                 meta["son_basvuru_tahmini"] = tarih_iso(aday)
         meta["son_basvuru"] = sb
@@ -773,6 +791,7 @@ def liste_sayfalari(durum):
         r = getir(ana, ad)
         if r is None or r.status_code != 200:
             kaynak[ad]["not"] = kaynak[ad]["not"] or "liste sayfası açılmadı"
+            pc_gorev_ekle(ad, [ana], desen, None, 20)
             continue
         soup = BeautifulSoup(r.text, "html.parser")
         host = urlparse(r.url).hostname
@@ -881,6 +900,8 @@ def universiteler(durum):
             _baglanti_topla(r, alan, UNI_DESENI, UNI_HARIC, gorulen, adaylar)
         if not acilan:
             kaynak[ad]["not"] = "ana/personel sayfası açılmadı"
+            pc_gorev_ekle(ad, ["https://" + k.format(d=alan) for k in UNI_ALT_ALANLAR],
+                          UNI_DESENI, UNI_HARIC, UNI_LINK_LIMIT, {"il": il} if il else {})
             continue
         log(f"[{ad}] {len(adaylar)} yeni bağlantı")
         if not adaylar:
@@ -911,6 +932,8 @@ def yerel_kurumlar(durum):
                 break
         if not taban:
             kaynak[ad]["not"] = "site açılmadı (alan adı yanlış olabilir)"
+            pc_gorev_ekle(ad, [f"https://www.{alan}/", f"https://{alan}/"], desen, YEREL_HARIC,
+                          YEREL_LINK_LIMIT, {"il": il, "kurum_turu": tur})
             continue
         adaylar = []
         _baglanti_topla(r, alan, desen, YEREL_HARIC, gorulen, adaylar)
@@ -1035,13 +1058,60 @@ def kariyerkapisi_pc(durum):
     log(f"[{ad}] {kaynak[ad]['not']}")
 
 
+def pc_sonuclari(durum):
+    """Bilgisayar okuyucusunun Edge ile açtığı sayfaları (pc/pc_sonuclar.json) index'e ekler."""
+    ad = "pc-sayfalar"
+    yol = os.path.join(KOK, "pc", "pc_sonuclar.json")
+    if not os.path.exists(yol):
+        kaynak[ad]["not"] = "pc/pc_sonuclar.json yok (bilgisayar okuyucusu sürüm 2 henüz çalışmadı)"
+        return
+    with open(yol, encoding="utf-8-sig") as f:
+        veri = json.load(f)
+    kaynak[ad]["ok"] = 1
+    gorulen = set(durum.get("pc_gorulen", []))
+    yeni = 0
+    for k in veri.get("kayitlar") or []:
+        url = k.get("url") or ""
+        h = hashlib.sha1(url.encode()).hexdigest()[:16]
+        if not url or h in gorulen:
+            continue
+        gorulen.add(h)
+        anahtar = k.get("anahtar") or "pc"
+        ek = k.get("ek") or {}
+        kaynak_adi = re.sub(r"[^a-z0-9.]+", "-", kucuk(anahtar)).strip("-") + "-pc"
+        meta = {"bilgisayardan": k.get("zaman", ""), "liste": k.get("liste", "")}
+        if ek.get("il"):
+            meta["il"] = ek["il"]
+        if ek.get("kurum_turu"):
+            meta["kurum_turu"] = ek["kurum_turu"]
+        kaydet(kaynak_adi, h, url, k.get("baslik") or k.get("baglanti_yazisi") or url,
+               (k.get("metin") or "")[:60000], "", meta, sayac=anahtar)
+        if anahtar in kaynak and not kaynak[anahtar]["ok"]:
+            kaynak[anahtar]["not"] = "GitHub'dan açılmadı; bilgisayardan okundu"
+        yeni += 1
+    durum["pc_gorulen"] = list(gorulen)[-8000:]
+    gd = veri.get("gorevler") or {}
+    sorunlu = [a for a, d in gd.items() if not str(d).startswith("açıldı")]
+    kaynak[ad]["not"] = (f"bilgisayar okuması {str(veri.get('zaman', ''))[:16]}: {len(gd)} görev, "
+                         f"{yeni} yeni kayıt" + (f"; açılmayan: {', '.join(sorunlu[:10])}" if sorunlu else ""))
+    log(f"[{ad}] {kaynak[ad]['not']}")
+
+
+def pc_gorevlerini_yaz():
+    os.makedirs(os.path.join(KOK, "pc"), exist_ok=True)
+    with open(os.path.join(KOK, "pc", "pc_gorevleri.json"), "w", encoding="utf-8") as f:
+        json.dump({"zaman": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+                   "aciklama": "GitHub taramasının açamadığı (robots engeli olmayan) sayfalar; bilgisayar okuyucusu açar.",
+                   "gorevler": PC_GOREVLERI}, f, ensure_ascii=False, indent=1)
+
+
 def main():
     durum = {}
     if os.path.exists(DURUM_DOSYASI):
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
     tarih_tamamla()
-    adimlar = [kariyerkapisi_pc, memurlar, liste_sayfalari, universiteler, yerel_kurumlar]
+    adimlar = [kariyerkapisi_pc, memurlar, liste_sayfalari, universiteler, yerel_kurumlar, pc_sonuclari]
     for adim in adimlar:
         try:
             adim(durum)
@@ -1050,6 +1120,7 @@ def main():
             kaynak[adim.__name__]["not"] = f"beklenmeyen hata: {e!r}"[:200]
         durumu_yaz(durum)
 
+    pc_gorevlerini_yaz()
     acik_sayi = acik_ilanlari_yaz()
     gun = bugun().isoformat()
     ozet_kaynak = {}

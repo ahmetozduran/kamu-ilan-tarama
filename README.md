@@ -26,5 +26,9 @@ Kariyer Kapısı'nın ilan servisi yurt dışından (GitHub sunucuları) yanıt 
 Windows bilgisayarında `pc/kk_tara.ps1` çalışıyor (oturum açılışında ve her gün 09:00/18:00, en sık
 4 saatte bir). Kamu işe alım sayfasının herkese açık ilan listesini bir kez okuyup `pc/kariyerkapisi.json`
 olarak buraya yükler; `tara.py` bunu `kariyerkapisi-pc` kaynağıyla index'e ekler.
+Sürüm 2'den itibaren ayrıca `pc/pc_gorevleri.json`'daki sayfaları (ilan.gov.tr personel listesi her zaman,
+artı o gün GitHub'dan açılamayan ve robots.txt yasağı olmayan üniversite/yerel/liste sayfaları) Edge'i
+ekran açmadan kullanarak okur ve `pc/pc_sonuclar.json`'a yükler; `tara.py` bunları `<kaynak>-pc`
+adlarıyla index'e ekler. Betik her çalışmada GitHub'daki en yeni sürüme kendini günceller.
 Kurulum: `irm https://raw.githubusercontent.com/ahmetozduran/kamu-ilan-tarama/main/pc/kur.ps1 | iex`
 Kaldırma: `irm https://raw.githubusercontent.com/ahmetozduran/kamu-ilan-tarama/main/pc/kaldir.ps1 | iex`
