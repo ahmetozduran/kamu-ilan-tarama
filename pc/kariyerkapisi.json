@@ -1,17 +1,13 @@
 {
-    "zaman":  "2026-11-27T22:26:53",
+    "zaman":  "2026-11-27T22:40:11",
     "bilgisayar":  "LOGIX",
+    "surum":  2,
     "kaynaklar":  {
                       "kariyerkapisi":  {
                                             "durum":  200,
                                             "hata":  "",
                                             "ilan_sayisi":  29
-                                        },
-                      "ilangovtr_deneme":  {
-                                               "durum":  403,
-                                               "hata":  "Uzak sunucu hata döndürdü: (403) Yasak.",
-                                               "ornek":  ""
-                                           }
+                                        }
                   },
     "kariyerkapisi_ilanlar":  [
                                   {
