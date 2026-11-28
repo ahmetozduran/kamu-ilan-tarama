@@ -1,5 +1,5 @@
 {
- "zaman": "2026-11-28T09:40:53+00:00",
+ "zaman": "2026-11-28T12:21:49+00:00",
  "aciklama": "GitHub taramasının açamadığı (robots engeli olmayan) sayfalar; bilgisayar okuyucusu açar.",
  "gorevler": [
   {
@@ -72,36 +72,6 @@
    "limit": 8,
    "ek": {
     "il": "Çorum",
-    "kurum_turu": "belediye"
-   }
-  },
-  {
-   "anahtar": "yerel:belediye:bitlis.bel.tr",
-   "url": [
-    "https://www.bitlis.bel.tr/",
-    "https://bitlis.bel.tr/"
-   ],
-   "href_deseni": "",
-   "baglanti_deseni": "(sosyal yard[ıi]m ve inceleme g[öo]revlisi|^(?=.*(memur|personel|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|kadro|g[öo]revli|sosyal yard[ıi]m ve inceleme|sydv|vakf|[öo]ğretmen|e[ğg]itmen|usta [öo]ğretici|kurs [öo]ğret|et[üu]t merkez|eleman|uzman|b[üu]ro))(?=.*(al[ıi]m|al[ıi]nacak|alacak|al[ıi]yor|ilan|ba[şs]vuru|s[ıi]nav|istihdam|aran[ıi]yor|ihtiya[çc]|g[öo]revlendir|i[şs]e al|m[üu]lakat|duyuru)))",
-   "haric": "(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret|[öo]ğretmenler g[üu]n|mesaj|kutla|e[ğg]itimi ver|toplant|denetim|y[öo]netmeli|g[öo]revde y[üu]kselme|unvan de[ğg]i[şs]|sonu[çc]|kazanan|ba[şs][ıi]m[ıi]z sa[ğg]|ta[şs][ıi]n[ıi]r mal|as[ıi]l.{0,3}yedek|zirve|projeler)",
-   "limit": 8,
-   "ek": {
-    "il": "Bitlis",
-    "kurum_turu": "belediye"
-   }
-  },
-  {
-   "anahtar": "yerel:belediye:elazig.bel.tr",
-   "url": [
-    "https://www.elazig.bel.tr/",
-    "https://elazig.bel.tr/"
-   ],
-   "href_deseni": "",
-   "baglanti_deseni": "(sosyal yard[ıi]m ve inceleme g[öo]revlisi|^(?=.*(memur|personel|s[öo]zle[şs]meli|zab[ıi]ta|itfaiye|istihdam|kadro|g[öo]revli|sosyal yard[ıi]m ve inceleme|sydv|vakf|[öo]ğretmen|e[ğg]itmen|usta [öo]ğretici|kurs [öo]ğret|et[üu]t merkez|eleman|uzman|b[üu]ro))(?=.*(al[ıi]m|al[ıi]nacak|alacak|al[ıi]yor|ilan|ba[şs]vuru|s[ıi]nav|istihdam|aran[ıi]yor|ihtiya[çc]|g[öo]revlendir|i[şs]e al|m[üu]lakat|duyuru)))",
-   "haric": "(ihale|kiraya|kiralama|sat[ıi][şs] ilan|imar plan|meclis karar|asfalt|konser|festival|etkinli|yar[ıi][şs]ma|anma|tebrik|ziyaret|[öo]ğretmenler g[üu]n|mesaj|kutla|e[ğg]itimi ver|toplant|denetim|y[öo]netmeli|g[öo]revde y[üu]kselme|unvan de[ğg]i[şs]|sonu[çc]|kazanan|ba[şs][ıi]m[ıi]z sa[ğg]|ta[şs][ıi]n[ıi]r mal|as[ıi]l.{0,3}yedek|zirve|projeler)",
-   "limit": 8,
-   "ek": {
-    "il": "Elazığ",
     "kurum_turu": "belediye"
    }
   },
