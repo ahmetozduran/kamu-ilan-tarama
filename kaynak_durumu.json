@@ -1,7 +1,7 @@
 {
- "tarih": "2026-11-27",
- "sure_dk": 117.9,
- "memurlar_son": 87102,
+ "tarih": "2026-11-28",
+ "sure_dk": 72.9,
+ "memurlar_son": 87106,
  "kaynaklar": {
   "akademiktr": {
    "istek": 2,
@@ -27,26 +27,16 @@
    "not": "açıldı, yeni bağlantı yok",
    "durum": "açıldı"
   },
-  "ilangovtr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 13,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "GitHub'dan açılmadı; bilgisayardan okundu",
-   "durum": "açılmadı"
-  },
   "isbilgileri": {
-   "istek": 14,
-   "ok": 14,
-   "kayit": 13,
+   "istek": 1,
+   "ok": 1,
+   "kayit": 0,
    "kodlar": {
-    "200": 14
+    "200": 1
    },
    "robots": 0,
    "hata": 0,
-   "not": "",
+   "not": "açıldı, yeni bağlantı yok",
    "durum": "açıldı"
   },
   "kamukadro": {
@@ -62,33 +52,33 @@
    "durum": "açıldı"
   },
   "kariyerbankasi": {
-   "istek": 1,
-   "ok": 1,
-   "kayit": 0,
+   "istek": 2,
+   "ok": 2,
+   "kayit": 1,
    "kodlar": {
-    "200": 1
+    "200": 2
    },
    "robots": 0,
    "hata": 0,
-   "not": "açıldı, yeni bağlantı yok",
+   "not": "",
    "durum": "açıldı"
   },
   "kariyerkapisi-pc": {
    "istek": 0,
    "ok": 1,
-   "kayit": 29,
+   "kayit": 0,
    "kodlar": {},
    "robots": 0,
    "hata": 0,
-   "not": "bilgisayar okuması 2026-11-27T22:55: 29 aktif ilan, 29 yeni kayıt",
+   "not": "bilgisayar okuması 2026-11-27T22:55: 29 aktif ilan, 0 yeni kayıt",
    "durum": "açıldı"
   },
   "memuralimilanlari": {
-   "istek": 25,
-   "ok": 25,
-   "kayit": 18,
+   "istek": 23,
+   "ok": 23,
+   "kayit": 11,
    "kodlar": {
-    "200": 25
+    "200": 23
    },
    "robots": 0,
    "hata": 0,
@@ -108,15 +98,16 @@
    "durum": "açıldı"
   },
   "memurlar": {
-   "istek": 40,
-   "ok": 1,
-   "kayit": 0,
+   "istek": 61,
+   "ok": 17,
+   "kayit": 4,
    "kodlar": {
-    "404": 40
+    "200": 17,
+    "404": 44
    },
    "robots": 0,
    "hata": 0,
-   "not": "güncel: en yeni ilan 87102, sonrası henüz yayımlanmamış",
+   "not": "güncel: en yeni ilan 87106, sonrası henüz yayımlanmamış",
    "durum": "açıldı"
   },
   "milliyet": {
@@ -150,7 +141,7 @@
    "kodlar": {},
    "robots": 0,
    "hata": 0,
-   "not": "bilgisayar okuması 2026-11-27T22:56: 1 görev, 13 yeni kayıt",
+   "not": "bilgisayar okuması 2026-11-27T22:56: 1 görev, 0 yeni kayıt",
    "durum": "açıldı"
   },
   "posta": {
@@ -163,6 +154,55 @@
    "robots": 0,
    "hata": 0,
    "not": "açıldı, yeni bağlantı yok",
+   "durum": "açıldı"
+  },
+  "uni:29mayis.edu.tr": {
+   "istek": 2,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:acibadem.edu.tr": {
+   "istek": 8,
+   "ok": 6,
+   "kayit": 2,
+   "kodlar": {
+    "200": 6,
+    "404": 2
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:adiyaman.edu.tr": {
+   "istek": 4,
+   "ok": 4,
+   "kayit": 0,
+   "kodlar": {
+    "200": 4
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:adu.edu.tr": {
+   "istek": 1,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1
+   },
+   "robots": 3,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
   "uni:amasya.edu.tr": {
@@ -311,15 +351,15 @@
    "durum": "açıldı"
   },
   "uni:gop.edu.tr": {
-   "istek": 27,
-   "ok": 27,
-   "kayit": 12,
+   "istek": 3,
+   "ok": 3,
+   "kayit": 0,
    "kodlar": {
-    "200": 27
+    "200": 3
    },
    "robots": 1,
    "hata": 0,
-   "not": "",
+   "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
   "uni:gumushane.edu.tr": {
@@ -358,100 +398,6 @@
    "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
-  "uni:istiklal.edu.tr": {
-   "istek": 2,
-   "ok": 2,
-   "kayit": 0,
-   "kodlar": {
-    "200": 2
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:istinye.edu.tr": {
-   "istek": 2,
-   "ok": 2,
-   "kayit": 0,
-   "kodlar": {
-    "200": 2
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:iszu.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:itu.edu.tr": {
-   "istek": 22,
-   "ok": 22,
-   "kayit": 4,
-   "kodlar": {
-    "200": 22
-   },
-   "robots": 0,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:iuc.edu.tr": {
-   "istek": 3,
-   "ok": 3,
-   "kayit": 0,
-   "kodlar": {
-    "200": 3
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:iyte.edu.tr": {
-   "istek": 18,
-   "ok": 18,
-   "kayit": 5,
-   "kodlar": {
-    "200": 18
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kafkas.edu.tr": {
-   "istek": 198,
-   "ok": 198,
-   "kayit": 12,
-   "kodlar": {
-    "200": 198
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kapadokya.edu.tr": {
-   "istek": 5,
-   "ok": 5,
-   "kayit": 3,
-   "kodlar": {
-    "200": 5
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
   "uni:karabuk.edu.tr": {
    "istek": 0,
    "ok": 0,
@@ -462,165 +408,16 @@
    "not": "ana/personel sayfası açılmadı",
    "durum": "robots engeli"
   },
-  "uni:karatay.edu.tr": {
-   "istek": 6,
-   "ok": 6,
-   "kayit": 4,
-   "kodlar": {
-    "200": 6
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:karatekin.edu.tr": {
-   "istek": 64,
-   "ok": 64,
-   "kayit": 10,
-   "kodlar": {
-    "200": 64
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
   "uni:kastamonu.edu.tr": {
-   "istek": 29,
-   "ok": 29,
-   "kayit": 2,
+   "istek": 3,
+   "ok": 3,
+   "kayit": 0,
    "kodlar": {
-    "200": 29
+    "200": 3
    },
    "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kayseri.edu.tr": {
-   "istek": 64,
-   "ok": 64,
-   "kayit": 12,
-   "kodlar": {
-    "200": 64
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kemerburgaz.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:khas.edu.tr": {
-   "istek": 2,
-   "ok": 2,
-   "kayit": 0,
-   "kodlar": {
-    "200": 2
-   },
-   "robots": 2,
    "hata": 0,
    "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:kilis.edu.tr": {
-   "istek": 63,
-   "ok": 63,
-   "kayit": 7,
-   "kodlar": {
-    "200": 63
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kirklareli.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:kku.edu.tr": {
-   "istek": 19,
-   "ok": 19,
-   "kayit": 4,
-   "kodlar": {
-    "200": 19
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:kmu.edu.tr": {
-   "istek": 35,
-   "ok": 35,
-   "kayit": 7,
-   "kodlar": {
-    "200": 35
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:konya.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:kou.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:ksbu.edu.tr": {
-   "istek": 25,
-   "ok": 25,
-   "kayit": 9,
-   "kodlar": {
-    "200": 25
-   },
-   "robots": 4,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:ksu.edu.tr": {
-   "istek": 44,
-   "ok": 36,
-   "kayit": 8,
-   "kodlar": {
-    "200": 36,
-    "404": 8
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
    "durum": "açıldı"
   },
   "uni:ktu.edu.tr": {
@@ -635,258 +432,6 @@
    "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
-  "uni:ktun.edu.tr": {
-   "istek": 53,
-   "ok": 53,
-   "kayit": 9,
-   "kodlar": {
-    "200": 53
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:ku.edu.tr": {
-   "istek": 3,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {
-    "403": 3
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "açılmadı"
-  },
-  "uni:lokmanhekim.edu.tr": {
-   "istek": 5,
-   "ok": 5,
-   "kayit": 1,
-   "kodlar": {
-    "200": 5
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:maltepe.edu.tr": {
-   "istek": 97,
-   "ok": 89,
-   "kayit": 9,
-   "kodlar": {
-    "200": 89,
-    "404": 8
-   },
-   "robots": 14,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:marmara.edu.tr": {
-   "istek": 83,
-   "ok": 83,
-   "kayit": 7,
-   "kodlar": {
-    "200": 83
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:medeniyet.edu.tr": {
-   "istek": 62,
-   "ok": 62,
-   "kayit": 12,
-   "kodlar": {
-    "200": 62
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:medipol.edu.tr": {
-   "istek": 6,
-   "ok": 6,
-   "kayit": 2,
-   "kodlar": {
-    "200": 6
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:mef.edu.tr": {
-   "istek": 2,
-   "ok": 2,
-   "kayit": 0,
-   "kodlar": {
-    "200": 2
-   },
-   "robots": 2,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:mehmetakif.edu.tr": {
-   "istek": 44,
-   "ok": 42,
-   "kayit": 6,
-   "kodlar": {
-    "200": 42,
-    "403": 2
-   },
-   "robots": 3,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:mersin.edu.tr": {
-   "istek": 3,
-   "ok": 3,
-   "kayit": 0,
-   "kodlar": {
-    "200": 3
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:metu.edu.tr": {
-   "istek": 9,
-   "ok": 8,
-   "kayit": 3,
-   "kodlar": {
-    "200": 8,
-    "404": 1
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:mku.edu.tr": {
-   "istek": 3,
-   "ok": 3,
-   "kayit": 0,
-   "kodlar": {
-    "200": 3
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "açıldı, yeni duyuru yok",
-   "durum": "açıldı"
-  },
-  "uni:msgsu.edu.tr": {
-   "istek": 9,
-   "ok": 8,
-   "kayit": 2,
-   "kodlar": {
-    "200": 8,
-    "404": 1
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:msu.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 5,
-   "hata": 0,
-   "not": "ana/personel sayfası açılmadı",
-   "durum": "robots engeli"
-  },
-  "uni:mu.edu.tr": {
-   "istek": 167,
-   "ok": 167,
-   "kayit": 12,
-   "kodlar": {
-    "200": 167
-   },
-   "robots": 1,
-   "hata": 0,
-   "not": "",
-   "durum": "açıldı"
-  },
-  "uni:munzur.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:mus.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:nevsehir.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:nigde.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:nisantasi.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:nku.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:nny.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
   "uni:odu.edu.tr": {
    "istek": 1,
    "ok": 0,
@@ -899,25 +444,18 @@
    "not": "ana/personel sayfası açılmadı",
    "durum": "açılmadı"
   },
-  "uni:ogu.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
+  "uni:okan.edu.tr": {
+   "istek": 68,
+   "ok": 67,
+   "kayit": 4,
+   "kodlar": {
+    "200": 67,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "uni:ohu.edu.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "",
+   "durum": "açıldı"
   },
   "uni:omu.edu.tr": {
    "istek": 4,
@@ -929,6 +467,120 @@
    "robots": 0,
    "hata": 0,
    "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:osmaniye.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:ostimteknik.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:ozal.edu.tr": {
+   "istek": 30,
+   "ok": 30,
+   "kayit": 7,
+   "kodlar": {
+    "200": 30
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:ozu.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:ozyegin.edu.tr": {
+   "istek": 20,
+   "ok": 20,
+   "kayit": 2,
+   "kodlar": {
+    "200": 20
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:pau.edu.tr": {
+   "istek": 20,
+   "ok": 20,
+   "kayit": 3,
+   "kodlar": {
+    "200": 20
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:pirireis.edu.tr": {
+   "istek": 8,
+   "ok": 8,
+   "kayit": 2,
+   "kodlar": {
+    "200": 8
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:rumeli.edu.tr": {
+   "istek": 10,
+   "ok": 10,
+   "kayit": 5,
+   "kodlar": {
+    "200": 10
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:sabanciuniv.edu": {
+   "istek": 44,
+   "ok": 44,
+   "kayit": 4,
+   "kodlar": {
+    "200": 44
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:sakarya.edu.tr": {
+   "istek": 9,
+   "ok": 9,
+   "kayit": 1,
+   "kodlar": {
+    "200": 9
+   },
+   "robots": 3,
+   "hata": 0,
+   "not": "",
    "durum": "açıldı"
   },
   "uni:samsun.edu.tr": {
@@ -943,6 +595,74 @@
    "not": "ana/personel sayfası açılmadı",
    "durum": "açılmadı"
   },
+  "uni:sanko.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:sau.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:sbu.edu.tr": {
+   "istek": 8,
+   "ok": 8,
+   "kayit": 3,
+   "kodlar": {
+    "200": 8
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:sdu.edu.tr": {
+   "istek": 34,
+   "ok": 34,
+   "kayit": 3,
+   "kodlar": {
+    "200": 34
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:selcuk.edu.tr": {
+   "istek": 114,
+   "ok": 114,
+   "kayit": 7,
+   "kodlar": {
+    "200": 114
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:siirt.edu.tr": {
+   "istek": 20,
+   "ok": 20,
+   "kayit": 4,
+   "kodlar": {
+    "200": 20
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
   "uni:sinop.edu.tr": {
    "istek": 4,
    "ok": 4,
@@ -953,6 +673,18 @@
    "robots": 0,
    "hata": 0,
    "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:sirnak.edu.tr": {
+   "istek": 41,
+   "ok": 41,
+   "kayit": 6,
+   "kodlar": {
+    "200": 41
+   },
+   "robots": 21,
+   "hata": 0,
+   "not": "",
    "durum": "açıldı"
   },
   "uni:sivas.edu.tr": {
@@ -967,6 +699,111 @@
    "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
+  "uni:subu.edu.tr": {
+   "istek": 20,
+   "ok": 20,
+   "kayit": 4,
+   "kodlar": {
+    "200": 20
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:tarsus.edu.tr": {
+   "istek": 189,
+   "ok": 189,
+   "kayit": 12,
+   "kodlar": {
+    "200": 189
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:tau.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:tedu.edu.tr": {
+   "istek": 18,
+   "ok": 18,
+   "kayit": 2,
+   "kodlar": {
+    "200": 18
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:thk.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:ticaret.edu.tr": {
+   "istek": 11,
+   "ok": 11,
+   "kayit": 3,
+   "kodlar": {
+    "200": 11
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:tinaztepe.edu.tr": {
+   "istek": 2,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:topkapi.edu.tr": {
+   "istek": 114,
+   "ok": 103,
+   "kayit": 11,
+   "kodlar": {
+    "200": 103,
+    "404": 11
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:toros.edu.tr": {
+   "istek": 14,
+   "ok": 14,
+   "kayit": 5,
+   "kodlar": {
+    "200": 14
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
   "uni:trabzon.edu.tr": {
    "istek": 3,
    "ok": 3,
@@ -979,2085 +816,2794 @@
    "not": "açıldı, yeni duyuru yok",
    "durum": "açıldı"
   },
-  "yerel:belediye:akcaabat.bel.tr": {
+  "uni:trakya.edu.tr": {
+   "istek": 11,
+   "ok": 11,
+   "kayit": 2,
+   "kodlar": {
+    "200": 11
+   },
+   "robots": 4,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:ufuk.edu.tr": {
+   "istek": 17,
+   "ok": 17,
+   "kayit": 4,
+   "kodlar": {
+    "200": 17
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:uludag.edu.tr": {
+   "istek": 110,
+   "ok": 104,
+   "kayit": 10,
+   "kodlar": {
+    "200": 104,
+    "404": 6
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:usak.edu.tr": {
+   "istek": 167,
+   "ok": 156,
+   "kayit": 12,
+   "kodlar": {
+    "200": 156,
+    "404": 11
+   },
+   "robots": 26,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:uskudar.edu.tr": {
+   "istek": 22,
+   "ok": 22,
+   "kayit": 4,
+   "kodlar": {
+    "200": 22
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:yalova.edu.tr": {
+   "istek": 129,
+   "ok": 129,
+   "kayit": 12,
+   "kodlar": {
+    "200": 129
+   },
+   "robots": 7,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:yasar.edu.tr": {
+   "istek": 3,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "403": 3
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "açılmadı"
+  },
+  "uni:ybu.edu.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "uni:yeditepe.edu.tr": {
+   "istek": 3,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "403": 3
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "açılmadı"
+  },
+  "uni:yeniyuzyil.edu.tr": {
+   "istek": 2,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:yildiz.edu.tr": {
+   "istek": 14,
+   "ok": 14,
+   "kayit": 4,
+   "kodlar": {
+    "200": 14
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "uni:yuksekihtisasuniversitesi.edu.tr": {
+   "istek": 3,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "403": 3
+   },
+   "robots": 2,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "açılmadı"
+  },
+  "uni:yyu.edu.tr": {
+   "istek": 1,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1
+   },
+   "robots": 4,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "uni:zonguldak.edu.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 5,
+   "hata": 0,
+   "not": "ana/personel sayfası açılmadı",
+   "durum": "robots engeli"
+  },
+  "yerel:belediye:adana.bel.tr": {
+   "istek": 11,
+   "ok": 11,
+   "kayit": 1,
+   "kodlar": {
+    "200": 11
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:adiyaman.bel.tr": {
+   "istek": 16,
+   "ok": 15,
+   "kayit": 1,
+   "kodlar": {
+    "200": 15,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:afyon.bel.tr": {
+   "istek": 12,
+   "ok": 12,
+   "kayit": 1,
+   "kodlar": {
+    "200": 12
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:agri.bel.tr": {
+   "istek": 3,
+   "ok": 3,
+   "kayit": 0,
+   "kodlar": {
+    "200": 3
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:akcaabat.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:akkus.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:aksaray.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:altinordu.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:amasya.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:ankara.bel.tr": {
+   "istek": 17,
+   "ok": 17,
+   "kayit": 1,
+   "kodlar": {
+    "200": 17
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:antalya.bel.tr": {
+   "istek": 3,
+   "ok": 3,
+   "kayit": 0,
+   "kodlar": {
+    "200": 3
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:arakli.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:ardahan.bel.tr": {
+   "istek": 11,
+   "ok": 10,
+   "kayit": 4,
+   "kodlar": {
+    "200": 10,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:belediye:ardesen.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:artvin.bel.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:atakum.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:aybasti.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:bafra.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:bayburt.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:boyabat.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:bulancak.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:camas.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:canik.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:carsamba.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:catalpinar.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:caybasi.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:cayeli.bel.tr": {
-   "istek": 0,
+   "istek": 2,
    "ok": 0,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "403": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:corum.bel.tr": {
-   "istek": 0,
+   "istek": 2,
    "ok": 0,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "468": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:erbaa.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:espiye.bel.tr": {
-   "istek": 0,
+   "istek": 2,
    "ok": 0,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "403": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:fatsa.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:gerze.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:giresun.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:golkoy.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:gorele.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:gulyali.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:gumushane.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:gurgentepe.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:havza.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:ikizce.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:ilkadim.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:iskilip.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:kabaduz.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:kabatas.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kars.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kastamonu.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kayseri.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:kelkit.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kilis.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kirikkale.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kirklareli.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kirsehir.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kocaeli.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:konya.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:korgan.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:kumru.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:kutahya.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:malatya.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:manisa.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:mardin.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:mersin.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:merzifon.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:mesudiye.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:mugla.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:mus.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:nevsehir.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:nigde.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:niksar.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "500": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:of.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:ordu.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:ortahisar.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:osmancik.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:osmaniye.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:persembe.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:rize.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:belediye:sakarya.bel.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:samsun.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "500": 1,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:sanliurfa.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:sarkisla.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:sebinkarahisar.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:siirt.bel.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:sinop.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:sirnak.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:sivas.bel.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:belediye:suluova.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:sungurlu.bel.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:belediye:susehri.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:tekirdag.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:tekkekoy.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:terme.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:tirebolu.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:tokat.bel.tr": {
-   "istek": 0,
+   "istek": 2,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
    "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "hata": 2,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:trabzon.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:tunceli.bel.tr": {
+   "istek": 1,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {
+    "503": 1
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:turhal.bel.tr": {
-   "istek": 0,
+   "istek": 2,
    "ok": 0,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "403": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
+   "not": "site açılmadı (alan adı yanlış olabilir)",
    "durum": "açılmadı"
   },
   "yerel:belediye:ulubey.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:belediye:unye.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:usak.bel.tr": {
+   "istek": 54,
+   "ok": 53,
+   "kayit": 4,
+   "kodlar": {
+    "200": 53,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:belediye:vakfikebir.bel.tr": {
+   "istek": 3,
+   "ok": 3,
+   "kayit": 0,
+   "kodlar": {
+    "200": 3
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:van.bel.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:belediye:vezirkopru.bel.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:yalova.bel.tr": {
+   "istek": 10,
+   "ok": 9,
+   "kayit": 2,
+   "kodlar": {
+    "200": 9,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:belediye:yomra.bel.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:belediye:yozgat.bel.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:belediye:zile.bel.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
+   "robots": 2,
+   "hata": 0,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
+  },
+  "yerel:belediye:zonguldak.bel.tr": {
+   "istek": 5,
+   "ok": 4,
+   "kayit": 2,
+   "kodlar": {
+    "200": 4,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:akkus.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:altinordu.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:aybasti.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:camas.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:catalpinar.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:caybasi.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:fatsa.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:golkoy.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:gulyali.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:gurgentepe.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:ikizce.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:kabaduz.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:kabatas.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:korgan.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:kumru.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:mesudiye.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:persembe.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:ulubey.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:kaymakamlik:unye.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:adana.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:adiyaman.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:afyon.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:agri.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:akkus.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:aksaray.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:altinordu.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:amasya.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:ankara.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:antalya.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:ardahan.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "403": 1,
+    "404": 1
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:aybasti.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:bayburt.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:camas.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:catalpinar.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:caybasi.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:corum.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:fatsa.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:giresun.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:golkoy.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:gulyali.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:gumushane.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:gurgentepe.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:ikizce.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:kabaduz.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:kabatas.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kars.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kastamonu.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kayseri.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kilis.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kirikkale.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kirklareli.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kirsehir.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kocaeli.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:konya.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:korgan.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:kumru.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:kutahya.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:malatya.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:manisa.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:mardin.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:mersin.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:mesudiye.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:mugla.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:mus.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:nevsehir.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:nigde.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:ordu.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:mem:osmaniye.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:persembe.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:rize.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:sakarya.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:samsun.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:sanliurfa.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:siirt.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:sinop.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:sirnak.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:sivas.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:tekirdag.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:tokat.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:trabzon.meb.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 1,
    "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:tunceli.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:mem:ulubey.meb.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:mem:unye.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:usak.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:van.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:yalova.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:yozgat.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:mem:zonguldak.meb.gov.tr": {
+   "istek": 3,
+   "ok": 1,
+   "kayit": 0,
+   "kodlar": {
+    "200": 1,
+    "404": 2
+   },
+   "robots": 1,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:adiyamanozelidare.gov.tr": {
+   "istek": 7,
+   "ok": 6,
+   "kayit": 3,
+   "kodlar": {
+    "200": 6,
+    "404": 1
+   },
+   "robots": 22,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:afyonozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:agriozelidare.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
+   "robots": 2,
+   "hata": 0,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
+  },
+  "yerel:ozelidare:aksarayozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:amasyaozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:ardahanozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:bayburtozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:corumozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:giresunozelidare.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:ozelidare:gumushaneozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:karamanozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:karsozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kastamonuozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kilisozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kirikkaleozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kirklareliozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kirsehirozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:kutahyaozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:musozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:nevsehirozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:nigdeozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:ozelidare:osmaniyeozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:rizeozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:siirtozelidare.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:ozelidare:sinopozelidare.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:sirnakozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:ozelidare:sivasozelidare.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
-   "robots": 0,
+   "robots": 2,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
   },
   "yerel:ozelidare:tokatozelidare.gov.tr": {
    "istek": 0,
    "ok": 0,
    "kayit": 0,
    "kodlar": {},
+   "robots": 2,
+   "hata": 0,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
+  },
+  "yerel:ozelidare:tunceliozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:usakozelidare.gov.tr": {
+   "istek": 0,
+   "ok": 0,
+   "kayit": 0,
+   "kodlar": {},
+   "robots": 2,
+   "hata": 0,
+   "not": "site açılmadı (alan adı yanlış olabilir)",
+   "durum": "robots engeli"
+  },
+  "yerel:ozelidare:yalovaozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:yozgatozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:ozelidare:zonguldakozelidare.gov.tr": {
+   "istek": 3,
+   "ok": 2,
+   "kayit": 0,
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
+   "robots": 0,
+   "hata": 0,
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:adana.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:adiyaman.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:afyonkarahisar.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:agri.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:aksaray.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:amasya.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:ankara.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:antalya.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 6,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:ardahan.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 7,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:artvin.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 6,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:bayburt.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:corum.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:giresun.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:gumushane.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kars.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kastamonu.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kayseri.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kilis.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kirikkale.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kirklareli.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kirsehir.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kocaeli.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:konya.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:kutahya.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:malatya.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:manisa.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:mardin.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:mersin.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:mugla.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:mus.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:nevsehir.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:nigde.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:ordu.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 3,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 3
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
-  },
-  "yerel:valilik:osmaniye.gov.tr": {
-   "istek": 0,
-   "ok": 0,
-   "kayit": 0,
-   "kodlar": {},
-   "robots": 0,
-   "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:rize.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:sakarya.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 6,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:samsun.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:sanliurfa.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:siirt.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:sinop.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:sirnak.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:sivas.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:tekirdag.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   },
   "yerel:valilik:tokat.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
   },
   "yerel:valilik:trabzon.gov.tr": {
-   "istek": 0,
-   "ok": 0,
+   "istek": 3,
+   "ok": 2,
    "kayit": 0,
-   "kodlar": {},
+   "kodlar": {
+    "200": 2,
+    "404": 1
+   },
    "robots": 0,
    "hata": 0,
-   "not": "süre bütçesi doldu, atlandı",
-   "durum": "açılmadı"
+   "not": "açıldı, yeni duyuru yok",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:tunceli.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 6,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:usak.gov.tr": {
+   "istek": 5,
+   "ok": 4,
+   "kayit": 2,
+   "kodlar": {
+    "200": 4,
+    "404": 1
+   },
+   "robots": 10,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:van.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:yalova.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:yozgat.gov.tr": {
+   "istek": 5,
+   "ok": 4,
+   "kayit": 2,
+   "kodlar": {
+    "200": 4,
+    "404": 1
+   },
+   "robots": 9,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
+  },
+  "yerel:valilik:zonguldak.gov.tr": {
+   "istek": 4,
+   "ok": 3,
+   "kayit": 1,
+   "kodlar": {
+    "200": 3,
+    "404": 1
+   },
+   "robots": 5,
+   "hata": 0,
+   "not": "",
+   "durum": "açıldı"
   }
  }
 }
