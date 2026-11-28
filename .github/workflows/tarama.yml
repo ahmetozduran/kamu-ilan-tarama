@@ -9,6 +9,9 @@ on:
     - cron: "17 13 * * *"
     - cron: "17 19 * * *"
   workflow_dispatch:        # elle çalıştırma düğmesi
+  push:                     # LogiX'in bilgisayarı yeni okuma yükleyince de çalışsın (zamanlanmış
+    branches: [main]        # çalışmalar GitHub'da gecikebiliyor/atlanabiliyor; 28.11.2026'da hiç çalışmadı)
+    paths: ["pc/kariyerkapisi.json", "pc/pc_sonuclar.json"]
 
 permissions:
   contents: write

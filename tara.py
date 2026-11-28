@@ -888,7 +888,7 @@ def universiteler(durum):
     durum["uni_sira"] = (sira + len(parti)) % max(1, len(digerleri))
     for il, alan in list(UNIVERSITELER) + [("", a) for a in parti]:
         ad = "uni:" + alan
-        if sure_bitti(0.75):
+        if sure_bitti(0.95):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         acilan, adaylar = 0, []
@@ -923,7 +923,7 @@ def yerel_kurumlar(durum):
     durum["yerel_sira"] = (sira + len(parti)) % max(1, len(YEREL_TURKIYE))
     for il, tur, alan, desen in list(YEREL_KURUMLAR) + parti:
         ad = f"yerel:{tur}:{alan}"
-        if sure_bitti(0.95):
+        if sure_bitti(0.75):
             kaynak[ad]["not"] = "süre bütçesi doldu, atlandı"
             continue
         taban = None
@@ -1113,7 +1113,9 @@ def main():
         with open(DURUM_DOSYASI, encoding="utf-8") as f:
             durum = json.load(f)
     tarih_tamamla()
-    adimlar = [kariyerkapisi_pc, memurlar, liste_sayfalari, universiteler, yerel_kurumlar, pc_sonuclari]
+    # Yerel kurumlar üniversitelerden önce: kısa süreli belediye/SYDV ilanları önceliklidir (28.11.2026:
+    # üniversitelerin ilk tur birikimi süreyi doldurup yerel siteleri tümden atlatmıştı)
+    adimlar = [kariyerkapisi_pc, memurlar, liste_sayfalari, yerel_kurumlar, universiteler, pc_sonuclari]
     for adim in adimlar:
         try:
             adim(durum)
