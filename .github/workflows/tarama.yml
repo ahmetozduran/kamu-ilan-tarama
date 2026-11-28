@@ -2,12 +2,14 @@ name: ilan-tarama
 
 on:
   schedule:
-    # Günde 4 kez (Türkiye saati 06:17, 12:17, 16:17, 22:17): kısa başvuru süreli belediye/SYDV
-    # ilanları da aynı gün yakalansın (LogiX'in 27 Kasım 2026 talimatı: "hiçbir ilanı kaçırmayacak şekilde")
+    # Günde 4 kez (Türkiye saati 00:17, 06:17, 12:17, 18:17): kısa başvuru süreli belediye/SYDV
+    # ilanları da aynı gün yakalansın (LogiX'in 27 Kasım 2026 talimatı: "hiçbir ilanı kaçırmayacak şekilde").
+    # GitHub'ın zamanlanmış çalışmaları bu depoda hiç başlamadığı için (27-28.11.2026) asıl saat
+    # tutucu aşağıdaki 'zamanlayici' işidir; cron yalnızca yedektir.
+    - cron: "17 21 * * *"
     - cron: "17 3 * * *"
     - cron: "17 9 * * *"
-    - cron: "17 13 * * *"
-    - cron: "17 19 * * *"
+    - cron: "17 15 * * *"
   workflow_dispatch:        # elle çalıştırma düğmesi
   push:                     # LogiX'in bilgisayarı yeni okuma yükleyince de çalışsın (zamanlanmış
     branches: [main]        # çalışmalar GitHub'da gecikebiliyor/atlanabiliyor; 28.11.2026'da hiç çalışmadı)
@@ -15,15 +17,16 @@ on:
 
 permissions:
   contents: write
-
-concurrency:
-  group: ilan-tarama
-  cancel-in-progress: false
+  actions: write
 
 jobs:
   tara:
     runs-on: ubuntu-latest
     timeout-minutes: 150
+    # Aynı anda tek tarama; bekleyen en fazla bir çalışma kuyrukta kalır
+    concurrency:
+      group: ilan-tarama
+      cancel-in-progress: false
     steps:
       # Kuyrukta bekleyen çalışma da depodaki EN SON durumdan başlasın (eski commit'ten değil)
       - uses: actions/checkout@v4
@@ -65,3 +68,38 @@ jobs:
             sleep 10
           done
           exit 1
+
+  # Saat tutucu: tarama bitince bir sonraki saate (TR 00:17 / 06:17 / 12:17 / 18:17) kadar bekler ve
+  # taramayı yeniden başlatır. GITHUB_TOKEN ile yapılan workflow_dispatch yeni çalışma başlatabilir.
+  # Yeni bir saat tutucu başlarsa eskisi iptal edilir; böylece her zaman tek bekleyen olur.
+  zamanlayici:
+    needs: tara
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    concurrency:
+      group: ilan-zamanlayici
+      cancel-in-progress: true
+    steps:
+      - name: Sonraki saate kadar bekle
+        run: |
+          python3 - <<'PY'
+          import datetime as dt, time
+          tr = dt.timezone(dt.timedelta(hours=3))
+          simdi = dt.datetime.now(tr)
+          adaylar = []
+          for gun in (0, 1):
+              for saat in (0, 6, 12, 18):
+                  t = (simdi + dt.timedelta(days=gun)).replace(hour=saat, minute=17, second=0, microsecond=0)
+                  if t > simdi + dt.timedelta(minutes=30):
+                      adaylar.append(t)
+          hedef = min(adaylar)
+          bekle = min((hedef - simdi).total_seconds(), 340 * 60)
+          print(f"Şimdi {simdi:%H:%M}, sonraki tarama {hedef:%d.%m %H:%M} (TR); {bekle/60:.0f} dk bekleniyor")
+          time.sleep(max(0, bekle))
+          PY
+      - name: Taramayı başlat
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run tarama.yml --repo "${{ github.repository }}" --ref main
+
